@@ -1,0 +1,390 @@
+
+.bcaswrapper{
+  display: flex;
+  user-select: none;
+  z-index:999;
+}
+
+.bcaswrapper .sidebar{
+ 
+  width: 240px;
+  height: 1000px;
+  background: white;
+  position: absolute;
+font-size: 15px;
+max-height: 100%; 
+overflow-y: auto; 
+border: 1px solid transparent; /* Invisible border to emphasize shadow */
+box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Floating shadow effect */
+transition: box-shadow 0.3s ease; /* Smooth transition on hover */
+}
+
+.bcaswrapper .sidebar h4{
+  color: #807CDF;
+  text-transform: uppercase;
+  text-align: left;
+  margin-bottom: 0px;
+  padding: 20px 10px;
+  border-bottom: 1px solid #bdb8d7;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  border-top: 1px solid rgba(255,255,255,0.05);
+
+}
+
+.bcaswrapper .sidebar ul li{
+  padding: 15px;
+
+}    
+
+.bcaswrapper .sidebar ul li a{
+  color: black;
+  display: block;
+}
+
+.bcaswrapper .sidebar ul li a .fas{
+  width: 25px;
+}
+
+.bcaswrapper .sidebar ul li a .fas fa-{
+
+    font-size: 15px;
+    
+}
+
+.bcaswrapper .sidebar ul li:hover{
+  color: black;
+font-weight: 700;
+}
+    
+.bcaswrapper .sidebar ul li:hover a{
+  color: black;
+font-weight: 700;
+}
+ 
+.bcaswrapper .main_content{
+  width: 100%;
+  margin-left: 200px;
+
+}
+
+.bcaswrapper .main_content .header{
+  padding: 20px;
+  background: #fff;
+  color: #717171;
+  border-bottom: 1px solid #e0e4e8;
+}
+
+.bcaswrapper .main_content .info{
+  margin: 20px;
+  color: #717171;
+  line-height: 25px;
+}
+
+.bcaswrapper .main_content .info div{
+  margin-bottom: 20px;
+  max-height: 100px; 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.bcastab-container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 200px;
+    width: calc(100% - 200px); /* Adjust width to make room for the sidebar */
+    height: 100vh;  
+
+    user-select:none ;
+
+}
+
+
+/* Tab Bar */
+ .bcastab-bar {
+    display: flex;
+    background-color:transparent;
+    padding: 10px;
+     display: none; /* Hide the tab bar */
+  
+ } 
+
+ .bcastabs {
+  display: flex;
+  background-color:darkBlue;
+  padding: 10px;
+  font-size: 10px;
+  display: none; /* Hide the tab bar */
+  
+}
+.bcastab {
+    color: white;
+    background-color: darkBlue;
+    padding: 10px 20px;
+    font-size: 15px;
+    cursor: pointer;
+    flex-grow: 1;
+    text-align: left;
+    transition: background-color 0.3s ease;
+    display: none;
+}
+
+
+.bcastab.inactive {
+  display: none; /* Hide the tab bar */
+}
+
+ .bcastab.active {
+    background-color: darkBlue;
+    font-weight: bold;
+    display: block; /* Hide the tab bar */
+  
+}
+
+.bcascontent {
+    display: block;
+
+}
+
+
+.bcasfttab-container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 200px;
+    width: calc(100% - 200px); /* Adjust width to make room for the sidebar */
+    height: 100vh;
+    user-select:none ;
+    margin-bottom: 1500px;
+
+
+
+
+
+
+
+}
+
+
+/* Tab Bar */
+ .bcasfttab-bar {
+    display: flex;
+    background-color:transparent;
+    padding: 10px;
+     display: none; /* Hide the tab bar */
+  
+ } 
+
+ .bcasfttabs {
+  display: flex;
+  background-color:darkBlue;
+  padding: 10px;
+  font-size: 10px;
+  display: none; /* Hide the tab bar */
+  
+}
+.bcasfttab {
+    color: white;
+    background-color: darkBlue;
+    padding: 10px 20px;
+    font-size: 15px;
+    cursor: pointer;
+    flex-grow: 1;
+    text-align: left;
+    transition: background-color 0.3s ease;
+    display: none;
+}
+
+
+.bcasfttab.inactive {
+  display: none; /* Hide the tab bar */
+}
+
+ .bcasfttab.active {
+    background-color: darkBlue;
+    font-weight: bold;
+    display: block; /* Hide the tab bar */
+  
+}
+
+.bcasftcontent {
+    display: block;
+
+}
+
+
+.BCAStoggle-btn {
+    cursor: pointer;
+    padding: 10px 15px;
+    background-color:rgb(9, 55, 128);
+    color: white;
+    border: none;
+    text-align: left;
+    width: 100%;
+    font-size: 15px; 
+    
+}
+
+
+/* Toggle button for submenu */
+.BCAStoggle-btn:hover {
+    cursor: pointer;
+    padding: 10px 15px;
+    background-color: rgb(9, 55, 128);
+    color: white;
+    border: none;
+    text-align: left;
+    width: 100%;
+    font-size: 15px;
+   font-weight: bold;
+}
+
+.bcassubmenu {
+    display: none;
+    background-color: rgb(9, 55, 128);
+    padding-left: 10px;
+    font-size: 12px;
+    transition: height 0.5s ease, opacity 0.5s ease;
+    user-select: none;
+}
+
+.bcassubmenu a {
+    padding: 0px 0px;
+    text-decoration: none;
+    color: White;
+    cursor: pointer;
+}
+
+/* Active submenu item */
+.bcassubmenu a:hover {
+    color: White;
+font-weight: 700;
+}
+
+/* Active tab (highlighted) */
+.active a{
+  font-weight: 700;
+}
+/* Overlay background */
+
+.bcascontent {
+ display: none;    
+}
+
+.table-container {
+
+    display: block;
+}
+
+.scroll {
+    display: block;
+    max-height: 330px; /* Set the height to enable scrolling */
+    overflow-y: auto;  /* Enable vertical scrolling for the body */
+    
+   /* Set a specific height for the table body */
+
+}
+
+.scroll th{
+    height: 0px;
+    background-color: rgb(121, 118, 118);
+    font-size: 10px;
+    font-weight:lighter;
+    padding:8px;
+
+}
+
+.ftscroll {
+    display: block;
+    max-height: 395px; /* Set the height to enable scrolling */
+    overflow: auto;  /* Enable vertical scrolling for the body */
+    max-width: 930px;
+    height: 395px;
+   
+   /* Set a specific height for the table body */
+
+}
+
+.ftscroll th{
+   
+    width: 1100px;
+   /* background-color: rgb(173, 171, 171); */
+    font-size: 9px;
+    font-weight:lighter;
+    padding:8px;
+    height: 0px;
+}
+
+.custom-button-bcaseye {
+    background-color: rgb(64, 154, 251);  /* Green background */
+    border:1px solid rgb(64, 154, 251);
+    color: white ;              /* White text */
+    cursor: pointer;           /* Pointer cursor on hover */
+    box-shadow: 0 2px 10px rgba(38, 37, 37, 0.1); /* Floating shadow effect */
+    transition: background-color 0.3s ease; /* Smooth color transition */
+    height: 25px;
+    width: 50px;
+    border-radius: 5px;
+  }
+  
+  .custom-button-bcaseye:hover {
+    box-shadow: 0 2px 10px rgba(16, 16, 16, 0.1);
+    background-color: rgb(57, 134, 215);
+  }
+
+
+  .custom-button-bcasvoid {
+    background-color: rgb(176, 16, 40);  /* Green background */
+    border:1px solid rgb(176, 16, 40);
+    color: white ;              /* White text */
+    cursor: pointer;           /* Pointer cursor on hover */
+    box-shadow: 0 2px 10px rgba(38, 37, 37, 0.1); /* Floating shadow effect */
+    transition: background-color 0.3s ease; /* Smooth color transition */
+    height: 25px;
+    width: 50px;
+    border-radius: 5px;
+  }
+  
+  .custom-button-bcasvoid:hover {
+    box-shadow: 0 2px 10px rgba(16, 16, 16, 0.1);
+    background-color:rgb(245, 12, 47);
+  }
+
+  .BCASoverlay {
+    position: fixed;
+    top: 0;
+    left: 180px;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    z-index: 1000;
+  }
+  
+  .BCASoverlay .modal {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 350px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    min-height: 200px;
+  }
+  
+  .BCASoverlay.active {
+    display: flex;
+  }
