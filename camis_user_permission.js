@@ -335,7 +335,7 @@ fieldsetcontainer.style.gap = '20px';
       handleAaaRole(overlayId, cellValue, buttons);
       break;
     case 'cmd':
-      handleCmdRole(overlayId, cellValue, buttons);
+      handleCmdRole(overlayId, cellValue, buttons, hcell);
       break;
     default:
       handleDefaultRole(buttons);
@@ -383,22 +383,31 @@ function handleAaaRole(overlayId, cellValue, buttons) {
   }
 }
 
-function handleCmdRole(overlayId, cellValue, buttons) {
+function handleCmdRole(overlayId, cellValue, buttons, hcell) {
+
+
+
   if (overlayId === 'overlay0') {
     buttons.save.style.display = 'none';
   }
 
   switch (cellValue) {
     case 'In-Transit':
+      if (hcell === 'Send'){
+      buttons.cancel.style.display = 'block';
+      break;
+      } else{
       buttons.ack.style.display = 'block';
       buttons.deny.style.display = 'block';
+
       break;
+      }
     case 'Acknowledged':
       buttons.cancela.style.display = 'block';
       break;
     case 'Denied':
       buttons.canceld.style.display = 'block';
-      break;
+      
     default:
       break;
   }

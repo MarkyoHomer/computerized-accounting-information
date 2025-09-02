@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="bcas.css">
     <link rel="stylesheet" href="camis.css">
-    	<script src="https://kit.fontawesome.com/e814f7c69b.js"></script>
+    <script src="https://kit.fontawesome.com/e814f7c69b.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
 </head>
@@ -22,9 +22,6 @@
 	 
        <ul>
             
-         
-
-
 
            <li Id="Integ-Arrow" class="toggle-btn" onclick="toggleSubmenu('IntSub')">
            <a href="#"><i class="fas fa-clapperboard" style= "color: rgb(11, 161, 11); font-size: 18px" >
@@ -138,9 +135,7 @@
                         
              
                          <ul class="submenu" id="ReprtSub">
-             
 
-                          
                              <ul id ="RprtASum"><li><a href="#" data-tab="tab14"><i class="fas fa-list-check" style= "color: rgb(10, 186, 10); font-size: 14px"></i>Account Summary</a></li></ul>
                              <ul id ="RprtDtlr"><li class="icon-text"><a href="#" data-tab="tab15"><i class="fas fa-list-check" style= "color: rgb(10, 186, 10); font-size: 14px"></i></a><span>Detailed <br> Ledger Reports</span></li></ul>
                              <ul id ="RprtFinR"><li><a href="#" data-tab="tab16"><i class="fas fa-list-check" style= "color: rgb(10, 186, 10); font-size: 14px"></i>Financial Reports</a></li></ul>
@@ -212,7 +207,6 @@
                                      
                                   <li style="border-top: 1px solid #bdb8d7;"></li>   
 
-
         </ul> 
        </div>
     </div>
@@ -244,7 +238,6 @@
 
         </div>
 
-
         <div class="tabs">
             <div class="tab" id="tab100">Branch CAS</div>
             <div class="tab" id="tab1">Detailed Status</div>
@@ -257,8 +250,6 @@
         </div>
 
 <!------------------------------- Main Tab Content ------------------------------------------------------------------------------------------->
-
-
 
 <div class="tab-content">
   
@@ -274,7 +265,7 @@
 
                     <div class="form-container" >
               
-                      <form style="padding:0px; width:1150px; height:600px; background-color: white; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);">
+                      <form style="padding:0px; width:1150px; height:600px; background-color: white; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); ">
                         
                         <h4 style="background-color: white; color: black; font-size: 12px; padding: 5px;">Branch Computerized Accounting System</h4>
                         <header style="background-color:rgb(3, 41, 103); padding:12px"></header>
@@ -282,7 +273,6 @@
                         <div class=bcaswrapper style="height:600px;">
                           <div class=sidebar style="width:200px; height:537px;background-color:rgb(9, 55, 128)">                      
 
-                           
 
                             <ul id="BCAStranx" class="bcassubmenus" style="display:block; padding-left: 0px; margin-top: 5px; " >
                               <li><a style="color:white;font-size: 15px" id="sub-tab100-tab1" data-tab="sub-tab100-tab1"><i class="fas fa-list" style= "color: white; font-size: 15px" >
@@ -371,11 +361,7 @@
                                           </i>Audit Trail</a></li>
                                         </ul>
                                   </ul>
-
-
-
-
-                               
+ 
                         </div>
                       </div>
 <!---------------------------------------------------------------------------------------------------------------------------->
@@ -420,7 +406,8 @@
                                 
       <nav style="margin-left:10px; width:600px; padding:0;">
       <label style=" font-size: 15px; color:rgb(15, 14, 14); margin-right:20px;">Transaction Date:</label>
-      <input type="date"  style="width:  450px; font-size: 15px;" id="trnxDate" name="trnxDate;">
+      <input type="date" onchange="filtertransactionbydate()" id="trnxDate" name="trnxDate;" 
+      style="width:  450px; font-size: 15px;" >
       </nav>
       <button type="button" class="custom-button-blue"style="float:right; margin-right:20px;width:120px;"> 
       <i class="fas fa-square-plus" style= "float:left;color:white; font-size: 14px; margin-left:10px"></i>New</button>
@@ -435,10 +422,27 @@
                                  <!-- Search Bar -->
                                  
  <div class="search-container"> 
-    <nav style="width: 15%;text-align: left; margin-left: 15px; font-size: 14; font-weight: bold;">
-      <button type="button" style="width:120px;"class="custom-button-blue">Action 
-        <i class="fas fa-square-caret-right" style= "float:right;margin-right:10px; color:white; font-size: 14px; margin-left:10px"></i></button>
-     </nav>
+        <nav style="width: 15%;text-align: left; margin-left: 15px; font-size: 14; font-weight: bold;">
+
+        <div class="actiondropbtns">
+          <button type="button" id="actionbtn" onclick="actnbtn()" 
+          style="width:120px; position: relative; font-size: 14px"class="custom-button-blue">Action 
+          <i class="fas fa-square-caret-right" style= "float:right;margin-right:10px; color:white; font-size: 14px; margin-left:10px"></i>
+          </button>
+    
+         <div id="actionbtndrop" class="actiondrop" style="font-size: 14px; font-weight: 400; top:0;">        
+          <li><button id="actiondropbtn1" class="actiondropbtn" type="button" onclick ="finalized()">Finalized Transaction</button></li>
+          <li><button id="actiondropbtn2" class="actiondropbtn" type="button" onclick ="uploadingtransaction()">Forward Transactions</button></li>
+          <li><button id="actiondropbtn3" class="actiondropbtn" type="button" onclick ="rollback()">Rollback Finalized Transaction</button></li>
+          <li><button id="actiondropbtn4" class="actiondropbtn" type="button" onclick ="backuptr()">Backup Transactions</button></li>
+          <li><button id="actiondropbtn5" class="actiondropbtn" type="button" onclick ="frowardbr()">Forward Branch Transaction</button></li>
+          <li><button id="actiondropbtn6" class="actiondropbtn" type="button" onclick ="gettemp()">Get Templates</button></li>
+          <li><button id="actiondropbtn7" class="actiondropbtn" type="button" onclick ="updatetemp()">Update Templates</button></li>
+          
+         </div>
+        </div>
+    
+      </nav>
       <nav style="width: 80%;">
        <nav style="width: 69.5%;">
        <div class="input-container-small" style="margin-bottom:10px; width:480px;" >
@@ -453,9 +457,7 @@
                                       <i class="fas fa-magnifying-glass" style= "float:left;color:white; font-size: 14px; margin-left:10px"></i>Search</button>
                                     </nav>
                                     </nav>
-                                  
-                        
-                                     
+
                                  </div>
                        
                                  <div class="table-container">
@@ -471,19 +473,21 @@
                                              <th >Balance</th>
                                              <th >Remarks</th>
                                              <th style="width: 120px;" >Upload Status</th>
-                                             <th style="display:none;" >Tags</th>
+                                             <th style="display:none;" >trId</th>
+                                             <th style="display:none;" >ftref</th>
+                                             <th style="display:none;" >date</th>
+                                             <th style="display:none;" >area</th>
                                          </tr>
 
                                       
                                      </thead>
 
 
-
                                      <tbody style="color:blue" >
 
                                       <tr class="AAA">
                                         <td><a><button type="button" id="bcas-btn-view1"
-                                           onclick="viewentries(1, event, 'BCAStransactions')" class="custom-button-bcaseye">
+                                           onclick="viewentries(event, 'BCAStransactions')" class="custom-button-bcaseye">
                                           <i  class= "fas fa-eye"></i></button></a>
                                             </td>
                                             <td>1</td>
@@ -495,86 +499,104 @@
                                             <td>311010 SA AREA MBTC EUPI-BAYAWAN CITY-NEGROS ORIENTAL:6452/2110-102-133-6452</td>
                                             <td style="width: 120px;">Not Uploaded</td>
                                             <td style="display:none;">AAA-13-002002S00S0SAS</td>
+                                            <td  style="display:none;" >FT-AAA04012025-002-Active</td >
+                                             <td  style="display:none;" >04/01/2025</td >
+                                             <td  style="display:none;" >ZAA</td >
                                           
                                        </tr>
                                       <tr class="AAA">
                                         <td><a><button type="button" id="bcas-btn-view2" 
-                                          onclick="viewentries(2, event, 'BCAStransactions')" class="custom-button-bcaseye">
+                                          onclick="viewentries(event, 'BCAStransactions')" class="custom-button-bcaseye">
                                           <i  class= "fas fa-eye"></i></button></a>
                                             </td>
-                                            <td>2</td>
-                                            <td>Active</td>
+                                            <td>1</td>
+                                            <td>Finalized</td>
                                             <td >Fund Transfer-Receive</td>
                                             <td >2,000,000.00</td>
                                             <td >0.00</td>
-                                            <td >9,000,000.00</td>
+                                            <td >8,000,000.00</td>
                                             <td>AAS-13-002002S00S0SAU-AAA/9876: DELA CRUZ JUAN</td>
                                             <td>Not Uploaded</td>
                                             <td style="display:none;">AAS-13-002002S00S0SAU</td>
+                                            <td  style="display:none;" >FT-AAA03312025-003-Active</td >
+                                            <td  style="display:none;" >03/31/2025</td>
+                                            <td  style="display:none;" >ZAA</td >
                                        </tr>
 
                                        <tr class="AAA">
                                         <td><a><button type="button" id="bcas-btn-view3" 
-                                          onclick="viewentries(3, event, 'BCAStransactions')"class="custom-button-bcaseye">
+                                          onclick="viewentries(event, 'BCAStransactions')"class="custom-button-bcaseye">
                                           <i  class= "fas fa-eye"></i></button></a>
                                             </td>
-                                            <td>3</td>
-                                            <td>Active</td>
+                                            <td>2</td>
+                                            <td>Finalized</td>
                                             <td style="width: 180px;">Fund Transfer-Deposit</td>
                                             <td >0.00</td>
-                                            <td >500,000.00</td>
-                                            <td >8,500,000.00</td>
+                                            <td >2,000,000.00</td>
+                                            <td >6,000,000.00</td>
                                             <td>110010 SA AREA PNB EUPI-BAYAWAN CITY-NEGROS ORIENTAL:6450/1110-102-133-6450</td>
                                             <td style="width: 100px;">Not Uploaded</td>
                                             <td style="display:none;">AAA-13-002002S00S0SAT</td>
+                                            <td  style="display:none;" >FT-AAA03312025-001-Active</td >
+                                            <td  style="display:none;" >03/31/2025</td >
+                                            <td  style="display:none;" >ZAA</td >
 
                                        </tr>
                                        <tr class="AAA">
                                         <td><a><button type="button" id="bcas-btn-view4" 
-                                          onclick="viewentries(4, event, 'BCAStransactions')"class="custom-button-bcaseye">
+                                          onclick="viewentries(event, 'BCAStransactions')"class="custom-button-bcaseye">
                                           <i  class= "fas fa-eye"></i></button></a>
                                             </td>
-                                            <td>4</td>
+                                            <td>2</td>
                                             <td>Active</td>
                                             <td style="width: 180px;">Fund Transfer-Received</td>
-                                            <td >3,000,000.00</td>
+                                            <td >1,500,000.00</td>
                                             <td >0.00</td>
                                             <td >11,500,000.00</td>
                                             <td>AAB-13-003002S00S0SAT-AAA/9876: DELA CRUZ JUAN</td>
                                             <td style="width: 100px;">Not Uploaded</td>
                                             <td style="display:none;">AAB-13-003002S00S0SAT</td>
+                                            <td style="display:none;" >FT-AAA04012025-001-Active</td>
+                                            <td  style="display:none;" >04/01/2025</td>
+                                            <td style="display:none;" >ZAA</td>
                                        </tr>
 
                                        <tr class="AAA">
                                         <td><a><button type="button" id="bcas-btn-view5" 
-                                          onclick="viewentries(5, event, 'BCAStransactions')" class="custom-button-bcaseye">
+                                          onclick="viewentries(event, 'BCAStransactions')" class="custom-button-bcaseye">
                                           <i  class= "fas fa-eye"></i></button></a>
                                             </td>
-                                            <td>5</td>
+                                            <td>3</td>
                                             <td>Active</td>
                                             <td style="width: 180px;">PEPP Remittance</td>
                                             <td >1,040,065.60</td>
                                             <td >0.00</td>
                                             <td >12,540,065.60</td>
                                             <td>12 pc(s)</td>
-                                            <td style="width: 100px;">Not Uploaded</td>
+                                            <td style="width: 100px;">Not Uploaded</td>                                            
                                             <td style="display:none;"></td>
+                                            <td style="display:none;" ></td >
+                                            <td style="display:none;" >04/01/2025</td >
+                                            <td style="display:none;" >ZAA</td >
                                           
                                        </tr>
                                       <tr class="AAA">
                                         <td><a><button type="button" id="bcas-btn-view6"
-                                          onclick="viewentries(6, event, 'BCAStransactions')"class="custom-button-bcaseye">
+                                          onclick="viewentries(event, 'BCAStransactions')"class="custom-button-bcaseye">
                                           <i  class= "fas fa-eye"></i></button></a>
                                             </td>
-                                            <td>6</td>
+                                            <td>4</td>
                                             <td>Active</td>
                                             <td style="width: 180px;">PEPP Release</td>
                                             <td >0.00</td>
                                             <td>1,000,000.00</td>
                                             <td>11,540,065.60</td>
                                             <td>10 pc(s)</td>
-                                            <td style="width: 100px;">Not Uploaded</td>
+                                            <td style="width: 100px;">Not Uploaded</td> 
                                             <td style="display:none;"></td>
+                                            <td  style="display:none;" ></td >
+                                            <td   style="display:none;" >04/01/2025</td >
+                                            <td  style="display:none;" >ZAA</td >
                                        </tr>
 
                                        
@@ -583,25 +605,49 @@
                                  </table>
                                 </div>
                                  <!-- Pagination -->
-                                 
-                                
-
-
+ 
                                </fieldset>
                                <nav style="width: 1000px;">
 
                               <nav style="width: 460px; margin-top:10px; margin-left:10px">
                                <nav style="width: 150px; margin-bottom:0px;"> <label> Beginning Balance:</label></nav>
-                               <nav style="width: 200px"> <input type="text" id="amtbb" value="6,000,000.00" style="font-size: 15px;
+                               <nav style="width: 200px"> <input type="text" id="amtbb"  style="font-size: 15px;
                                 width:300px; text-align: right;margin-bottom:10px"></nav>
                               </nav>
 
                               <nav style="width: 400px; margin-top:10px; margin-left:10px">
                                 <nav style="width: 150px; margin-bottom:0px;"><label> Ending Balance:</label></nav>
-                                <nav style="width: 200px"> <input type="text" id="amteb" value="11,540,065.60" style="font-size: 15px;
+                                <nav style="width: 200px"> <input type="text" id="amteb"  style="font-size: 15px;
                                  width:300px; text-align: right;margin-bottom:10px"></nav>
                                </nav>
                               </nav>
+
+
+                              <table  id="BCASbbeb" style="display: none;" >
+                                <thead >
+                                    <tr >
+                                        <th>date</th>
+                                        <th>Begbal</th>
+                                        <th>Endbal</th>
+                                      
+                                    </tr >
+                                </thead> 
+
+                                <tbody >
+                                  <tr >
+                                    <td>03/30/2025</td>
+                                    <td>0.00</td>
+                                    <td>6,000,000.00</td>
+                                  
+                                </tr >
+                                <tr >
+                                  <td>03/31/2025</td>
+                                  <td>6,000,000.00</td>
+                                  <td>6,000,000.00</td>
+                                
+                              </tr >
+                                <tbody >
+                                </table>
 
 
 
@@ -807,7 +853,8 @@
                                 
   <nav style="margin-left:20px; width:600px; padding:0;">
    <label style=" font-size: 15px; color:rgb(15, 14, 14); margin-right:20px;" for="bcasftDate">Date:</label>
-   <input type="date"  style="width:  250px; font-size: 15px;" id="bcasftDate" name="bcasftDate;">
+   <input type="date" onchange="filterftbydate()" 
+   style="width:  250px; font-size: 15px;" id="bcasftDate" name="bcasftDate;">
   </nav>
   <button type="button" onclick="updatecasft('sub-tab100-tab13')" class="custom-button-blue"style="float:right; margin-right:20px;width:120px;"> 
     <i class="fas fa-pen-to-square" style= "float:left;color:white; font-size: 14px;"></i>Offline Update</button>
@@ -842,9 +889,11 @@
            <th style="width:3000px;">Remarks</th>          
            <th >Status</th>
            <th >Update Status</th>                  
-           <th >Time Updated</th>
-           <th >Timer</th>
+           <th >Time Updated</th>           
            <th style="text-align: center;" >Void</th>  
+           <th style="display: none;">FTRefcode</th> 
+           <th style="display: none;">No.</th> 
+           <th style="display:none;" >AREA</th>
        </tr>
 
     
@@ -855,14 +904,14 @@
    <tbody style="color:rgb(15, 15, 15)" >
 
     <tr class="AAA">
-      <td><a><button type="button" id="bcas-btn-ret1" style=" width:40px;"
-        onclick="openOverlay('overlay106', event, 'BCASft', 1, 10)" class="custom-button-bcaseye">
+      <td><a><button type="button" id="bcas-btn-ret1"  for = "retry" style=" width:40px;"
+        onclick="retry(event)" class="custom-button-bcaseye">
        <i  class= "fas fa-rotate-right"></i></button></a></td>  
       <td><a><button type="button" id="bcas-btn-bcopy1" style="width:40px;"
          onclick="bcasencryptRow('BCASfttable', 1, 'Bcasbranch', 4, 3, 2, event)" class="custom-button-bcaseye">
         <i  class= "fas fa-copy"></i></button></a></td>
     
-          <td id="ft-sub-tab100-tab6-con1-1"></td>
+          <td>03/31/2025</td>
           <td>Deposit</td>         
           <td >AAA-13-002002S00S0SAT</td>
           <td >AAA</td>
@@ -870,25 +919,27 @@
           <td >2,000,000.00</td>
           <td >9876: DELA CRUZ JUAN</td>
           <td>110010 SA AREA PNB EUPI-BAYAWAN CITY-NEGROS ORIENTAL:6450/1110-102-133-6450</td>        
-          <td>Pending</td>
-          <td>Not Updated</td>      
-          <td id="ft-sub-tab100-tab6-con1-2"></td>
-          <td>-</td>
-          <td><a><button type="button" id="bcas-btn-void1" style="border:none;  width:40px;"
-            onclick="openOverlay('overlay106', event, 'BCASft', 1, 10)" class="custom-button-bcasvoid">
-           <i  class= "fas fa-ban"></i></button></a></td>
+          <td>Active</td>
+          <td>Updated</td>      
+          <td id="ft-sub-tab100-tab6-con1-1"></td> 
+            <td><a><button type="button" id="bcas-btn-void1" style=" width:40px;"
+              onclick="voidencryp(event)" class="custom-button-bcasvoid">
+             <i  class= "fas fa-ban"></i></button></a></td>  
+          <td style="display: none;">FT-AAA03312025-001-Active</td>   
+          <td style="display: none;">001</td> 
+          <td style="display:none;" >ZAA</td> 
           </tr>
 
 
           <tr class="AAA">
-          <td><a><button type="button" id="bcas-btn-ret2" style=" width:40px;"
-          onclick="openOverlay('overlay106', event, 'BCASft', 1, 10)" class="custom-button-bcaseye">
+          <td><a><button type="button" id="bcas-btn-ret2" for = "retry"  style=" width:40px;"
+            onclick="retry(event)" class="custom-button-bcaseye">
           <i  class= "fas fa-rotate-right"></i></button></a></td>
           <td><a><button type="button" id="bcas-btn-bcopy2" style="width:40px;"
             onclick="bcasencryptRow('BCASfttable', 2, 'Bcasbranch', 4, 3, 2, event)" class="custom-button-bcaseye">
           <i  class= "fas fa-copy"></i></button></a></td>
     
-          <td id="ft-sub-tab100-tab6-con1-5"></td>   
+          <td>04/01/2025</td>   
           <td>Receive</td>
           <td >AAB-13-003002S00S0SAT</td>
           <td >AAB</td>
@@ -896,25 +947,30 @@
           <td >1,500,000.00</td>
           <td >9876: DELA CRUZ JUAN</td>
           <td>AAB-13-002002S00S0SAT-AAA/1234: DELA CRUZ JUAN</td>       
-          <td>Voided</td>
-          <td>Not Updated</td>   
-        
-          <td id="ft-sub-tab100-tab6-con1-6"></td>
-          <td>-</td>
-          <td><a><button type="button" id="bcas-btn-void2" style=" border:none; width:40px;"
-            onclick="openOverlay('overlay106', event, 'BCASft', 1, 10)" class="custom-button-bcasvoid">
-           <i  class= "fas fa-ban"></i></button></a></td>
+          <td>Active</td>
+          <td>Updated</td>           
+          <td id="ft-sub-tab100-tab6-con1-2"></td>        
+          <td>
+            <button type="button" id="bcas-btn-void2" style="border:none; width:40px;" 
+                    onclick="voidencryp(event)" 
+                    class="custom-button-bcasvoid">
+              <i class="fas fa-ban"></i>
+            </button>
+          </td>
+          <td style="display: none;">FT-AAA04012025-001-Active</td>
+          <td style="display: none;">001</td>  
+          <td style="display:none;" >ZAA</td> 
      </tr>
     
      <tr class="AAA">
-      <td><a><button type="button" id="bcas-btn-ret3" style=" width:40px;"
-        onclick="openOverlay('overlay106', event, 'BCASft', 1, 10)" class="custom-button-bcaseye">
+      <td><a><button type="button" id="bcas-btn-ret3" for = "retry"  style=" width:40px;"
+        onclick="retry(event)" class="custom-button-bcaseye">
        <i  class= "fas fa-rotate-right"></i></button></a></td>
       <td><a><button type="button" id="bcas-btn-bcopy3" style="width:40px;"
         onclick="bcasencryptRow('BCASfttable', 3, 'Bcasbranch', 4, 3, 2, event)" class="custom-button-bcaseye">
         <i  class= "fas fa-copy"></i></button></a></td>
     
-          <td id="ft-sub-tab100-tab6-con1-3"></td>   
+          <td>03/31/2025</td>   
           <td>Receive</td>
           <td >AAS-13-002002S00S0SAU</td>
           <td >AAS</td>
@@ -922,72 +978,72 @@
           <td >2,000,000.00</td>
           <td >9876: DELA CRUZ JUAN</td>
           <td>AAS-13-002002S00S0SAU-AAA/1234: DELA CRUZ JUAN</td>       
-          <td>Pending</td>
-          <td>Not Updated</td> 
-      
-    
-          <td id="ft-sub-tab100-tab6-con1-4"></td>
-          <td>-</td>
+          <td>Active</td>
+          <td>Updated</td>  
+
+          <td id="ft-sub-tab100-tab6-con1-3"></td>       
           <td><a><button type="button" id="bcas-btn-void3" style=" border:none; width:40px;"
-            onclick="openOverlay('overlay106', event, 'BCASft', 1, 10)" class="custom-button-bcasvoid">
+            onclick="voidencryp(event)" class="custom-button-bcasvoid">
            <i  class= "fas fa-ban"></i></button></a></td>
-      
+           <td style="display: none;">FTBR-AAA032025-003-Active</td>   
+           <td style="display: none;">003</td> 
+           <td style="display:none;" >ZAA</td> 
      </tr>
 
      <tr class="AAA">
-      <td><a><button type="button" id="bcas-btn-ret4" style=" width:40px;"
-        onclick="openOverlay('overlay106', event, 'BCASft', 1, 10)" class="custom-button-bcaseye">
+      <td><a><button type="button" id="bcas-btn-ret4" for = "retry" style=" width:40px;"
+        onclick="retry(event)" class="custom-button-bcaseye">
        <i  class= "fas fa-rotate-right"></i></button></a></td>
       <td><a><button type="button" id="bcas-btn-bcopy4" style="width:40px;"
         onclick="bcasencryptRow('BCASfttable', 4, 'Bcasbranch', 4, 3, 2, event)" class="custom-button-bcaseye">
         <i  class= "fas fa-copy"></i></button></a></td>
     
-          <td id="ft-sub-tab100-tab6-con1-7"></td>   
+          <td>03/31/2025</td>   
           <td>Withdraw</td>
-          <td >AAA-13-002002S00S0SAS</td>
+          <td >AAA-13-002002S00S0SAJ</td>
           <td >HO MBTC</td>
           <td >AAA</td>
-          <td >1,000,000.00</td>
+          <td >2,000,000.00</td>
           <td >9876: DELA CRUZ JUAN</td>
           <td>311010 SA AREA MBTC EUPI-BAYAWAN CITY-NEGROS ORIENTAL:6452/2110-102-133-6452</td>       
           <td>Pending</td>
-          <td>Not Updated</td>    
-      
+          <td>Not Updated</td>       
     
-          <td id="ft-sub-tab100-tab6-con1-8"></td>
-          <td>-</td>
+          <td>--</td>   
           <td><a><button type="button" id="bcas-btn-void4" style=" border:none; width:40px;"
-            onclick="openOverlay('overlay106', event, 'BCASft', 1, 10)" class="custom-button-bcasvoid">
+            onclick="voidencryp(event)" class="custom-button-bcasvoid">
            <i  class= "fas fa-ban"></i></button></a></td>
-      
+           <td style="display: none;"></td>   
+           <td style="display: none;">002</td>
+           <td style="display:none;" >ZAA</td> 
      </tr>
 
      <tr class="AAA">
-      <td><a><button type="button" id="bcas-btn-ret5" style=" width:40px;"
-        onclick="openOverlay('overlay106', event, 'BCASft', 1, 10)" class="custom-button-bcaseye">
+      <td><a><button type="button" id="bcas-btn-ret5" for = "retry" style=" width:40px;"
+        onclick="retry(event)" class="custom-button-bcaseye">
        <i  class= "fas fa-rotate-right"></i></button></a></td>
       <td><a><button type="button" id="bcas-btn-bcopy5" style="width:40px;"
         onclick="bcasencryptRow('BCASfttable', 5, 'Bcasbranch', 4, 3, 2, event)" class="custom-button-bcaseye">
         <i  class= "fas fa-copy"></i></button></a></td>
     
-          <td id="ft-sub-tab100-tab6-con1-9"></td>   
+          <td>04/01/2025</td>   
           <td>Withdraw</td>
-          <td>AAA-13-002002S00S0SAJ</td>
+          <td>AAA-13-002002S00S0SAS</td>
           <td>HO MBTC</td>
           <td>AAA</td>
-          <td>2,000,000.00</td>
+          <td>1,000,000.00</td>
           <td>9876: DELA CRUZ JUAN</td>
           <td>311010 SA AREA MBTC EUPI-BAYAWAN CITY-NEGROS ORIENTAL:6452/2110-102-133-6452</td>       
           <td>Active</td>
-          <td>Updated</td>    
-      
+          <td>Updated</td>                
     
-          <td id="ft-sub-tab100-tab6-con1-10"></td>
-          <td>-</td>
+          <td id="ft-sub-tab100-tab6-con1-4"></td>       
           <td><a><button type="button" id="bcas-btn-void5" style=" border:none; width:40px;"
-            onclick="openOverlay('overlay106', event, 'BCASft', 1, 10)" class="custom-button-bcasvoid">
+            onclick="voidencryp(event)" class="custom-button-bcasvoid">
            <i  class= "fas fa-ban"></i></button></a></td>
-      
+           <td style="display: none;">FT-AAA04012025-002-Active</td>
+           <td style="display: none;">002</td> 
+           <td style="display:none;" >ZAA</td> 
      </tr>
 
 
@@ -1001,6 +1057,39 @@
 
 </fieldset>
 
+<div id="bcasftretryconfirmation" class="suboverlay" style="background-color: transparent;">
+  <div class="modal" style="min-height: 200px; background-color: #eeeded;">
+
+    <nav style="width: 100%;" >
+    <li style="font-weight: lighter;"> Information!
+      
+    </nav>
+      <fieldset style="box-shadow: none; border-top: 1px solid gray; height: 150px;padding:0; ">
+        <fieldset style="box-shadow: none;" >
+        <nav style="width: 100%; height: 50%; margin-top:20px;">
+          <nav style="width:20%;" >
+        <i class="fa-solid fa-circle-info" style="margin-right:10px; font-size:50px; color:blue"></i>
+         </nav>
+         <nav style="width: 80%;" >
+        <textarea id="bcasmessage"  rows="5" col="10" style="font-size: 16px; background-color: #eeeded;
+         border:none; width: 100%; height: 20%; font-weight: lighter;">
+       </textarea>
+      </nav>
+      </nav>
+     </fieldset>    
+
+      <a><button type="button" id="bcas-btn-view" style="margin-left:10px; width:50px; float:right;"
+        onclick="bcascloseretry()"class="custom-button-gray">
+       No</button></a>
+
+       <a><button type="button" id="bcas-btn-view" style=" width:50px; float:right;"
+        onclick="retryconfirmed()"class="custom-button-blue">
+       Yes</button></a>
+      </fieldset>
+  
+  </div>  <!-----modal-->
+ </div> 
+
 </div>
 
 
@@ -1011,12 +1100,12 @@
   <nav style="margin-left:10px; width:920px; ">
     <nav style=" width:350px;">
    <label style=" font-size: 15px; color:rgb(15, 14, 14); margin-right:20px;" for="bcasftDate">Date:</label>
-   <input type="date" id="bcasftaddDate" style="width:  250px; font-size: 15px;"  name="bcasftDate;">
+   <input type="date" id="bcasftaddDate" style="width:  250px; font-size: 15px;"  name="bcasftDate;" disabled>
   </nav>
 
   <nav style="margin-left:20px; width:430px;">
     <label style=" font-size: 15px; color:rgb(15, 14, 14); margin-right:20px;">Transfer Type:</label>
-   <select id="selectedtype" class="form-control placeholder"  style="width:300px;">
+   <select id="selectedtype" class="form-control placeholder"  style="width:300px;" onchange="resetfield()">
       <option hidden>Select Transfer Type</option>
       <option value="Send">Send</option>
       <option value="Receive">Receive</option>
@@ -1025,15 +1114,16 @@
   </select>
    </nav>
 
-   <li><button type="button" id="paste-ft" onclick="pasteft('BCASoverlay1')" class="custom-button-blue" style="color: white;
+   <li>
+   <button type="button" id="paste-ft" onclick="pastebcasft('BCASoverlay1')" class="custom-button-blue" style="color: white;
    float:right;margin-right:10px;width:90px;">
     <i class="fas fa-paste" style= "float:left;color:white; font-size: 14px; margin-left:0px"></i>Add</button></li>
-  </nav>
+
   </nav><br><br>
 
 
 <fieldset style="width: 100%; height: 392px; margin-top:2px;margin: 0px; background-color: #f3f0f0; box-shadow: none; border:3px solid black">
-  <fieldset style=" height: 300px; margin:10px;background-color: white;  box-shadow: none; border:1px solid black">
+  <fieldset style=" height: 320px; margin:10px;background-color: white;  box-shadow: none; border:1px solid black">
 
   <nav style="margin-left:20px; margin-top:20px; width:820px;">
     <nav style="width:420px;">
@@ -1042,7 +1132,7 @@
         </nav>
 
         <nav style=" width:270px;">
-        <input type="text" id = "ft1"  style="width:  280px; font-size: 15px;" disabled>
+        <input type="text" id = "ft1"  style="width:  280px; font-size: 15px;" readonly>
         </nav>
     </nav>
   
@@ -1051,7 +1141,7 @@
       <label style=" font-size: 15px; color:rgb(15, 14, 14); margin-right:20px; margin-left:20px; ">Amount:</label>
       </nav>
       <nav style=" width:270px;">
-      <input type="text" id = "ft2"  style="width:  300px; font-size: 15px;" disabled>
+      <input type="text" id = "ft2"  style="width:  300px; font-size: 15px;" readonly>
       </nav>
    </nav>
   </nav> 
@@ -1064,7 +1154,7 @@
         </nav>
 
         <nav style=" width:270px;">
-        <input type="text" id = "ft3"   style="width:  280px; margin-top:6px; font-size: 15px;" disabled>
+        <input type="text" id = "ft3"   style="width:  280px; margin-top:6px; font-size: 15px;" readonly>
         </nav>
     </nav>
   
@@ -1073,7 +1163,7 @@
       <label style=" font-size: 15px; color:rgb(15, 14, 14); margin-right:20px; margin-left:20px; ">Bank:</label>
       </nav>
       <nav style=" width:270px;">
-      <textarea   id = "ft4"  style="width:  300px; font-size: 15px;" disabled ></textarea>
+      <textarea   id = "ft4"  style="width:  300px; font-size: 15px;" readonly ></textarea>
       </nav>
    </nav>
   </nav>
@@ -1081,25 +1171,28 @@
   <br>
 
   <nav style="margin-left:20px; margin-top:20px; width:820px;">
-    <nav style=" width:130px;">
-    <label style=" font-size: 15px; color:rgb(15, 14, 14); margin-right:20px;" >Memo:</label>
-  </nav>
-  <nav style=" width: 670px;">
-    <input type="text"  id = "ft5"  style="width:  720px; font-size: 15px;" disabled>
-   </nav>
-  </nav>
-   <br>
+      <nav style="width:130px;">
+  
+      <label style=" font-size: 15px; color:rgb(15, 14, 14); margin-right:20px;" >Memo:</label>
+      </nav>
 
+      <nav style=" width: 270px;">
+      <input type="text"  id = "ft5"  style="width:  720px; font-size: 15px;" readonly>
+      </nav>
+  </nav>
+
+
+   <br>
 
 
    <nav style="margin-left:20px; margin-top:20px; width:820px;">
     <nav style="width:420px;">
         <nav style=" width:130px;">
-        <label style=" font-size: 15px; color:rgb(15, 14, 14); margin-right:20px;">Transaction ID:</label>
+        <label style=" font-size: 15px; color:rgb(15, 14, 14); margin-right:20px;">Origin:</label>
         </nav>
 
         <nav style=" width:270px;">
-        <input type="text" id = "ft6"  style="width:  280px; font-size: 15px;" disabled>
+        <input type="text" id = "ft0"  style="width:  280px; font-size: 15px;" readonly>
         </nav>
     </nav>
   
@@ -1108,34 +1201,75 @@
       <label style=" font-size: 15px; color:rgb(15, 14, 14); margin-right:20px; margin-left:20px; ">Destinantion:</label>
       </nav>
       <nav style=" width:270px;">
-      <input type="text" id = "ft7"   style="width:  300px; font-size: 15px;" disabled>
+      <input type="text" id = "ft7"   style="width:  300px; font-size: 15px;" readonly>
       </nav>
    </nav>
   </nav>
+ 
+  <nav style="margin-left:20px; margin-top:30px; width:820px;">
+    <nav style="width:130px;">
+
+    <label style=" font-size: 15px; color:rgb(15, 14, 14); margin-right:20px;" >Transaction ID:</label>
+    </nav>
+
+    <nav style=" width: 270px;">
+    <input type="text"  id = "ft6"  style="width:  270px; font-size: 15px;" readonly>
+    </nav>
+  </nav>
 
 
- 
- 
   <li><button type="button" onclick="backft('sub-tab100-tab6')" class="custom-button-gray" style="background-color: gray; color: white;
-  float:right; margin-right:0px;width:75px; margin-top: 120px;">
+  float:right; margin-right:0px;width:75px; margin-top: 60px;">
     <i class="fas fa-circle-left" style= "float:left;  color:white; font-size: 14px; margin-left:0px"></i>Back</button></li>
 
-  <li><button type="button" id="saveft" onclick="saveft('1')" class="custom-button-blue" 
-  style="color: white;float:right; margin-top: 120px; margin-right: 10px;width:75px;">
+  <li><button type="button" id="saveft" onclick="savebft('1')" class="custom-button-blue" 
+  style="color: white;float:right; margin-top: 60px; margin-right: 10px;width:75px;">
   <i class="fas fa-floppy-disk" style= "float:left;color:white; font-size: 14px; margin-left:0px"></i>Save</button></li>
 
 
   </fieldset>
 
-  <input type="text" id="encryptedInput1" style="display:none" placeholder="Paste here">
+  <input type="text" id="encryptedInputField" style="display:none" placeholder="Paste here">
 
 </fieldset>
 
 
-</div>
-
 <!-------------------------------------------------------------------------------------------------------->
+<div id="bcasftconfirmation" class="suboverlay" style="background-color: transparent;">
+  <div class="modal" style="min-height: 200px; background-color: #eeeded;">
 
+    <nav style="width: 100%;" >
+    <li style="font-weight: lighter;"> Confirmation!
+      
+    </nav>
+      <fieldset style="box-shadow: none; border-top: 1px solid gray; height: 150px;padding:0; ">
+        <fieldset style="box-shadow: none;" >
+        <nav style="width: 100%; height: 50%; margin-top:20px;">
+          <nav style="width:20%;" >
+        <i class="fa-solid fa-circle-info" style="margin-right:10px; font-size:50px; color:blue"></i>
+         </nav>
+         <nav style="width: 80%;" >
+        <textarea id="bcasmessage"  rows="5" col="10" style="font-size: 16px; background-color: #eeeded;
+         border:none; width: 100%; height: 20%; font-weight: lighter;">
+       </textarea>
+      </nav>
+      </nav>
+     </fieldset>    
+
+      <a><button type="button" id="bcas-btn-view" style=" width:50px; float:right;"
+        onclick="bcascloseftnew()"class="custom-button-gray">
+       No</button></a>
+
+       <a><button type="button" id="bcas-btn-view" style=" width:50px; float:right;"
+        onclick="bcasconfirmed()"class="custom-button-blue">
+       Yes</button></a>
+      </fieldset>
+  
+  </div>  <!-----modal-->
+ </div> 
+
+
+</div>
 <!------------------------------------------update bcas FT---------------------------------------------------------------------->
 
 <div id="subcon-tab100-tab13" class="subRcontent" style=" padding-right: 3px; padding-left: 3px;">
@@ -1260,7 +1394,7 @@
   float:right; margin-right:0px;width:75px; margin-top: 55px;">
     <i class="fas fa-circle-left" style= "float:left;  color:white; font-size: 14px; margin-left:0px"></i>Back</button></li>
 
-  <li><button type="button" id="upbcasft" onclick="upbcasft('1')" class="custom-button-blue" 
+  <li><button type="button" id="upbcasft" onclick="confirmupdatebcasft(event)" class="custom-button-blue" 
   style="color: white;float:right; margin-top: 55px; margin-right: 10px;width:75px;">
   <i class="fas fa-floppy-disk" style= "float:left;color:white; font-size: 14px; margin-left:0px"></i>Update</button></li>
 
@@ -1271,13 +1405,47 @@
 
 </fieldset>
 
+
+
+
 </div>
 
 <!-------------------------------------------------------------------------------------------------------->
 
 </div>
 
-                      
+<div id="bcasftupdateconfirmation" class="suboverlay" style="background-color: transparent;">
+  <div class="modal" style="min-height: 200px; background-color: #eeeded;">
+
+    <nav style="width: 100%;" >
+    <li style="font-weight: lighter;"> Confirmation!
+      
+    </nav>
+      <fieldset style="box-shadow: none; border-top: 1px solid gray; height: 150px;padding:0; ">
+        <fieldset style="box-shadow: none;" >
+        <nav style="width: 100%; height: 50%; margin-top:20px;">
+          <nav style="width:20%;" >
+        <i class="fa-solid fa-circle-info" style="margin-right:10px; font-size:50px; color:blue"></i>
+         </nav>
+         <nav style="width: 80%;" >
+        <textarea id="bcasupatemessage"  rows="5" col="10" style="font-size: 16px; background-color: #eeeded;
+         border:none; width: 100%; height: 20%; font-weight: lighter;">
+       </textarea>
+      </nav>
+      </nav>
+     </fieldset>    
+
+      <a><button type="button" id="bcas-btn-view" style=" width:50px; float:right;"
+        onclick="bcascloseftupdate()"class="custom-button-gray">
+       No</button></a>
+
+       <a><button type="button" id="bcas-btn-view" style=" width:50px; float:right;"
+        onclick="bcasconfirmedupdate()"class="custom-button-blue">
+       Yes</button></a>
+      </fieldset>
+  
+  </div>  <!-----modal-->
+ </div> 
 
 </div>
    
@@ -1290,23 +1458,54 @@
       </nav>
 
       <nav style="width: 200px;">
-      <input id="Bcasbranch" style="margin-top: 0px; border: none; margin-bottom: 12px;" value="AAA">
+      <input id="Bcasbranch" style="margin-top: 0px; border: none; margin-bottom: 12px; outline: none;" value="AAA" disabled>
       </nav>
 </nav>
+
 </form>
-
 </div>
 
-</div>
 
-<!----------------------------------------------------------------------------------------------------->
+<div id="voidreq" class="suboverlay"  style="height: 597px; width:1150px; top:78px; left:310px; ">
+  <div class="modal"style="min-width:600px; ">
+
+
+    <li style="font-weight: 700; margin-left:0px;"><i class="fa-solid fa-circle-exclamation" style=" margin-right:10px; color: rgb(108, 47, 252); font-size: 20px;">
+    </i> <input type="text" id="row-voidreq" style="border:none; font-size: 20px; width: 300px;"> Void Permission Request
+  
+  </li> <br>
+      <fieldset style=" border:1px solid #cecbcb ; padding: 15px;border-radius: 3px; height:80%; margin:5;">
+        
+        <nav style="width: 470px; justify-content: center;">
+          <div class="input-container" style="height:120px; border-top-right-radius: 0px;border-bottom-right-radius: 0px; width:460px;  ">
+           
+            <li style="font-size:18px; font-weight: bold; color:rgb(58, 45, 235);">
+              <textarea type="text" id="voidcode"  style="user-select: none; box-sizing: border-box;height:120px;width:470px;margin-top:10px; margin-left:10px; border:none;
+                font-size:13px;color:rgb(58, 45, 235);"  placeholder="" disabled> </textarea></li>
+             
+              <button type="button" id="FT-bcs-copy" onclick="bcasftcopy('voidreq')" class="custom-button-paste" 
+              style=" width: 52px;border-left: 1px solid #ccc; float:center; font-size: 30px; height:60px;"><i  class= "fas fa-paste"></i></button>
+   
+          </div>
+          </nav>      
+         
+      </fieldset>
+      <button type="button" id="bcas-btn-view" style=" width:80px; float:right;"
+        onclick="clossvoid('voidreq')"class="custom-button-gray">
+       Cancel</button>
+     
+      
+  </div>  <!-----modal-->
+ </div>   <!-----end of suboverlay--->
  
+</div>
+
 
 <!-----------------------------------BCAS overlay------------------------------------------------------>
 
 
 <div id="BCASoverlay1" class="BCASoverlay">
-  <div class="modal">
+  <div class="modal" style = "background-color: #eeeded;">
 
     <nav style="width: 100%;" >
     <li style="font-weight: lighter;"> Warning!
@@ -1319,7 +1518,7 @@
         <i class="fa-solid fa-triangle-exclamation" style="margin-right:10px; font-size:50px; color: orange"></i>
          </nav>
          <nav style="width: 80%;" >
-        <textarea id="alertmessage"  rows="5" col="10" style="font-size: 13px; 
+        <textarea id="alertmessage"  rows="5" col="10" style="font-size: 14px; background-color: #eeeded;
          border:none; width: 100%; height: 20%; font-weight: lighter;">
        </textarea>
       </nav>
@@ -1338,15 +1537,6 @@
  <!------------------<div id="notifoverlay1" class="notifoverlay">
   <p id="notification1"> </p>
 </div>------->
-
-
-
-
-<!-------------------bcas transactions------------------------------------------>   
-    
-
-
-
 
 
 <!---------------------------------------------------CAMIS---------------------------------------------------------------------------------->
@@ -1437,11 +1627,7 @@
                                     </table>
                                     <fieldset style="height:250px; border: none;"></fieldset>
                                     <!-- Pagination -->
-                               
-
-                                   
-
-
+  
                                   </fieldset>
                             
                                  
@@ -1467,9 +1653,10 @@
 
 
                     </div>
-                
-                
+      
     </div>
+
+    
 
  <!---------------------------------Extraction Progress----------------------------------------------------------------------------->      
 
@@ -1515,8 +1702,8 @@
                                 <div class="subtabs"></div> 
                             
                                 <div class="subRtab" id="sub-tab4-tab1" onclick="openTab(event, 'subcon-tab4-tab1')">Recon Report</div>
-                                <div class="subRtab" id="sub-tab4-tab2" onclick="openTab(event, 'subcon-tab4-tab2')">Other Report</div>
-                         
+                                <div class="subRtab" id="sub-tab4-tab2" onclick="openTab(event, 'subcon-tab4-tab2')">Sourcereconreport</div>
+                              
                             </div>
                                              
            
@@ -1525,7 +1712,7 @@
                                 <nav style="width: 170px;"><br>
                               
                                  <label style="font-size: 10px; color:gray; padding: 20px;" for="datefromFTrecon">Start Date:</label><br>
-                                 <input style= "margin-left: 20px;" type="date" id="datefromFTrecon" name="datefromFTrecon;">
+                                 <input style= "margin-left: 20px;" type="date" id="datefromFTrecon" name="datefromFTrecon;" onchange="ftdatechangerecon()">
                                 </nav>
                                 <nav style="width: 180px;"><br>
                                  <label style="font-size: 10px; color:gray; padding: 20px;" for="FTRecondateto">End Date:</label><br>
@@ -1533,54 +1720,93 @@
                              
                                 </nav>
 
-                                <nav style="width: 170px;"><br><br>
+                                <nav style="width: 230px;"><br><br>
                                 
-                                    <select class="form-control placeholder" id="report">
-                                    <option hidden >Select Report</option>
-                                    <option value="AAA">Report A</option>
-                                    <option value="AAB">Report B</option>
-                                    <option value="AAC">Report C</option>
-                                    </select>
+                                    <div class="dropdown" style="width:220px; font-size: 12px;  height: 35px">
+                                      <input type="text" id="cluster" placeholder="All Cluster" style="font-size: 12px;"
+                                      onkeyup="filterDropdowncluster()" onclick="toggleDropdowncluster()">
+                                      <span  class="arrow">&#129171;</span> <!-- Down arrow symbol -->
+                                      <div id="dropdownList-cluster" class="dropdown-list">                                       
+                                        <div >Cluster 1: NORTH LUZON and CAR</div>
+                                        <div >Cluster 2: CENTRAL LUZON</div>      
+                                        <div >Cluster 3: NCR PLUS</div>
+                                        <div >CLUSTER 4A: SOUTH LUZON</div> 
+                                        <div >CLUSTER 4B: SOUTH LUZON</div>
+                                        <div >Cluster 5: WESTERN VISAYAS</div>
+                                        <div >Cluster 6: CENTRAL EASTERN VISAYAS </div> 
+                                        <div >Cluster 7: NORTH WESTERN MINDANAO</div>
+                                        <div >Cluster 8: SOUTH EASTERN MINDANAO</div>       
+                                         
+                                      </div>
+                                    </div>
+
                                </nav>
 
 
 
-                                <nav style="width: 170px;"><br><br>
-                                
-                                    <select class="form-control placeholder" id="Area">
-                                    <option hidden >Area</option>
-                                    <option value="ZAA">ZAA</option>
-                                    <option value="ZAB">ZAB</option>
-                                    <option value="ZAC">ZAC</option>
-                                    </select>
+                                <nav style="width: 150px;"><br><br>                                
+                                   
+                                    <div class="dropdown" style="width:140px; font-size: 12px;  height: 35px">
+                                      <input type="text" id="Area" placeholder="All Area" style="font-size: 12px;"
+                                      onkeyup="filterDropdownarearecon()" onclick="toggleDropdownarearecon()">
+                                      <span  class="arrow">&#129171;</span> <!-- Down arrow symbol -->
+                                      <div id="dropdownList-arearecon" class="dropdown-list">                                       
+                                          <div value="ZAA">ZAA</div>
+                                          <div value="ZAB">ZAB</div>
+                                          <div value="ZAC">ZAC</div>
+                                          <div value="ZAM">ZAM</div>
+                                      </div>
+                                    </div>
+
+
+
                                  </nav>
                             
 
-                                <nav style="width: 170px;"><br><br>
-                                
-                                        <select class="form-control placeholder" id="recnBranch">
-                                        <option hidden >Branch</option>
-                                        <option value="AAA">AAA</option>
-                                        <option value="AAB">AAB</option>
-                                        <option value="AAC">AAC</option>
-                                        </select>
+                                <nav style="width: 150px;"><br><br>                              
+                                      
+
+
+                                        <div class="dropdown" style="width:140px; font-size: 12px;  height: 35px">
+                                          <input type="text" id="recnBranch" placeholder="All Branch" style="font-size: 12px;"
+                                          onkeyup="filterDropdownbranchrecon()" onclick="toggleDropdownbranchrecon()">
+                                          <span  class="arrow">&#129171;</span> <!-- Down arrow symbol -->
+                                          <div id="dropdownList-branchrecon" class="dropdown-list">                                       
+                                              <div value="AAA">AAA</div>
+                                              <div value="AAB">AAB</div>
+                                              <div value="AAC">AAC</div>
+                                              <div value="AAD">AAD</div>
+                                              <div value="AAE">AAE</div>
+                                              <div value="AAF">AAF</div>
+                                              <div value="AAG">AAG</div>
+                                              <div value="AAW">AAW</div>
+                                          </div>
+                                        </div>
                                 </nav>
                                
                                         
-                                <nav style="width: 200px;"><br><br>
-                                
-                                    <select class="form-control placeholder" id="recnstatus">
-                                    <option hidden >Status</option>
-                                    <option >In Transit</option>
-                                    <option >Received</option>
-                                    <option >Acknowledged</option>
-                                    <option >Denied</option>
-                                    <option >Under Review</option>
-                                    <option >Voided</option>
-                                    </select>
+                                <nav style="width: 180px;"><br><br>                               
+                                  
+
+
+                                    <div class="dropdown" style="width:140px; font-size: 12px;  height: 35px">
+                                      <input type="text" id="recntype" placeholder="All Transfer" style="font-size: 12px;"
+                                      onkeyup="filterDropdowntyperecon()" onclick="toggleDropdowntyperecon()">
+                                      <span  class="arrow">&#129171;</span> <!-- Down arrow symbol -->
+                                      <div id="dropdownList-typerecon" class="dropdown-list">                                       
+                                          <div value="Send">Send</div>
+                                          <div value="Deposit">Deposit</div>
+                                          <div value="Withdraw">Withdraw</div>
+                                          <div value="All Banks">All Banks</div>
+                                         
+                                      </div>
+                                    </div>
+
+
+
                                 </nav>
                                 <nav style="width: 90px;"><br>
-                                <button type="button" style=" float: right; margin: 20px;" class="custom-button-blue"><i class="fas fa-file" style= "color: white; font-size: 14px; margin-right:5px"></i>Request</button>
+                                <button type="button" onclick="reconreportfilter()" style=" float: right; margin: 20px;" class="custom-button-blue"><i class="fas fa-file" style= "color: white; font-size: 14px; margin-right:5px"></i>Request</button>
                                 </nav> <br><br> <br><br>
                                
                              
@@ -1589,98 +1815,1005 @@
                                 
                                 <div class="search-container" >
                                     <nav style="width: 73%; height: 20px; text-align: left; margin-left: 15px; font-size: 12; font-weight: bold; margin-bottom: 15px;">
-                                    <h4>Report Logs</h4> 
+                                    <h4> Fund Transfer and Journal Entries Reconciliation (Variance)</h4> 
                                     </nav>
-                                    <nav style=" float:right; width: 25%;">
-                                        <div class="input-container-small" style="margin-bottom:10px;" >
-                                            <i class="fas fa-magnifying-glass" style= "color: rgb(132, 176, 248); font-size: 14px; margin-left:10px"></i>
-                                            <input type="text" id="myTextField2" placeholder="Search">
-                                            <button type="button"  onclick="alert('Button clicked!')">x</button>
-                                        </div>
-                                       </nav>
+                                  
                                     
                                 </div> 
                                       
-                                <!-- Table -->
-
-                             
-                                <table id="myTable">
-                                    <thead>
-                                        <tr>
-                                            <th style="width: 70px;">Action</th>
-                                            <th>Details</th>
-                                            <th>Status</th>
-                                            <th>Request Date</th> 
-                                            <th>Refetch</th>                                              
+                                <div class="table-container" >
+                                  <table  id="summaryrecontable" class="recontable" >
+                                    <thead >
+                                        <tr >                                      
+                                            <th>Cluster</th>
+                                            <th>Area Count</th>
+                                            <th>Branch Count</th>
+                                            <th>Transaction Count</th> 
+                                            <th>Total Amount</th>   
+                                            <th>Download</th>    
+                                            <th style="width: 70px;">Action</th>                                                                 
                                         </tr>
-
                                         
                                     </thead>
+      
+      
+      
                                     <tbody>
-
-                                        <tr>
-                                            <td><a href="#"><i style= "color: rgb(0, 9, 0);" class="fas fa-cloud-arrow-down"></i></a></td>
-                                            <td>Start date: 01/01/2024<br> End date: 01/31/2024<br> Report: Report1<br> Area: ZAA<br>Branch:<br>Status: In Transit<br></td>
-                                            <td>Completed</td>
-                                            <td>03-01-2025 09:23:24 pm</td>
-                                            <td><a href="#"><i style= "color: rgb(0, 9, 0);" class="fas fa-rotate-right"></i></a></td>
+      
+                                        <tr  style="font-weight: 600;" >
+                                            
+                                            <td style="padding-left: 20px;">Cluster 1: NORTH LUZON and CAR</td>
+                                            <td>3</td>
+                                            <td>3</td>
+                                            <td>5</td>
+                                            <td>2,500,000.00</td>
+                                            <td><i style= "color: rgb(0, 9, 0);" class="fas fa-cloud-arrow-down"></i></a></td>
+                                            <td ><button type="button" onclick="expand(this)" style="background-color: white; cursor: pointer;
+                                             border:none; user-select: none;">
+                                              <i style= "color: rgb(0, 9, 0); font-size: 16px;" class="fas fa-sort-down"></i></button></td>
+                                         
                                         </tr>
-                                        <tr>
-                                            <td><a href="#"><i style= "color: rgb(0, 9, 0);" class="fas fa-cloud-arrow-down"></i></a></td>
-                                            <td>Start date: 01/01/2024<br> End date: 01/31/2024<br> Report: Report1<br> Area: ZAB<br>Branch:<br>Status: In Transit<br></td>
-                                            <td>Completed</td>
-                                            <td>03-01-2025 09:26:24 pm</td>
-                                            <td><a href="#"><i style= "color: rgb(0, 9, 0);" class="fas fa-rotate-right"></i></a></td>
+                                                  <div >
+                                                      <tr class="hiddenrows"  style="  border-top: 1px solid #e0dede;">                                               
+                                                        <td style="padding-left: 50px;">ZDP PANGASINAN EAST</td> 
+                                                        <td></td>
+                                                        <td>1</td>
+                                                        <td>1</td>
+                                                        <td>500,000.00</td>
+                                                        <td><a href="#"><i style= "color: rgb(0, 9, 0);" class="fas fa-cloud-arrow-down"></i></a></td>  
+                                                        <td><a href="#"><i style= "color: rgb(0, 9, 0); margin-right:15px;" class="fas fa-eye"></i></a></td>     
+                                                                                      
+                                                      </tr>
+      
+                                                      <tr class="hiddenrows">
+                                                        
+                                                        <td  style="padding-left: 50px;">ZDO PANGASINAN WEST</td>
+                                                        <td></td>
+                                                        <td>1</td>
+                                                        <td>2</td>
+                                                        <td>1,000,000.00</td>
+                                                        <td><a href="#"><i style= "color: rgb(0, 9, 0);" class="fas fa-cloud-arrow-down"></i></a></td>  
+                                                        <td><a href="#"><i style= "color: rgb(0, 9, 0); margin-right:15px;" class="fas fa-eye"></i></a></td>  
+                                                                                            
+                                                      </tr>
+                                                  
+                                                      <tr class="hiddenrows"  style="  border-bottom: 1px solid #e0dede;">   
+                                                 
+                                                        <td style="padding-left: 50px;">ZCQ	BAG-GUET</td>
+                                                        <td ></td>
+                                                        <td>1</td>
+                                                        <td>2</td>
+                                                        <td>1,000,000.00</td>
+                                                        <td><a href="#"><i style= "color: rgb(0, 9, 0);" class="fas fa-cloud-arrow-down"></i></a></td> 
+                                                        <td><a href="#"><i style= "color: rgb(0, 9, 0); margin-right:15px;" class="fas fa-eye"></i></a></td>  
+                                                                                          
+                                                      </tr>
+      
+                                                    </div>   
+      
+                                          <tr  style="font-weight: 600;" >
+                                     
+                                          <td style="padding-left: 20px;">Cluster 2: CENTRAL LUZON</td>
+                                          <td>3</td>
+                                          <td>3</td>
+                                          <td>3</td>
+                                          <td>1,500,000.00</td>
+                                          <td><a href="#"><i style= "color: rgb(0, 9, 0);" class="fas fa-cloud-arrow-down"></i></a></td>
+                                          <td><a href="#"><i style= "color: rgb(0, 9, 0);font-size: 16px;" class="fas fa-sort-down"></i></a></td>
                                         </tr>
-                                        <tr>
-                                            <td><a href="#"><i style= "color: rgb(0, 9, 0);" class="fas fa-cloud-arrow-down"></i></a></td>
-                                            <td>Start date: 01/01/2024<br> End date: 01/31/2024<br> Report: Report1<br> Area: ZAC<br>Branch:<br>Status: In Transit<br></td>
-                                            <td>Failed</td>
-                                            <td>03-01-2025 09:29:24 pm</td>
-                                            <td><a href="#"><i style= "color: rgb(0, 9, 0);" class="fas fa-rotate-right"></i></a></td>
+      
+      
+                                        <tr  style="font-weight: 600;" >
+                                          
+                                          <td style="padding-left: 20px;">Cluster 3: NCR PLUS</td>
+                                          <td>3</td>
+                                          <td>3</td>
+                                          <td>3</td>
+                                          <td>1,500,000.00</td>
+                                          <td><a href="#"><i style= "color: rgb(0, 9, 0);" class="fas fa-cloud-arrow-down"></i></a></td>
+                                          <td><a href="#"><i style= "color: rgb(0, 9, 0);font-size: 16px;" class="fas fa-sort-down"></i></a></td>
+                                        </tr>
+      
+                                        <tr  style="font-weight: 600;" >
+                                  
+                                          <td style="padding-left: 20px;">CLUSTER 4A: SOUTH LUZON</td>
+                                          <td>3</td>
+                                          <td>3</td>
+                                          <td>4</td>
+                                          <td>1,500,000.00</td>
+                                          <td><a href="#"><i style= "color: rgb(0, 9, 0);" class="fas fa-cloud-arrow-down"></i></a></td>
+                                          <td><a href="#"><i style= "color: rgb(0, 9, 0);font-size: 16px;" class="fas fa-sort-down"></i></a></td>
+                                        </tr>
+      
+                                        <tr  style="font-weight: 600;" >
+                                        
+                                          <td style="padding-left: 20px;">CLUSTER 4B: SOUTH LUZON</td>
+                                          <td>3</td>
+                                          <td>3</td>
+                                          <td>3</td>
+                                          <td>1,500,000.00</td>
+                                          <td><a href="#"><i style= "color: rgb(0, 9, 0);" class="fas fa-cloud-arrow-down"></i></a></td>
+                                          <td><a href="#"><i style= "color: rgb(0, 9, 0);font-size: 16px;" class="fas fa-sort-down"></i></a></td>
+                                        </tr>
+      
+      
+      
+                                        <tr  style="font-weight: 600;" >
+                                          
+                                          <td style="padding-left: 20px;">Cluster 5: WESTERN VISAYAS</td>
+                                          <td>3</td>
+                                          <td>3</td>
+                                          <td>3</td>
+                                          <td>1,500,000.00</td>
+                                          <td><a href="#"><i style= "color: rgb(0, 9, 0);" class="fas fa-cloud-arrow-down"></i></a></td>
+                                          <td><a href="#"><i style= "color: rgb(0, 9, 0);font-size: 16px;"class="fas fa-sort-down"></i></a></td>
+                                        </tr>
+      
+                                        <tr  style="font-weight: 600;" >
+                                   
+                                          <td style="padding-left: 20px;">Cluster 6: CENTRAL EASTERN VISAYAS</td>
+                                          <td>3</td>
+                                          <td>3</td>
+                                          <td>4</td>
+                                          <td>1,500,000.00</td>
+                                          <td><a href="#"><i style= "color: rgb(0, 9, 0);" class="fas fa-cloud-arrow-down"></i></a></td>
+                                          <td><a href="#"><i style= "color: rgb(0, 9, 0);font-size: 16px;" class="fas fa-sort-down"></i></a></td>
+                                        </tr>
+                                        <tr  style="font-weight: 600;" >
+                                       
+                                          <td style="padding-left: 20px;">Cluster 7: NORTH WESTERN MINDANAO</td>
+                                          <td>3</td>
+                                          <td>3</td>
+                                          <td>4</td>
+                                          <td>1,500,000.00</td>
+                                          <td><a href="#"><i style= "color: rgb(0, 9, 0);" class="fas fa-cloud-arrow-down"></i></a></td>
+                                          <td><a href="#"><i style= "color: rgb(0, 9, 0);font-size: 16px;" class="fas fa-sort-down"></i></a></td>
+                                        </tr>
+                                        <tr  style="font-weight: 600;" >
+                                        
+                                          <td style="padding-left: 20px;">Cluster 8: SOUTH EASTERN MINDANAO</td>
+                                          <td>3</td>
+                                          <td>4</td>
+                                          <td>3</td>
+                                          <td>1,500,000.00</td>
+                                          <td><a href="#"><i style= "color: rgb(0, 9, 0);" class="fas fa-cloud-arrow-down"></i></a></td>
+                                          <td><a href="#"><i style= "color: rgb(0, 9, 0);font-size: 16px;" class="fas fa-sort-down"></i></a></td>
+                                        </tr>
+      
+                                        <tr  style="font-weight: 600; "  >
+                                       
+                                          <td>Total</td>
+                                          <td>27</td>
+                                          <td>28</td>
+                                          <td>32</td>
+                                          <td>14,500,000.00</td>
+                                          <td><a href="#"><i style= "color: rgb(0, 9, 0);" class="fas fa-cloud-arrow-down"></i></a></td>
+                                          <td><a href="#"><i style= "color: rgb(0, 9, 0); margin-right:15px;" class="fas fa-eye"></i></a></td>  
                                         </tr>
                                     </tbody>
-                                </table>
-                           
-                            
-                                <!-- Pagination -->
-                                <div class="pagination">
+                                 </table>
+      
+      
+                                  </div>
+                                </fieldset>
 
-                                    <select style="width: 53px; border:none;" id="contpage3" name="contpage">
-                                        <option value="5">5</option>
-                                        <option value="10">10</option>
-                                        <option value="20">20</option>
-                                        <option value="50">50</option>
-                                    </select>
-                                    <button type="button" id="topBtn" onclick="changePage(-1)" class="disabled" disabled>l<</button>
-                                    <button type="button" id="prevBtn" onclick="changePage(-1)" class="disabled" disabled><</button>
-                                    <button type="button" id="count" class="disabled" disabled>0-0 of 0</button>
-                                    <button type="button" id="nextBtn" onclick="changePage(1)"class="disabled" disabled>></button>
-                                    <button type="button" id="fwdBtn" onclick="changePage(1)"class="disabled" disabled>>l</button>
-                                </div>
+                                  <fieldset style="width: 100%; margin-top: 20px;">
+                                    <!-- Search Bar -->
+                                    
+                                    <div class="search-container" >
+                                        <nav style="width: 73%; height: 20px; text-align: left; margin-left: 15px; font-size: 12; font-weight: bold; margin-bottom: 15px;">
+                                        <h4> Fund Transfer and Journal Entries Reconciliation (Reconciled)</h4> 
+                                        </nav>
+                                      
+                                        
+                                    </div> 
+                                  <div class="table-container" >
+                                    <table  id="summaryrecontabletally" class="recontable" >
+                                      <thead >
+                                          <tr >                                      
+                                              <th>Cluster</th>
+                                              <th>Area Count</th>
+                                              <th>Branch Count</th>
+                                              <th>Transaction Count</th> 
+                                              <th>Total Amount</th>   
+                                              <th>Download</th>    
+                                              <th style="width: 70px;">Action</th>                                                                 
+                                          </tr>
+                                          
+                                      </thead>
+        
+        
+        
+                                      <tbody>
+        
+                                          <tr  style="font-weight: 600;" >
+                                              
+                                              <td style="padding-left: 20px;">Cluster 1: NORTH LUZON and CAR</td>
+                                              <td>4</td>
+                                              <td>4</td>
+                                              <td>4</td>
+                                              <td>12,500,000.00</td>
+                                              <td><i style= "color: rgb(0, 9, 0);" class="fas fa-cloud-arrow-down"></i></a></td>
+                                              <td ><button type="button" onclick="expand(this)" style="background-color: white; cursor: pointer;
+                                               border:none; user-select: none;">
+                                                <i style= "color: rgb(0, 9, 0); font-size: 16px;" class="fas fa-sort-down"></i></button></td>
+                                           
+                                          </tr>
+                                                    <div >
+                                                        <tr class="hiddenrows"  style="  border-top: 1px solid #e0dede;">                                               
+                                                          <td style="padding-left: 50px;">ZDP PANGASINAN EAST</td> 
+                                                          <td></td>
+                                                          <td>1</td>
+                                                          <td>1</td>
+                                                          <td>500,000.00</td>
+                                                          <td><a href="#"><i style= "color: rgb(0, 9, 0);" class="fas fa-cloud-arrow-down"></i></a></td>  
+                                                          <td><a href="#"><i style= "color: rgb(0, 9, 0); margin-right:15px;" class="fas fa-eye"></i></a></td>     
+                                                                                        
+                                                        </tr>
+        
+                                                        <tr class="hiddenrows">
+                                                          
+                                                          <td  style="padding-left: 50px;">ZDO PANGASINAN WEST</td>
+                                                          <td></td>
+                                                          <td>2</td>
+                                                          <td>2</td>
+                                                          <td>1,000,000.00</td>
+                                                          <td><a href="#"><i style= "color: rgb(0, 9, 0);" class="fas fa-cloud-arrow-down"></i></a></td>  
+                                                          <td><a href="#"><i style= "color: rgb(0, 9, 0); margin-right:15px;" class="fas fa-eye"></i></a></td>  
+                                                                                              
+                                                        </tr>
+                                                    
+                                                        <tr class="hiddenrows"  style="  border-bottom: 1px solid #e0dede;">   
+                                                   
+                                                          <td style="padding-left: 50px;">ZCQ	BAG-GUET</td>
+                                                          <td ></td>
+                                                          <td>2</td>
+                                                          <td>2</td>
+                                                          <td>1,000,000.00</td>
+                                                          <td><a href="#"><i style= "color: rgb(0, 9, 0);" class="fas fa-cloud-arrow-down"></i></a></td> 
+                                                          <td><a href="#"><i style= "color: rgb(0, 9, 0); margin-right:15px;" class="fas fa-eye"></i></a></td>  
+                                                                                            
+                                                        </tr>
+        
+                                                      </div>   
+        
+                                            <tr  style="font-weight: 600;" >
+                                       
+                                            <td style="padding-left: 20px;">Cluster 2: CENTRAL LUZON</td>
+                                            <td>4</td>
+                                            <td>4</td>
+                                            <td>4</td>
+                                            <td>11,500,000.00</td>
+                                            <td><a href="#"><i style= "color: rgb(0, 9, 0);" class="fas fa-cloud-arrow-down"></i></a></td>
+                                            <td><a href="#"><i style= "color: rgb(0, 9, 0);font-size: 16px;" class="fas fa-sort-down"></i></a></td>
+                                          </tr>
+        
+        
+                                          <tr  style="font-weight: 600;" >
+                                            
+                                            <td style="padding-left: 20px;">Cluster 3: NCR PLUS</td>
+                                            <td>4</td>
+                                            <td>10</td>
+                                            <td>13</td>
+                                            <td>120,500,000.00</td>
+                                            <td><a href="#"><i style= "color: rgb(0, 9, 0);" class="fas fa-cloud-arrow-down"></i></a></td>
+                                            <td><a href="#"><i style= "color: rgb(0, 9, 0);font-size: 16px;" class="fas fa-sort-down"></i></a></td>
+                                          </tr>
+        
+                                          <tr  style="font-weight: 600;" >
+                                    
+                                            <td style="padding-left: 20px;">CLUSTER 4A: SOUTH LUZON</td>
+                                            <td>4</td>
+                                            <td>5</td>
+                                            <td>8</td>
+                                            <td>50,500,000.00</td>
+                                            <td><a href="#"><i style= "color: rgb(0, 9, 0);" class="fas fa-cloud-arrow-down"></i></a></td>
+                                            <td><a href="#"><i style= "color: rgb(0, 9, 0);font-size: 16px;" class="fas fa-sort-down"></i></a></td>
+                                          </tr>
+        
+                                          <tr  style="font-weight: 600;" >
+                                          
+                                            <td style="padding-left: 20px;">CLUSTER 4B: SOUTH LUZON</td>
+                                            <td>4</td>
+                                            <td>4</td>
+                                            <td>10</td>
+                                            <td>11,500,000.00</td>
+                                            <td><a href="#"><i style= "color: rgb(0, 9, 0);" class="fas fa-cloud-arrow-down"></i></a></td>
+                                            <td><a href="#"><i style= "color: rgb(0, 9, 0);font-size: 16px;" class="fas fa-sort-down"></i></a></td>
+                                          </tr>
+        
+        
+        
+                                          <tr  style="font-weight: 600;" >
+                                            
+                                            <td style="padding-left: 20px;">Cluster 5: WESTERN VISAYAS</td>
+                                            <td>4</td>
+                                            <td>4</td>
+                                            <td>5</td>
+                                            <td>7,500,000.00</td>
+                                            <td><a href="#"><i style= "color: rgb(0, 9, 0);" class="fas fa-cloud-arrow-down"></i></a></td>
+                                            <td><a href="#"><i style= "color: rgb(0, 9, 0);font-size: 16px;"class="fas fa-sort-down"></i></a></td>
+                                          </tr>
+        
+                                          <tr  style="font-weight: 600;" >
+                                     
+                                            <td style="padding-left: 20px;">Cluster 6: CENTRAL EASTERN VISAYAS</td>
+                                            <td>4</td>
+                                            <td>4</td>
+                                            <td>9</td>
+                                            <td>17,500,000.00</td>
+                                            <td><a href="#"><i style= "color: rgb(0, 9, 0);" class="fas fa-cloud-arrow-down"></i></a></td>
+                                            <td><a href="#"><i style= "color: rgb(0, 9, 0);font-size: 16px;" class="fas fa-sort-down"></i></a></td>
+                                          </tr>
+                                          <tr  style="font-weight: 600;" >
+                                         
+                                            <td style="padding-left: 20px;">Cluster 7: NORTH WESTERN MINDANAO</td>
+                                            <td>6</td>
+                                            <td>7</td>
+                                            <td>8</td>
+                                            <td>19,000,000.00</td>
+                                            <td><a href="#"><i style= "color: rgb(0, 9, 0);" class="fas fa-cloud-arrow-down"></i></a></td>
+                                            <td><a href="#"><i style= "color: rgb(0, 9, 0);font-size: 16px;" class="fas fa-sort-down"></i></a></td>
+                                          </tr>
+                                          <tr  style="font-weight: 600;" >
+                                          
+                                            <td style="padding-left: 20px;">Cluster 8: SOUTH EASTERN MINDANAO</td>
+                                            <td>5</td>
+                                            <td>6</td>
+                                            <td>10</td>
+                                            <td>13,500,000.00</td>
+                                            <td><a href="#"><i style= "color: rgb(0, 9, 0);" class="fas fa-cloud-arrow-down"></i></a></td>
+                                            <td><a href="#"><i style= "color: rgb(0, 9, 0);font-size: 16px;" class="fas fa-sort-down"></i></a></td>
+                                          </tr>
+        
+                                          <tr  style="font-weight: 600; "  >
+                                         
+                                            <td>Total</td>
+                                            <td>39</td>
+                                            <td>48</td>
+                                            <td>71</td>
+                                            <td>264,000,000.00</td>
+                                            <td><a href="#"><i style= "color: rgb(0, 9, 0);" class="fas fa-cloud-arrow-down"></i></a></td>
+                                            <td><a href="#"><i style= "color: rgb(0, 9, 0); margin-right:15px;" class="fas fa-eye"></i></a></td>  
+                                          </tr>
+                                      </tbody>
+                                   </table>
+        
+        
+                                    </div>
+
+
                             
                                </fieldset>
                              
+
+                        <fieldset style="width: 100%; margin-top: 20px;">
+                                    <!-- Search Bar -->
+                                    
+                                    <div class="search-container" >
+                                        <nav style="width: 73%; height: 20px; text-align: left; margin-left: 15px; font-size: 12; font-weight: bold; margin-bottom: 15px;">
+                                        <h4> Fund Transfer and Journal Entries Reconciliation</h4> 
+                                        </nav>
+                                      
+                                        
+                                    </div> 
+                                  <div class="table-container" >
+                                    <table  id="summaryrecontabletally" class="recontable" >
+                                      <thead >
+                                          <tr >                                      
+                                              <th>Cluster</th>
+                                              <th>Reconciled Area Count</th>
+                                              <th>Reconciled Branch Count</th>
+                                              <th>Reconciled Transaction Count</th> 
+                                              <th>Reconciled Total Amount</th>   
+                                              <th>Variance Area Count</th>
+                                              <th>Variance Branch Count</th>
+                                              <th>Variance Transaction Count</th> 
+                                              <th>Variance Total Amount</th>   
+                                              <th>Download</th>    
+                                              <th style="width: 70px;">Action</th>                                                                 
+                                          </tr>
+                                          
+                                      </thead>
+        
+        
+        
+                                      <tbody>
+        
+                                          <tr  style="font-weight: 600;" >
+                                              
+                                              <td style="padding-left: 20px;">Cluster 1: NORTH LUZON and CAR</td>
+                                              <td>4</td>
+                                              <td>4</td>
+                                              <td>4</td>
+                                              <td>12,500,000.00</td>
+                                              <td>3</td>
+                                              <td>3</td>
+                                              <td>5</td>
+                                              <td>2,500,000.00</td>
+                                              <td><i style= "color: rgb(0, 9, 0);" class="fas fa-cloud-arrow-down"></i></a></td>
+                                              <td ><button type="button" onclick="expand(this)" style="background-color: white; cursor: pointer;
+                                               border:none; user-select: none;">
+                                                <i style= "color: rgb(0, 9, 0); font-size: 16px;" class="fas fa-sort-down"></i></button></td>
+                                           
+                                          </tr>
+                                                    <div >
+                                                        <tr class="hiddenrows"  style="  border-top: 1px solid #e0dede;">                                               
+                                                          <td style="padding-left: 50px;">ZDP PANGASINAN EAST</td> 
+                                                          <td></td>
+                                                          <td>1</td>
+                                                          <td>1</td>
+                                                          <td>500,000.00</td>
+                                                          <td>1</td>
+                                                          <td>1</td>
+                                                          <td>500,000.00</td>
+                                                          <td><a href="#"><i style= "color: rgb(0, 9, 0);" class="fas fa-cloud-arrow-down"></i></a></td>  
+                                                          <td><a href="#"><i style= "color: rgb(0, 9, 0); margin-right:15px;" class="fas fa-eye"></i></a></td>     
+                                                                                        
+                                                        </tr>
+        
+                                                        <tr class="hiddenrows">
+                                                          
+                                                          <td  style="padding-left: 50px;">ZDO PANGASINAN WEST</td>
+                                                          <td></td>
+                                                          <td>2</td>
+                                                          <td>2</td>
+                                                          <td>1,000,000.00</td>
+                                                          <td>2</td>
+                                                          <td>2</td>
+                                                          <td>1,000,000.00</td>
+                                                          <td><a href="#"><i style= "color: rgb(0, 9, 0);" class="fas fa-cloud-arrow-down"></i></a></td>  
+                                                          <td><a href="#"><i style= "color: rgb(0, 9, 0); margin-right:15px;" class="fas fa-eye"></i></a></td>  
+                                                                                              
+                                                        </tr>
+                                                    
+                                                        <tr class="hiddenrows"  style="  border-bottom: 1px solid #e0dede;">   
+                                                   
+                                                          <td style="padding-left: 50px;">ZCQ	BAG-GUET</td>
+                                                          <td ></td>
+                                                          <td>2</td>
+                                                          <td>2</td>
+                                                          <td>1,000,000.00</td>
+                                                          <td>2</td>
+                                                          <td>2</td>
+                                                          <td>1,000,000.00</td>
+                                                          <td><a href="#"><i style= "color: rgb(0, 9, 0);" class="fas fa-cloud-arrow-down"></i></a></td> 
+                                                          <td><a href="#"><i style= "color: rgb(0, 9, 0); margin-right:15px;" class="fas fa-eye"></i></a></td>  
+                                                                                            
+                                                        </tr>
+        
+                                                      </div>   
+        
+                                            <tr  style="font-weight: 600;" >
+                                       
+                                            <td style="padding-left: 20px;">Cluster 2: CENTRAL LUZON</td>
+                                            <td>4</td>
+                                            <td>4</td>
+                                            <td>4</td>
+                                            <td>11,500,000.00</td>
+                                            <td>3</td>
+                                            <td>3</td>
+                                            <td>3</td>
+                                            <td>1,500,000.00</td>
+                                            <td><a href="#"><i style= "color: rgb(0, 9, 0);" class="fas fa-cloud-arrow-down"></i></a></td>
+                                            <td><a href="#"><i style= "color: rgb(0, 9, 0);font-size: 16px;" class="fas fa-sort-down"></i></a></td>
+                                          </tr>
+        
+        
+                                          <tr  style="font-weight: 600;" >
+                                            
+                                            <td style="padding-left: 20px;">Cluster 3: NCR PLUS</td>
+                                            <td>4</td>
+                                            <td>10</td>
+                                            <td>13</td>
+                                            <td>120,500,000.00</td>
+                                          <td>3</td>
+                                          <td>3</td>
+                                          <td>3</td>
+                                          <td>1,500,000.00</td>
+                                            <td><a href="#"><i style= "color: rgb(0, 9, 0);" class="fas fa-cloud-arrow-down"></i></a></td>
+                                            <td><a href="#"><i style= "color: rgb(0, 9, 0);font-size: 16px;" class="fas fa-sort-down"></i></a></td>
+                                          </tr>
+        
+                                          <tr  style="font-weight: 600;" >
+                                    
+                                            <td style="padding-left: 20px;">CLUSTER 4A: SOUTH LUZON</td>
+                                            <td>4</td>
+                                            <td>5</td>
+                                            <td>8</td>
+                                            <td>50,500,000.00</td>
+                                            <td>3</td>
+                                          <td>3</td>
+                                          <td>4</td>
+                                          <td>1,500,000.00</td>
+                                            <td><a href="#"><i style= "color: rgb(0, 9, 0);" class="fas fa-cloud-arrow-down"></i></a></td>
+                                            <td><a href="#"><i style= "color: rgb(0, 9, 0);font-size: 16px;" class="fas fa-sort-down"></i></a></td>
+                                          </tr>
+        
+                                          <tr  style="font-weight: 600;" >
+                                          
+                                            <td style="padding-left: 20px;">CLUSTER 4B: SOUTH LUZON</td>
+                                            <td>4</td>
+                                            <td>4</td>
+                                            <td>10</td>
+                                            <td>11,500,000.00</td>
+                                          <td>3</td>
+                                          <td>3</td>
+                                          <td>3</td>
+                                          <td>1,500,000.00</td>
+                                            <td><a href="#"><i style= "color: rgb(0, 9, 0);" class="fas fa-cloud-arrow-down"></i></a></td>
+                                            <td><a href="#"><i style= "color: rgb(0, 9, 0);font-size: 16px;" class="fas fa-sort-down"></i></a></td>
+                                          </tr>
+        
+        
+        
+                                          <tr  style="font-weight: 600;" >
+                                            
+                                            <td style="padding-left: 20px;">Cluster 5: WESTERN VISAYAS</td>
+                                            <td>4</td>
+                                            <td>4</td>
+                                            <td>5</td>
+                                            <td>7,500,000.00</td>
+                                           <td>3</td>
+                                          <td>3</td>
+                                          <td>3</td>
+                                          <td>1,500,000.00</td>
+                                            <td><a href="#"><i style= "color: rgb(0, 9, 0);" class="fas fa-cloud-arrow-down"></i></a></td>
+                                            <td><a href="#"><i style= "color: rgb(0, 9, 0);font-size: 16px;"class="fas fa-sort-down"></i></a></td>
+                                          </tr>
+        
+                                          <tr  style="font-weight: 600;" >
+                                     
+                                            <td style="padding-left: 20px;">Cluster 6: CENTRAL EASTERN VISAYAS</td>
+                                            <td>4</td>
+                                            <td>4</td>
+                                            <td>9</td>
+                                            <td>17,500,000.00</td>
+                                           <td>3</td>
+                                          <td>3</td>
+                                          <td>3</td>
+                                          <td>1,500,000.00</td>
+                                            <td><a href="#"><i style= "color: rgb(0, 9, 0);" class="fas fa-cloud-arrow-down"></i></a></td>
+                                            <td><a href="#"><i style= "color: rgb(0, 9, 0);font-size: 16px;" class="fas fa-sort-down"></i></a></td>
+                                          </tr>
+                                          <tr  style="font-weight: 600;" >
+                                         
+                                            <td style="padding-left: 20px;">Cluster 7: NORTH WESTERN MINDANAO</td>
+                                            <td>6</td>
+                                            <td>7</td>
+                                            <td>8</td>
+                                            <td>19,000,000.00</td>
+                                           <td>3</td>
+                                          <td>3</td>
+                                          <td>3</td>
+                                          <td>1,500,000.00</td>
+                                            <td><a href="#"><i style= "color: rgb(0, 9, 0);" class="fas fa-cloud-arrow-down"></i></a></td>
+                                            <td><a href="#"><i style= "color: rgb(0, 9, 0);font-size: 16px;" class="fas fa-sort-down"></i></a></td>
+                                          </tr>
+                                          <tr  style="font-weight: 600;" >
+                                          
+                                            <td style="padding-left: 20px;">Cluster 8: SOUTH EASTERN MINDANAO</td>
+                                            <td>5</td>
+                                            <td>6</td>
+                                            <td>10</td>
+                                            <td>13,500,000.00</td>
+                                          <td>3</td>
+                                          <td>3</td>
+                                          <td>3</td>
+                                          <td>1,500,000.00</td>
+                                            <td><a href="#"><i style= "color: rgb(0, 9, 0);" class="fas fa-cloud-arrow-down"></i></a></td>
+                                            <td><a href="#"><i style= "color: rgb(0, 9, 0);font-size: 16px;" class="fas fa-sort-down"></i></a></td>
+                                          </tr>
+        
+                                          <tr  style="font-weight: 600; "  >
+                                         
+                                            <td>Total</td>
+                                            <td>39</td>
+                                            <td>48</td>
+                                            <td>71</td>
+                                            <td>264,000,000.00</td>
+                                             <td>39</td>
+                                            <td>48</td>
+                                            <td>71</td>
+                                            <td>264,000,000.00</td>
+                                            <td><a href="#"><i style= "color: rgb(0, 9, 0);" class="fas fa-cloud-arrow-down"></i></a></td>
+                                            <td><a href="#"><i style= "color: rgb(0, 9, 0); margin-right:15px;" class="fas fa-eye"></i></a></td>  
+                                          </tr>
+                                      </tbody>
+                                   </table>
+        
+        
+                                    </div>
+
+
+                            
+                               </fieldset>
                           
                             </div>
-                            <div id="subcon-tab4-tab2" class="subRcontent">
-                             <nav>
-                             <label style="font-size: 10px; color:gray;" for="datefrom">Start Date:</label><br>
-                             <input type="date" id="datefrom" name="datefrom;">
 
-                             <label style="font-size: 10px; color:gray;" for="dateto">End Date:</label><br>
-                             <input type="date" id="dateto" name="dateto;">
-                            </nav>
-                            <nav style="width: 140px;"><br>
-                             <input type="text" id="branch2" placeholder="Branch">
-                             </nav>
-                            <nav><br>
-                            <button type="button"  class="custom-button">SEARCH</button>
-                            </nav>
-                           <br style="height:100%;">
+                            <div id="subcon-tab4-tab2" class="subRcontent" style="padding:0;">    
+                              
+
+                              <nav style="width: 170px;"><br>
+                              
+                                <label style="font-size: 10px; color:gray; padding: 20px;" for="datefromFTrecon">Start Date:</label><br>
+                                <input style= "margin-left: 20px;" type="date" id="date-summaryrecon-from" name="datefromFTrecon;" onchange="ftdatechangerecon()">
+                               </nav>
+                               <nav style="width: 280px;"><br>
+                                <label style="font-size: 10px; color:gray; padding: 20px;" for="FTRecondateto">End Date:</label><br>
+                                <input style= "margin-left: 20px; " type="date" id="date-summaryrecon-to" name="datetoFTrecon;">
+                            
+                               </nav>
+
+                               <nav style="width: 90px;"><br>
+                                <button type="button" onclick="reconreportfilter()" style=" margin-bottom: 30px; float: right; margin: 20px;" class="custom-button-blue"><i class="fas fa-file" style= "color: white; font-size: 14px; margin-right:5px"></i>Request</button>
+                                </nav>
+                       
+
+                           <fieldset style="width: 100%; margin-top: 20px; border-radius: 10px; padding:0;">
+                            <div class="search-container" >
+                              <nav style="width: 73%; height: 20px; text-align: left; margin-left: 15px; font-size: 12; font-weight: bold; margin-bottom: 15px;">
+                              <h4> Summary of Unreconciled Fund Transfer and JE </h4> 
+                              </nav>
+                            
+                              
+                           </div> 
+
+         <!-- Table -->
+           <div class="table-container" >
+          <table class="ftscroll" style=" max-width:1155px; min-height: 1300px; margin:0;padding:0;" id="frombcasfttable">
+             <thead  >
+                 <tr style="width:1250px" >                 
+                     <th style="font-size: 9px;">FTTransactionDate</th>
+                     <th style="font-size: 9px;">Transfer Type</th>
+                     <th style="font-size: 9px;">Transaction ID</th>
+                     <th style="font-size: 9px;">Origin</th>
+                     <th style="font-size: 9px;">Destination</th>
+                     <th style="font-size: 9px;">Amount</th>
+                     <th style="font-size: 9px;">Courier</th>
+                     <th style="font-size: 9px;">Remarks</th>    
+                     <th style="font-size: 9px;">FTRefcode</th> 
+                     <th style="font-size: 9px;">Area</th>
+                     <th style="font-size: 9px;">TransactionDate</th>
+                     <th style="font-size: 9px;">No.</th>
+                     <th style="font-size: 9px;">Status</th>
+                     <th style="font-size: 9px;">Branch</th>
+                     <th style="font-size: 9px;">Account Name</th>
+                     <th style="font-size: 9px;">Debit</th> 
+                     <th style="font-size: 9px;">Credit</th>
+                     <th style="font-size: 9px;">Remarks</th>
+                     <th style="font-size: 9px;">UploadTime</th>   
+                 </tr>
+          
+              
+             </thead>
+          
+          
+          
+             <tbody style="color:rgb(15, 15, 15)" >
+
+              <tr class="BBB">                             
+              
+                <td>03/31/2025</td>
+                <td>Send</td>         
+                <td >BBB-13-002002S00S0SAU</td>
+                <td >BBB</td>
+                <td >AAA</td>
+                <td >5,000,000.00</td>
+                <td >9876:DELA CRUZ JUAN</td>
+                <td >BBB-13-002002S00S0SAU-AAA/9876: DELA CRUZ JUAN</td>                       
+                <td >FT-BBB03312025-001-Active</td>   
+                <td>ZAB</td>
+                <td >03/31/2025</td>
+                <td >1</td>
+                <td >Finalized</td>
+                <td >BBB</td>
+                <td >Fund Transfer-Send</td>
+                <td >0.00</td> 
+                <td >5,000,000.00</td>
+                <td >BBB-13-002002S00S0SAU-AAA/9876: DELA CRUZ JUAN</td>
+                <td >03/31/2025 13:04:01</td> 
+            </tr>
+
+            <tr class="AAW">                                 
+              
+              <td>03/07/2025</td>
+              <td>Deposit</td>         
+              <td >AAW-13-002002S00S0SAT</td>
+              <td >HO MBTC</td>
+              <td >AAW</td>
+              <td >12,000,000.00</td>
+              <td >1234: DELA CRUZ JUAN</td>
+              <td >110010 SA AREA PNB EUPI-BAYAWAN CITY-NEGROS ORIENTAL:6450/1110-102-133-6450</td>                       
+              <td >FT-AAW03072025-002-Active</td>   
+              <td>ZAA</td>
+              <td >03/07/2025</td>
+              <td >4</td>
+              <td >Finalized</td>
+              <td >AAW</td>
+              <td >Fund Transfer-Deposit</td>
+              <td >0.00</td> 
+              <td >2,000,000.00</td>
+              <td >110010 SA AREA PNB EUPI-BAYAWAN CITY-NEGROS ORIENTAL:6450/1110-102-133-6450</td>
+              <td >03/07/2025 15:14:01</td> 
+          </tr>
+
+          <tr class="AAW">                                 
+              
+            <td>03/07/2025</td>
+            <td>Withdraw</td>         
+            <td >AAW-13-002002S00S0SAS</td>
+            <td >HO MBTC</td>
+            <td >AAW</td>
+            <td >12,000,000.00</td>
+            <td >1234: DELA CRUZ JUAN</td>
+            <td >311010 SA AREA MBTC EUPI-BAYAWAN CITY-NEGROS ORIENTAL:6450/2110-102-133-6452</td>                       
+            <td >FT-AAW03072025-001-Active</td>   
+            <td>ZAA</td>
+            <td >03/07/2025</td>
+            <td >1</td>
+            <td >Finalized</td>
+            <td >AAW</td>
+            <td >Fund Transfer-Withdraw</td>
+            <td >12,000,000.00</td> 
+            <td >0.00</td>
+            <td >311010 SA AREA MBTC EUPI-BAYAWAN CITY-NEGROS ORIENTAL:6450/2110-102-133-6452</td>
+            <td >03/07/2025 15:14:01</td> 
+        </tr>
+
+
+          <tr class="AAB">                                 
+              
+            <td>04/01/2025</td>
+            <td>Send</td>         
+            <td >AAB-13-003002S00S0SAT</td>
+            <td >AAB</td>
+            <td >AAA</td>
+            <td >1,500,000.00</td>
+            <td >1234: DELA CRUZ JUAN</td>
+            <td >AAB-13-002002S00S0SAT-AAA/1234: DELA CRUZ JUAN</td>                       
+            <td >FT-AAB04012025-001-Active</td>   
+            <td>ZAA</td>
+            <td >04/01/2025</td>
+            <td >1</td>
+            <td >Finalized</td>
+            <td >AAB</td>
+            <td >Fund Transfer-Send</td>
+            <td >0.00</td> 
+            <td >1,500,000.00</td>
+            <td >AAB-13-002002S00S0SAT-AAA/1234: DELA CRUZ JUAN</td>
+            <td >04/01/2025 10:10:01</td> 
+        </tr>
+
+          
+              <tr class="AAA">                                 
+              
+                    <td>03/31/2025</td>
+                    <td>Deposit</td>         
+                    <td >AAA-13-002002S00S0SAT</td>
+                    <td >AAA</td>
+                    <td >AREA PNB</td>
+                    <td >2,000,000.00</td>
+                    <td >9876: DELA CRUZ JUAN</td>
+                    <td>110010 SA AREA PNB EUPI-BAYAWAN CITY-NEGROS ORIENTAL:6450/1110-102-133-6450</td>                       
+                    <td >FT-AAA03312025-001-Active</td>   
+                    <td>ZAA</td>
+                    <td ></td>
+                    <td ></td>
+                    <td ></td>
+                    <td ></td>
+                    <td ></td>
+                    <td ></td> 
+                    <td ></td>
+                    <td ></td>
+                    <td ></td> 
+                </tr>
+          
+          
+                <tr class="AAA">
+                   
+              
+                    <td>04/01/2025</td>   
+                    <td>Receive</td>
+                    <td >AAB-13-003002S00S0SAT</td>
+                    <td >AAB</td>
+                    <td >AAA</td>
+                    <td >1,500,000.00</td>
+                    <td >9876: DELA CRUZ JUAN</td>
+                    <td>AAB-13-002002S00S0SAT-AAA/1234: DELA CRUZ JUAN</td>           
+                    <td >FT-AAA04012025-001-Active</td>        
+                    <td>ZAA</td>
+                    <td ></td>
+                    <td ></td>
+                    <td ></td>
+                    <td ></td>
+                    <td ></td> 
+                    <td ></td>
+                    <td ></td>
+                    <td ></td>
+                    <td ></td> 
+               </tr>
+              
+
+               <tr class="AAS">                             
+              
+                <td>03/31/2025</td>
+                <td>Send</td>         
+                <td >AAS-13-002002S00S0SAU</td>
+                <td >AAS</td>
+                <td >AAA</td>
+                <td >2,000,000.00</td>
+                <td >1234: DELACRUZ JUAN</td>
+                <td >AAS-13-002002S00S0SAU-AAA/1234: DELA CRUZ JUAN</td>                       
+                <td >FT-AAS03312025-001-Active</td>   
+                <td>ZAA</td>
+                <td >03/31/2025</td>
+                <td >1</td>
+                <td >Finalized</td>
+                <td >AAS</td>
+                <td >Fund Transfer-Send</td>
+                <td >0.00</td> 
+                <td >2,000,000.00</td>
+                <td >AAS-13-002002S00S0SAU-AAA/1234: DELA CRUZ JUAN</td>
+                <td >03/31/2025 12:04:01</td> 
+            </tr>
+
+            <tr class="AAS">                             
+              
+              <td>03/07/2025</td>
+              <td>Send</td>         
+              <td >AAS-13-002002S00S0SAR</td>
+              <td >AAS</td>
+              <td >AAK</td>
+              <td >10,000,000.00</td>
+              <td >1234: DELACRUZ JUAN</td>
+              <td >AAS-13-002002S00S0SAU-AAA/1234: DELA CRUZ JUAN</td>                       
+              <td >FT-AAS03072025-001-Active</td>   
+              <td>ZAA</td>
+              <td >03/08/2025</td>
+              <td >1</td>
+              <td >Finalized</td>
+              <td >AAS</td>
+              <td >Fund Transfer-Send</td>
+              <td >0.00</td> 
+              <td >10,000,000.00</td>
+              <td >AAS-13-002002S00S0SAU-AAA/1234: DELA CRUZ JUAN</td>
+              <td >03/08/2025 11:04:01</td> 
+          </tr>
+
+
+          
+          <tr class="AAS">                             
+              
+            <td>03/07/2025</td>
+            <td>Send</td>         
+            <td >AAS-13-002002S00S0SAR</td>
+            <td >AAS</td>
+            <td >AAK</td>
+            <td >10,000,000.00</td>
+            <td >1234: DELACRUZ JUAN</td>
+            <td >AAS-13-002002S00S0SAU-AAA/1234: DELA CRUZ JUAN</td>                       
+            <td >FT-AAS03072025-002-Voided</td>   
+            <td>ZAA</td>
+            <td >03/08/2025</td>
+            <td >3</td>
+            <td >Finalized</td>
+            <td >AAS</td>
+            <td >Fund Transfer-Send-Voided</td>
+            <td >10,000,000.00</td> 
+            <td >0.00</td>
+            <td >AAS-13-002002S00S0SAU-AAA/1234: DELA CRUZ JUAN</td>
+            <td >03/08/2025 15:04:01</td> 
+        </tr>
+
+        <tr class="AAS">                             
+              
+          <td>03/07/2025</td>
+          <td>Send</td>         
+          <td >AAS-13-002002S00S0SAK</td>
+          <td >AAS</td>
+          <td >AAK</td>
+          <td >10,000,000.00</td>
+          <td >1234: DELACRUZ JUAN</td>
+          <td >AAS-13-002002S00S0SAK/1234: DELA CRUZ JUAN</td>                       
+          <td >FT-AAS03072025-003-Active</td>   
+          <td>ZAA</td>
+          <td >03/08/2025</td>
+          <td >4</td>
+          <td >Finalized</td>
+          <td >AAS</td>
+          <td >Fund Transfer-Send</td>
+          <td >0.00</td> 
+          <td >11,000,000.00	</td>
+          <td >AAS-13-002002S00S0SAK/1234: DELA CRUZ JUAN</td>
+          <td >03/08/2025 15:04:01</td> 
+      </tr>
+
+
+               <tr class="AAA">
+               
+              
+                    <td>03/31/2025</td>   
+                    <td>Receive</td>
+                    <td >AAS-13-002002S00S0SAU</td>
+                    <td >AAS</td>
+                    <td >AAA</td>
+                    <td >2,000,000.00</td>
+                    <td >9876: DELA CRUZ JUAN</td>
+                    <td>AAS-13-002002S00S0SAU-AAA/1234: DELA CRUZ JUAN</td>
+                     <td >FT-AAA03312025-003-Active</td>   
+                     <td>ZAA</td> 
+                     <td ></td>
+                     <td ></td>
+                     <td ></td>
+                     <td ></td>
+                     <td ></td>
+                     <td ></td> 
+                     <td ></td>
+                     <td ></td>
+                     <td ></td>  
+               </tr>  
+           
+          
+               <tr class="AAA">
+                    <td>04/01/2025</td>   
+                    <td>Withdraw</td>
+                    <td>AAA-13-002002S00S0SAS</td>
+                    <td>HO MBTC</td>
+                    <td>AAA</td>
+                    <td>1,000,000.00</td>
+                    <td>9876: DELA CRUZ JUAN</td>
+                    <td>311010 SA AREA MBTC EUPI-BAYAWAN CITY-NEGROS ORIENTAL:6452/2110-102-133-6452</td>
+                     <td >FT-AAA04012025-002-Active</td>
+                     <td>ZAA</td> 
+                     <td ></td>
+                     <td ></td>
+                     <td ></td>
+                     <td ></td>
+                     <td ></td> 
+                     <td ></td>
+                     <td ></td>
+                     <td ></td>
+                     <td ></td> 
+               </tr>
+          
+          
+             </tbody>
+          
+            
+          </table>
+          
+          
+          </div>
+     
+       
+    
+        <!-- Pagination -->
+        <div class="pagination">
+
+            <select style="width: 53px; border:none;" id="contpage3" name="contpage">
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="50">50</option>
+            </select>
+            <button type="button" id="topBtn" onclick="changePage(-1)" class="disabled" disabled>l<</button>
+            <button type="button" id="prevBtn" onclick="changePage(-1)" class="disabled" disabled><</button>
+            <button type="button" id="count" class="disabled" disabled>0-0 of 0</button>
+            <button type="button" id="nextBtn" onclick="changePage(1)"class="disabled" disabled>></button>
+            <button type="button" id="fwdBtn" onclick="changePage(1)"class="disabled" disabled>>l</button>
+           </div>
+
+
+
                          
-                                               
-                        </div>
+         </fieldset>
+
+
+
+                </div>
+
+
 
                     </form>
             </div>
@@ -1879,7 +3012,8 @@
                                             <th style="font-size: 12px; display:none;">Closed by</th>   
                                             <th style="font-size: 12px; display:none;">Closed date</th>
                                             <th style="font-size: 12px; display:none;">Transaction logs</th>   
-                                            <th style="font-size: 12px; display:none;">Prior Status</th>                                  
+                                            <th style="font-size: 12px; display:none;">Prior Status</th> 
+                                            <th style="font-size: 12px; display:none;">ftid</th>                                   
                                         </tr>
 
                                         
@@ -1909,6 +3043,7 @@
                                             <td style="display:none;">--</td>
                                             <td style="display:none;"></td>
                                             <td style="display:none;"></td>
+                                            <td style="display:none;">FT-BBB03012025-001-Active</td>
                                            
                                        </tr>
 
@@ -1917,7 +3052,7 @@
                                             <td><a href="#"><button type="button" id="FT-btn-all-view1"  onclick="openOverlay('overlay2', event, 'ft-data-table', 2, 10, this)" 
                                                class="custom-button-eye"><i  class= "fas fa-eye"></i></button></a>
                                                 <a href="#"><button type="button" id="FT-btn-paste" onclick="encryptRow('ft-data-table', 2, event, 1,2,5,6)" class="custom-button-copy"><i  class= "fas fa-copy"></i></button></a></td>
-                                            <td>03/01/2025</td>                                  
+                                            <td>03/31/2025</td>                                  
                                             <td>Deposit</td>
                                             <td>AAA-13-002002S00S0SAT</td>
                                             <td>2,000,000.00</td>                                            
@@ -1926,19 +3061,19 @@
                                             <td>1234: DELA CRUZ JUAN</td>
                                             <td>110010 SA AREA PNB EUPI-BAYAWAN CITY-NEGROS ORIENTAL:6450/1110-102-133-6450</td>
                                             <td>mxhc1234</td>
-                                            <td>Pending</td>
+                                            <td>In-Transit</td>
                                             <td style="display:none;">ZAA</td>
-                                            <td style="display:none;">--</td>
-                                            <td style="display:none;">--</td>
+                                            <td style="display:none;">aaa123</td>
+                                            <td style="display:none;">03/31/2025 08:08:50</td>
                                             <td style="display:none;">--</td>
                                             <td style="display:none;">--</td>
                                             <td style="display:none;"></td>
-                                            <td style="display:none;"></td>
+                                            <td style="display:none;">FT-AAA03312025-001-Active</td>
                                         </tr>
                                         <tr class="ZAA-bank">
                                             <td><a href="#"<button type="button" id="FT-btn-view" onclick="openOverlay('overlay2', event, 'ft-data-table', 3, 10, this)" class="custom-button-eye"><i  class= "fas fa-eye"></i></button></a>
                                                 <a href="#"><button type="button" id="FT-btn-paste" onclick="encryptRow('ft-data-table', 3, event,  1,2,5,6)" class="custom-button-copy"><i  class= "fas fa-copy"></i></button></a></td>
-                                                <td>03/07/2025</td>                                           
+                                                <td>04/01/2025</td>                                           
                                                 <td>Withdraw</td>
                                                 <td>AAA-13-002002S00S0SAS</td>
                                                 <td>1,000,000.00</td>
@@ -1955,12 +3090,13 @@
                                                 <td style="display:none;">--</td>
                                                 <td style="display:none;"></td>
                                                 <td style="display:none;"></td>
+                                                <td style="display:none;">FT-AAA04012025-002-Active</td>
                                         </tr>
 
                                         <tr class="ZAA-bank">
                                             <td><a href="#"><button type="button" id="FT-btn-view" onclick="openOverlay('overlay2', event,'ft-data-table', 4, 10, this)" class="custom-button-eye"><i  class= "fas fa-eye"></i></button></a>
                                                 <a href="#"><button type="button" id="FT-btn-paste" onclick="encryptRow('ft-data-table', 4, event,  1,2,5,6)" class="custom-button-copy"><i  class= "fas fa-copy"></i></button></a></td>
-                                                <td>03/02/2025</td>                                         
+                                                <td>03/31/2025</td>                                         
                                                 <td>Withdraw</td>
                                                 <td>AAA-13-002002S00S0SAJ</td>
                                                 <td>2,000,000.00</td>                                         
@@ -1969,13 +3105,14 @@
                                                 <td>1234: DELA CRUZ JUAN</td>
                                                 <td>311010 SA AREA MBTC EUPI-BAYAWAN CITY-NEGROS ORIENTAL:6450/2110-102-133-6452</td>
                                                 <td>mxhc1234</td>
-                                                <td>Acknowledged</td>
+                                                <td>Pending</td>
                                                 <td style="display:none;">ZAA</td>
-                                                <td style="display:none;">abc123</td>
-                                                <td style="display:none;">03-18-2025 08:08:00</td>
-                                                <td style="display:none;">cmd123</td>
-                                                <td style="display:none;">03-19-2025 08:08:00</td>
-                                                <td style="display:none;">TRANSACTION FOR 03/08/2025</td>
+                                                <td style="display:none;">--</td>
+                                                <td style="display:none;">--</td>
+                                                <td style="display:none;">--</td>
+                                                <td style="display:none;">--</td>
+                                                <td style="display:none;"></td>
+                                                <td style="display:none;"></td>
                                                 <td style="display:none;"></td>
                                         </tr>
                                         <tr class="ZAA-bank">
@@ -1998,11 +3135,12 @@
                                                 <td style="display:none;">--</td>
                                                 <td style="display:none;">Denied by: cmd123 03-18-2025 09:10:01 WRONG AMOUNT</td>
                                                 <td style="display:none;"></td>
+                                                <td style="display:none;">FT-AAA03072025-001-Active</td>
                                         </tr>
                                         <tr class="ZAA-branch">
                                             <td><a  href="#"><button type="button" id="FT-btn-view" onclick="openOverlay('overlay2', event,'ft-data-table', 6, 10, this)"   class="custom-button-eye"><i  class= "fas fa-eye"></i></button></a>
                                                 <a  href="#"><button type="button" id="FT-btn-paste" onclick="encryptRow('ft-data-table', 6, event,  1,2,5,6)" class="custom-button-copy"><i  class= "fas fa-copy"></i></button></a></td>
-                                                <td>03/02/2025</td>                                          
+                                                <td>04/01/2025</td>                                          
                                                 <td>Send</td>
                                                 <td>AAB-13-003002S00S0SAT</td>
                                                 <td>1,500,000.00</td>
@@ -2019,13 +3157,14 @@
                                                 <td style="display:none;">03-18-2025 10:08:00</td>
                                                 <td style="display:none;"></td>
                                                 <td style="display:none;"></td>
+                                                <td style="display:none;">FT-AAA04012025-001-Active</td>
                                         </tr>
 
 
                                         <tr class="ZAA-branch">
                                             <td><a href="#"><button type="button" id="FT-btn-view" onclick="openOverlay('overlay2', event,'ft-data-table', 7, 10, this)" class="custom-button-eye"><i  class= "fas fa-eye"></i></button></a>
                                                 <a href="#"><button type="button" id="FT-btn-paste" onclick="encryptRow('ft-data-table', 7, event,  1,2,5,6)" class="custom-button-copy"><i  class= "fas fa-copy"></i></button></a></td>
-                                                <td>03/07/2025</td>                                          
+                                                <td>03/31/2025</td>                                          
                                                 <td>Send</td>
                                                 <td>AAS-13-002002S00S0SAU</td>
                                                 <td>2,000,000.00</td>
@@ -2034,7 +3173,7 @@
                                                 <td>1234: DELACRUZ JUAN</td>
                                                 <td>AAS-13-002002S00S0SAU-AAA/1234: DELA CRUZ JUAN</td>
                                                 <td>mxhc1234</td>
-                                                <td>Pending</td>
+                                                <td>Received</td>
                                                 <td style="display:none;">ZAA</td>
                                                 <td style="display:none;">--</td>
                                                 <td style="display:none;">--</td>
@@ -2042,6 +3181,7 @@
                                                 <td style="display:none;">--</td>
                                                 <td style="display:none;"></td>
                                                 <td style="display:none;"></td>
+                                                <td style="display:none;">FT-AAA03312025-003-Active</td>
                                         </tr>
 
                                         <tr class="ZAA-branch">
@@ -2065,6 +3205,7 @@
                                             <td style="display:none;">--</td>
                                             <td style="display:none;">Voided by: mxhc1234 03-18-2025 09:09:00 WRONG TRANSACTION</td>
                                             <td style="display:none;">Pending</td>
+                                            <td style="display:none;">FT-AAA03072025-001-Voided</td>
                                             
                                     </tr>
 
@@ -2078,7 +3219,7 @@
                                         <td>AAS</td>
                                         <td>AAK</td>
                                         <td>1234: DELACRUZ JUAN</td>
-                                        <td>AAS-13-002002S00S0SAK-AAK/1234: DELA CRUZ JUAN</td>
+                                        <td>AAS-13-002002S00S0SAKAAK/1234: DELA CRUZ JUAN</td>
                                         <td>mxhc1234</td>
                                         <td>Under Review</td>
                                         <td style="display:none;">ZAA</td>
@@ -2088,6 +3229,7 @@
                                         <td style="display:none;">--</td>
                                         <td style="display:none;">Under Review cru1234 03-18-2025 Robbery Incident</td>
                                         <td style="display:none;">In-Transit</td>
+                                        <td style="display:none;">FT-AAA03072025-001-Active</td>
                                 </tr>
 
                                 <tr class="ZAA-bank">
@@ -2111,6 +3253,7 @@
                                   <td style="display:none;">--</td>
                                   <td style="display:none;">Under Review cru1234 05-18-2025 Missing Incident</td>
                                   <td style="display:none;">Received</td>
+                                  <td style="display:none;">FT-AAA03072025-001-Active</td>
                               </tr>
 
 
@@ -2148,22 +3291,22 @@
 <!----<div id="FT-form-add" class="FT-form-add">--->
   <div class="modal" style="width: 535px;">
      
-          <li style="font-weight: 700; margin-left: 0px;">Offline Update-Status</li>
+          <li style="font-weight: 700; margin-left: 0px;">Update Status Approval</li>
          
-            <fieldset style="border:1px solid #cecbcb ; padding: 15px;border-radius: 0px; height:90%; margin:0px; box-shadow:none;">
-            <nav style="width: 460px; justify-content: center;">
-            <div class="input-container" style="height:65px; border-top-right-radius: 0px;border-bottom-right-radius: 0px; width:460px;  ">
+            <fieldset style="border:1px solid #cecbcb ;margin-top:5px; padding: 15px;border-radius: 0px; height:90%; margin:0px; box-shadow:none;">
+             <nav style="width: 460px; justify-content: center;">
+              <div class="input-container" style="height:65px; border-top-right-radius: 0px;border-bottom-right-radius: 0px; width:460px;  ">
              
-              <li style="font-size:18px; font-weight: bold; color:rgb(58, 45, 235);"><input type="text" id="reason"  
+               <li style="font-size:18px; font-weight: bold; color:rgb(58, 45, 235);"><input type="text" id="reason"  
                 style="width:390px;margin-top:10px; margin-left:10px; border:none; text-align: center; font-size:18px;color:rgb(58, 45, 235);"  placeholder="" disabled></li>
                
                 <button type="button" id="FT-btn-paste" onclick="camisftpaste('BCASoverlay1')" class="custom-button-paste" style=" width: 52px;border-left: 1px solid #ccc; float:center; font-size: 30px; height:60px;"><i  class= "fas fa-paste"></i></button>
      
-            </div>
+             </div>
             </nav>
         
             <nav style="width: 460px; margin-top:10px">
-              <nav style="width: 240px;">
+               <nav style="width: 240px;">
                 <li style="font-size:12px; color:grey;margin-top:10px;">Branch Transaction Date</li>
                 <input type="text" id="pastedate"  style="width:220px; font-size:15px;"  placeholder="" disabled>
                </nav>
@@ -2204,24 +3347,45 @@
             
 
                    <nav style="width: 460px; margin-top:10px">
-                    <nav style="width: 240px;">
+                     <nav style="width: 240px;">
                      <li style="font-size:12px; color:grey;">Original Status:</li>
                      <input type="text" id="statusfrom"  style="width:220px;margin-top:10px;font-size:15px; "  placeholder="" disabled>                  
                      </nav>
         
-                     <nav style="width: 220px;">
+                      <nav style="width: 220px;">
                       <li style="font-size:12px; color:grey;">Update Status to:</li>
                        <input type="text" id="updateto"  style="width:220px;margin-top:10px; font-size:15px;"  placeholder="" disabled>
                       </nav>            
                 
-                   </nav><br><br><br>
+                     </nav><br><br><br>
 
-                   <nav style="width: 460px;margin-top:20px">
+                       <nav style="width: 200px;margin-top:20px">
 
-                    <textarea id="offline-update" name="update" rows="2" cols="50" placeholder="Text Field" 
-                      style="border:none; border-radius: 0px;  height:60px;" disabled> </textarea>
+                       <textarea id="offline-update" name="update" rows="2" cols="50" style="display:none" placeholder="Text Field" 
+                        style="border:none; border-radius: 0px;  height:60px;" disabled> </textarea>
                       </nav> 
-                  </nav><br>
+                      
+                      
+                      <nav style="width: 460px;margin-top:20px">
+
+                      <div class="input-container" style="height:65px; border-top-right-radius: 0px;border-bottom-right-radius: 0px; width:460px;  ">
+                    
+                        <li style="font-size:18px; font-weight: bold; color:rgb(58, 45, 235);">
+                          <input type="text" id="updated-status-text"  
+                          style="width:390px;margin-top:10px; margin-left:10px; border:none;
+                           text-align: center; font-size:18px;color:rgb(58, 45, 235);"  placeholder="" disabled></li>
+                         
+                          <button type="button" id="updated-status-btn" onclick="camisftcopyupstat('BCASoverlay1')" 
+                          class="custom-button-copy" style=" width: 52px;border-left: 1px solid #ccc; float:center; font-size: 30px; height:60px;">
+                          <i  class= "fas fa-copy"></i></button>
+                      
+                      </div>
+
+
+
+
+                  </nav>
+
               
        
            </fieldset>
@@ -2513,20 +3677,11 @@
               </div>  <!-----modal-->
              </div> 
 
-
-
-
-
-
-
-
-
-
             </div>
     
     </div>
 </div>
-<!------------------------------>
+<!---------------view transaction in the transaction ,list--------------->
 <div id="overlay2" class="overlay" >
 
   <div class="modal"  id ="modalwidth" style="  min-height: 500px;  background-color: white;  padding: 20px; 
@@ -2586,6 +3741,7 @@
                 <textarea id="viewcftbank"  type="text" style="width:370px;height:50px;padding-left: 5px; outline:none;border:1px solid #ccc; 
                 border-radius: 5px; background-color: 1px solid black" rows="2" cols="50"  readonly></textarea>              
               </nav>
+              
               <nav style="width: 30px;"><br>
                 <button type="button" class="toggle-btn" id="toggleButton" style="width:30px;height:50px;margin-top:15px; float:right;">
                 <i class="fa-solid fa-circle-arrow-right"></i></button>   
@@ -2658,10 +3814,30 @@
                 <textarea style="height:50px; width:400px;" id="viewcftremarks"
                 name="message" rows="1" cols="50" placeholder="" readonly></textarea>            
            
-             </nav><br>        
+             </nav><br>   
+             
+             
+             <nav style="width: 410px;">
+             <table id="transaction-logs" class="logs"  >
+              <thead style="height:10px;">
+
+
+                  <tr>
+                      <th>RefID</th>
+                      <th>Status</th>
+                      <th>TimeStamp</th>
+                  </tr>
+
+              </thead>
+              <tbody>
+
+
+              </tbody>
+            </table>
+            </nav>
+
         
-            </fieldset>
-      
+            </fieldset>     
    
     
       </div>
@@ -2679,58 +3855,52 @@
       </nav>
 
 
-                         <div id="suboverlay2" class="suboverlay">
-                          <div class="modal"style="min-width:430px; >
-                       
-
-                            <li style="font-weight: 700; margin-left:0px;"><i class="fa-solid fa-circle-exclamation" style=" margin-right:10px; color: rgb(108, 47, 252); font-size: 20px;">
-                            </i> <input type="text" id="row-suboverlay2" style="border:none; font-size: 20px; width: 300px;"></li>
-                          
-                          </li> <br>
-                              <fieldset style=" border:1px solid #cecbcb ; padding: 15px;border-radius: 0px; height:80%; margin:5;  box-shadow:none;">
-                                
-                                 
-                                 <nav style="width: 350px;  justify-items: center; margin-bottom: 20px; ">
-                                  <li stype="font-weight: none; margin-top: 30px;"> Enter the CAPTCHA Below</li>
-                                  
-                                  <div class="captcha-image" id="captcha-code-suboverlay2">
-                                    <!-- CAPTCHA code will appear here -->
-                                  </div>
-                                                 
-                                  <input type="text"  id="captcha-input-suboverlay2" placeholder="Enter Captcha" style="font-size: 20px; height:40px; width:250px; margin-top: 20px; border-bottom: 1px solid black; text-align: center;" >
-                                    <p id="message-suboverlay2" style="font-size: 15px;"></p>
-                                  </nav>
-                                  <nav style="width: 300px;  justify-items: center;">
-                                  <li style="float:left; margin-top:10px;font-size:12px; color:gray">Remarks:</li>
-                                  <input type="text" id="remaks-suboverlay2" style="font-size: 18px; text-transform: uppercase; height:20px; width:350px; margin-top: 10px; border-bottom: 1px solid black;" >
-                                    
-                                  </nav>
-
-                                  <nav style="width: 350px; text-align: center;">
-                                  <button type="button" class="custom-button-blue" onclick="validateCaptcha('ft-data-table', 2, 10, 'banktable', 1, 10,  'suboverlay2', 'overlay2')" style=" margin-top:30px; width:250px; ">Confirm</button> <br>
-                                  <button type="button" class="custom-button-blue" onclick="regenerateCaptcha('suboverlay2')" style="margin-top:10px; width:250px;">Regenerate CAPTCHA</button><br>
-                                  <button type="button" class="custom-button-gray" onclick="closeSubOverlay('suboverlay2')"  style=" margin-top:10px; width:250px;">Close</button>
-                                </nav>
-                           
-                              </fieldset>
-                          
-                          </div>  <!-----modal-->
-                         </div>   <!-----suboverlay--->
-
-                         <!------------------<div id="notifoverlay1" class="notifoverlay">
-                          <p id="notification1"> </p>
-                        </div>------->
-
-
-
+                        
 
     </div>
 </div>
 
 </div>
+<div id="suboverlay2" class="suboverlay">
+  <div class="modal"style="min-width:430px; >
 
 
+    <li style="font-weight: 700; margin-left:0px;"><i class="fa-solid fa-circle-exclamation" style=" margin-right:10px; color: rgb(108, 47, 252); font-size: 20px;">
+    </i> <input type="text" id="row-suboverlay2" style="border:none; font-size: 20px; width: 300px;"></li>
+  
+  </li> <br>
+      <fieldset style=" border:1px solid #cecbcb ; padding: 15px;border-radius: 0px; height:80%; margin:5;  box-shadow:none;">
+        
+         
+         <nav style="width: 350px;  justify-items: center; margin-bottom: 20px; ">
+          <li stype="font-weight: none; margin-top: 30px;"> Enter the CAPTCHA Below</li>
+          
+          <div class="captcha-image" id="captcha-code-suboverlay2">
+            <!-- CAPTCHA code will appear here -->
+          </div>
+                         
+          <input type="text"  id="captcha-input-suboverlay2" placeholder="Enter Captcha" style="font-size: 20px; height:40px; width:250px; margin-top: 20px; border-bottom: 1px solid black; text-align: center;" >
+            <p id="message-suboverlay2" style="font-size: 15px;"></p>
+          </nav>
+          <nav style="width: 300px;  justify-items: center;">
+          <li style="float:left; margin-top:10px;font-size:12px; color:gray">Remarks:</li>
+          <input type="text" id="remaks-suboverlay2" style="font-size: 18px; text-transform: uppercase; height:20px; width:350px; margin-top: 10px; border-bottom: 1px solid black;" >
+          </nav>
 
+          <nav style="width: 350px; text-align: center;">
+          <button type="button" class="custom-button-blue" onclick="validateCaptcha('ft-data-table', 2, 10, 'banktable', 1, 10,  'suboverlay2', 'overlay2')" style=" margin-top:30px; width:250px; ">Confirm</button> <br>
+          <button type="button" class="custom-button-blue" onclick="regenerateCaptcha('suboverlay2')" style="margin-top:10px; width:250px;">Regenerate CAPTCHA</button><br>
+          <button type="button" class="custom-button-gray" onclick="closeSubOverlay('suboverlay2')"  style=" margin-top:10px; width:250px;">Close</button>
+        </nav>
+   
+      </fieldset>
+  
+  </div>  <!-----modal-->
+ </div>   <!-----suboverlay--->
+
+ <!------------------<div id="notifoverlay1" class="notifoverlay">
+  <p id="notification1"> </p>
+</div>------->
 
 <!------------------------------------------------------------------>
                   <div class="pagination">
@@ -2752,30 +3922,37 @@
   </div>
 </div>
 
-
-
     <div id="xnotification" class="xnotification" >
       <p style="font-size: 14px; margin:10px;" id="xnotify"> </p>
-    </div>
-
+    </div>   
 </div>
 
+
+<div id="bcasftuploadwaiting" class="waitingupload"  style="background-color: rgb(3, 3, 61);">
+  <p style="font-size: 20px; margin:10px;" id="xwaiting"> </p>
+</div>
 <!------------------------------------------------------------------------>
 
-
-
 </body>
-
 
 <script src="camis_user_permission.js"></script>
 <script src="general_script.js"></script>
 <script src="table.js"></script>
 <script src="arrow.js"></script>
-<script src="camis_ft_copy_encrypt.js"></script>
-<script src="camis_ft_offline_update.js"></script>
 <script src="bcas.js"></script>
-<script src="camis_ft_filter_table.js"></script>
+<script src="bcas_ft_save_new.js"></script>
+<script src="bcas_ft_void.js"></script>
+<script src="bcas_ft_encryp.js"></script>
+<script src="bcas_ft_decrypt_update.js"></script>
+<script src="bcas_ft_retry.js"></script>
+<script src="bcas_transaction_upload.js"></script>
+<script src="camis_ft_copy_encrypt.js"></script>
 <script src="camis_ft_captcha.js"></script>
+<script src="camis_ft_offline_update.js"></script>
+<script src="camis_ft_filter_table.js"></script>
 <script src="camis_ft_add_new.js"></script>
 <script src="camis_ft_list_download.js"></script>
+<script src="camis_ft_recon_report.js"></script>
+<script src="camis_ft_recon_dropdown.js"></script>
+
 </html>

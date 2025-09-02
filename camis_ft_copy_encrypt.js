@@ -1,17 +1,17 @@
 function encryptRow(tableId, enrow, event, coldte, coltype ,colo, coldes) {
     event.preventDefault(); 
-    let rowtable = document.getElementById(tableId);
-    let row = rowtable.rows[enrow]; // Targeting only Row 1 (ignoring the header row)
-   
+
+    const buttonrow = event.target.closest('tr');     
+    const row = buttonrow
     let rowData = "";
-    const xdate = row.cells[coldte].innerText; // Get the specific cell (0-based index)
-    const xtype = row.cells[coltype].innerText; // Get the specific cell (0-based index)
-    const xorig = row.cells[colo].innerText; // Get the specific cell (0-based index)
-    const xdes = row.cells[coldes].innerText; // Get the specific cell (0-based index)  
+    const xdate = row.cells[coldte].innerText; 
+    const xtype = row.cells[coltype].innerText; 
+    const xorig = row.cells[colo].innerText; 
+    const xdes = row.cells[coldes].innerText;  
 
     // Loop through each cell in the row
-    for (let i = 1; i < row.cells.length; i++) { // Exclude the last cell with the button
-        rowData += row.cells[i].innerText + "|"; // Concatenate cell data with space
+    for (let i = 1; i < row.cells.length; i++) { 
+        rowData += row.cells[i].innerText + "|"; 
     }
   
     // Base64 encode the concatenated row data

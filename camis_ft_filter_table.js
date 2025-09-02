@@ -16,21 +16,21 @@ window.onload = function() {
 const searchInput = document.getElementById("ft-Area-drop");
 const dropdownList = document.getElementById("dropdownList");
 
+
+
+function toggleDropdown() {
+  dropdownList.style.display = dropdownList.style.display === "block" ? "none" : "block";
+}
+
 document.getElementById('ft-Area-drop').addEventListener('keypress', function(event) {
   if (event.key === 'Enter') {
     event.preventDefault(); 
   }
 });
 
-function toggleDropdown() {
-  dropdownList.style.display = dropdownList.style.display === "block" ? "none" : "block";
-}
+function filterDropdown() {
 
-function filterDropdown(event) {
-
-  if (event.key === 'Enter') {
-    event.preventDefault(); 
-  }
+  
   const filter = searchInput.value.toUpperCase();
   const items = dropdownList.getElementsByTagName("div");
 
@@ -81,11 +81,7 @@ if (selectElement1.value === '') {
 const searchInput1 = document.getElementById("ft-branch-drop");
 const dropdownList1 = document.getElementById("dropdownList-branch");
 
-document.getElementById('ft-branch-drop').addEventListener('keypress', function(event) {
-  if (event.key === 'Enter') {
-    event.preventDefault(); 
-  }
-});
+
 
 function toggleDropdownbranch() {
 
@@ -93,10 +89,15 @@ function toggleDropdownbranch() {
 dropdownList1.style.display = dropdownList1.style.display === "block" ? "none" : "block";
 }
 
-function filterDropdownbranch(event) {
+
+document.getElementById('ft-branch-drop').addEventListener('keypress', function(event) {
   if (event.key === 'Enter') {
     event.preventDefault(); 
   }
+});
+
+function filterDropdownbranch() {
+ 
 const filter1 = searchInput1.value.toUpperCase();
 const items1 = dropdownList1.getElementsByTagName("div");
 
@@ -461,6 +462,24 @@ function ftdatechange (){
     endDate.value = ''; // Reset the end date if it's invalid
   }
 }
+
+function ftdatechangerecon (){
+  const startDate = document.getElementById('datefromFTrecon').value;
+  const endDate = document.getElementById('datetoFTrecon');
+
+  endDate.setAttribute('min', startDate);   // Set the min attribute of the end date input to the start date
+
+  // Clear the end date if it's earlier than the new start date
+  if (new Date(startDate) > new Date(endDate.value) && endDate.value !== '') {
+    endDate.value = startDate;
+  }
+
+  // Clear the end date if it's earlier than the new start date
+  if (new Date(endDate.value) < new Date(startDate)) {
+    endDate.value = ''; // Reset the end date if it's invalid
+  }
+}
+
 
 
 

@@ -649,7 +649,6 @@ document.getElementById('neworigin').addEventListener('keydown', function(event)
   }
   
   function confirmed (conf, ova){ 
-
     const CamisFTtablebody = document.getElementById('ft-data-table').getElementsByTagName('tbody')[0];
     const newRow = CamisFTtablebody.insertRow(0);
     const actionCell = newRow.insertCell(0);
@@ -816,15 +815,20 @@ document.getElementById('neworigin').addEventListener('keydown', function(event)
     const copyencryp = document.createElement('button');
     copyencryp.type = "button";
     copyencryp.style.border = 'none';
-    copyencryp.style.backgroundcolor = 'white';  
+    copyencryp.style.backgroundColor = 'white';  
     copyencryp.style.cursor = 'pointer';
     copyencryp.innerHTML = '<i class= "fas fa-copy" style="background-color: white; border:none;"></i>' ;
     copyencryp.onclick = function encryptnew(event) {   
   
       event.preventDefault(); 
-      let rowtable = document.getElementById('ft-data-table');
-      let row = rowtable.rows[1]; // Targeting only Row 1 (ignoring the header row)
+      
      
+      const buttonrow = event.target.closest('tr');     
+      const row = buttonrow
+
+
+
+
       let rowData = "";
       const xdate = row.cells[1].innerText; // Get the specific cell (0-based index)
       const xtype = row.cells[2].innerText; // Get the specific cell (0-based index)
@@ -871,7 +875,7 @@ document.getElementById('neworigin').addEventListener('keydown', function(event)
     actionCell.appendChild(viewBtn);
     actionCell.appendChild(copyencryp);
   
-  
+    
   
   
     document.getElementById(conf).classList.remove('show');
@@ -879,4 +883,8 @@ document.getElementById('neworigin').addEventListener('keydown', function(event)
     showNotification();
     xnotify.innerHTML = '<i class="fa-solid fa-circle-info" style="margin-right:10px; font-size:20px; color:white"></i>' + 
     "The transaction has been saved.";
+    filterftallTable();
+    filterTableRows();
   }
+
+

@@ -12,7 +12,8 @@ saveupdateft.disabled =  true;
 
 
 function camisftpaste(){
-    // Use the Clipboard API to read text from the clipboard
+   
+   
     navigator.clipboard.readText().then(function(text) {
         // Paste the text into the encrypted input field
         encryptedField.value = text;
@@ -28,12 +29,15 @@ function camisftpaste(){
             const decryptedData = decodeBase64(text);
             // Split the decrypted data into multiple fields based on the separator (e.g., ":")
             const fields = decryptedData.split("|");
-            // Check if the number of split parts is sufficient for the fields
-           
+            const ftid = fields[13]
+            const statsvoided = fields[9]
+            console.log(fields)
+            localStorage.setItem("ftid", ftid );
+            localStorage.setItem("statsvoided", statsvoided );
             if (fields.length < 12  ) {
                 alert("Copied data is not in the standard format.");
-            }
-  
+            }        
+
             pastedate.value = fields[1];
             pasteid.value = fields[3];
             pastetype.value = fields[2];
@@ -60,11 +64,14 @@ function camisftpaste(){
                             updateto.value = "In-Transit"
                             saveupdateft.disabled = false;
 
-                            }else if ( fields[9] === "Voided" && fields[10] === "Not Updated" 
+                            }else if ( (fields[9] !== 'Pending' || 'Active' ) && fields[10] === "Not Updated" 
                                 && (cellssearchid[10].innerText === "Pending" || cellssearchid[10].innerText === "In-Transit")) {
 
-                            updateto.value = "Pending | Voided from " + fields[5]
+                            updateto.value = "Voided" // | Voided from " + fields[5]
                             saveupdateft.disabled = false;
+
+                            localStorage.setItem("NewStatus", "Voided");
+                            localStorage.setItem("OldStatus", statusfrom.value);
 
                             }else  {
 
@@ -81,11 +88,13 @@ function camisftpaste(){
                                 saveupdateft.disabled = false;
                          
 
-                            }else if ( fields[9] === "Voided" && fields[10] === "Not Updated" 
+                            }else if ( (fields[9] !== 'Pending' || 'Active' )  && fields[10] === "Not Updated" 
                                 && (cellssearchid[10].innerText === "Received" || cellssearchid[10].innerText === "In-Transit")) {
 
                                 updateto.value = "In-Transit" 
                                 saveupdateft.disabled = false;
+                                localStorage.setItem("NewStatus", "In-Transit" );
+                                localStorage.setItem("OldStatus", statusfrom.value);
 
                             }else  {
 
@@ -103,11 +112,21 @@ function camisftpaste(){
                             updateto.value = "In-Transit"
                             saveupdateft.disabled = false;
 
-                            }else if ( fields[9] === "Voided" && fields[10] === "Not Updated" 
-                                && (cellssearchid[10].innerText === "Pending" || cellssearchid[10].innerText === "In-Transit")) {
+                            }else if ( (fields[9] !== 'Pending' || 'Active' )  && fields[10] === "Not Updated" 
+                                && (cellssearchid[10].innerText === "Pending" || "In-Transit")) {
 
                             updateto.value = "Voided"
                             saveupdateft.disabled = false;
+                            localStorage.setItem("NewStatus", "Voided" );
+                            localStorage.setItem("OldStatus", statusfrom.value);
+                            
+                            }else if ( (fields[9] !== 'Pending' || 'Active' )  && fields[10] === "Not Updated" 
+                                && (cellssearchid[10].innerText !== "Pending" || "In-Transit")) {
+
+                            updateto.value = "Voided"
+                            saveupdateft.disabled = false;
+                            localStorage.setItem("NewStatus", "Voided" );
+                            localStorage.setItem("OldStatus", statusfrom.value);
 
                             }else  {
 
@@ -117,8 +136,11 @@ function camisftpaste(){
 
                             }
                         
-                        }                       
-
+                        }    
+                        
+                        localStorage.setItem("Newrow", i);
+                       
+                      break;
                     }
 
            }     
@@ -158,7 +180,8 @@ function closeupdateOverlay(overlayId) {
  
     const updatemessage = document.getElementById('updatemessage') 
      if ( updateto.value === "Voided" ){
-        document.getElementById(overlayId).classList.add('show');
+       
+        openSubOverlay()
      }else{
         document.getElementById('ftupdateconfirmation').classList.add('show');
         updatemessage.textContent = "Are you sure you want to update the status from " + statusfrom.value + " to "
@@ -168,8 +191,6 @@ function closeupdateOverlay(overlayId) {
      }
 
   
-
-     
   function confirmupdate(update,overlayid){
 
     const updatetble = document.getElementById('ft-data-table')
@@ -187,7 +208,7 @@ function closeupdateOverlay(overlayId) {
             document.getElementById(overlayid).classList.remove('show');
             showNotification();
             xnotify.innerHTML = '<i class="fa-solid fa-circle-info" style="margin-right:10px; font-size:20px; color:white"></i>' + 
-            "The Status has been updated." ;
+            "The Status has been updated."
 
         }
     }
