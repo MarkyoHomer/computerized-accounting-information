@@ -249,8 +249,14 @@ function closeftnew() {
 }
 
 async function confirmed(conf, ova) {
-  // Import addFTRecord from the Firestore module
-  const { addFTRecord, renderFTTable } = await import('./camis_ft.js');
+  // Use globally exposed functions from the module script
+  const addFTRecord  = window.addFTRecord;
+  const renderFTTable = window.renderFTTable;
+
+  if (!addFTRecord) {
+    alert('Firebase module not ready. Please wait and try again.');
+    return;
+  }
 
   const area = document.getElementById('ft-Area-drop').value;
   const inputMemo = document.getElementById('newftmemo').value;

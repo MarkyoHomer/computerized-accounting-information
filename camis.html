@@ -4967,7 +4967,7 @@
   import { initBcasTransactions }   from './bcas_transactions.js';
   import { initBcasFundTransfers }  from './bcas_fund_transfers.js';
   import { initBcasSettlements }    from './bcas_settlements.js';
-  import { initCamisFT }            from './camis_ft.js';
+  import { initCamisFT, addFTRecord, renderFTTable } from './camis_ft.js';
   import { initCamisSettlements, renderCamisSettlementTable, openProfileForm, submitProfileForm } from './camis_settlements.js';
   import { initCamisEarnings, openEarningSetupForm, submitEarningSetupForm, saveEmployeeEarnings, loadEarningSetup, renderEarningEmployeeRows } from './camis_earnings.js';
   import {
@@ -5169,6 +5169,10 @@
       alert('Error saving employee: ' + err.message);
     }
   };
+
+  // ── Expose Firestore FT functions for legacy non-module scripts ──────────
+  window.addFTRecord  = addFTRecord;
+  window.renderFTTable = renderFTTable;
 
   // ── BCAS Settlement filter bridge ────────────────────────────────────────
   // The legacy HTML button calls filterBCASsettlementTable() — bridge it to
