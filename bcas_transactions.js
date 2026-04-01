@@ -12,7 +12,7 @@ import {
 import { COLLECTIONS } from './firebase.js';
 import { currentUser } from './auth_guard.js';
 import {
-  query, collection, where, orderBy, getDocs,
+  query, collection, where, getDocs,
 } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
 import { db } from './firebase.js';
 
@@ -157,10 +157,15 @@ export async function loadBcasTransactions(date) {
     collection(db, COLLECTIONS.BCAS_TRANSACTIONS),
     where('branchCode', '==', branch),
     where('date', '==', date),
-    orderBy('createdAt', 'asc'),
   );
   const snap = await getDocs(q);
-  _transactions = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+  _transactions = snap.docs
+    .map(d => ({ id: d.id, ...d.data() }))
+    .sort((a, b) => {
+      const ta = a.createdAt?.toMillis?.() ?? 0;
+      const tb = b.createdAt?.toMillis?.() ?? 0;
+      return ta - tb;
+    });
   return _transactions;
 }
 
@@ -296,10 +301,11 @@ export async function backfillRefNumbers(branchCode) {
   const q = query(
     collection(db, COLLECTIONS.BCAS_TRANSACTIONS),
     where('branchCode', '==', branchCode),
-    orderBy('createdAt', 'asc'),
   );
   const snap = await getDocs(q);
-  const allDocs = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+  const allDocs = snap.docs
+    .map(d => ({ id: d.id, ...d.data() }))
+    .sort((a, b) => (a.createdAt?.toMillis?.() ?? 0) - (b.createdAt?.toMillis?.() ?? 0));
 
   // Filter to only docs missing a referenceNumber
   const missing = allDocs.filter(d => !d.referenceNumber);

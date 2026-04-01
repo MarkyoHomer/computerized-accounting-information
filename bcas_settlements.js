@@ -46,13 +46,12 @@ export async function loadSettlements(filters = {}) {
     constraints.push(where('status', '==', filters.status));
   }
 
-  constraints.push(orderBy('date', 'desc'));
-
   const q = query(collection(db, COLLECTIONS.BCAS_SETTLEMENTS), ...constraints);
   const snap = await getDocs(q);
-  let rows = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+  let rows = snap.docs
+    .map(d => ({ id: d.id, ...d.data() }))
+    .sort((a, b) => (b.date > a.date ? 1 : -1)); // sort by date desc client-side
 
-  // Client-side filter for report and employee
   if (filters.report) {
     rows = rows.filter(r => r.template?.toLowerCase().includes(filters.report.toLowerCase()));
   }

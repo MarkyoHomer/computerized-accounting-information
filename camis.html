@@ -5203,9 +5203,11 @@
       await addFTRecord(data);
       document.getElementById('ftconfirmation')?.classList.remove('show');
       if (typeof closeOverlay === 'function') closeOverlay(ova);
+      // Refresh with current filter values, defaulting to today if empty
+      const today = new Date().toISOString().slice(0, 10);
       await renderFTTable({
-        dateFrom: document.getElementById('datefromFTlist')?.value || '',
-        dateTo  : document.getElementById('datetoFTlist')?.value   || '',
+        dateFrom: document.getElementById('datefromFTlist')?.value || today,
+        dateTo  : document.getElementById('datetoFTlist')?.value   || today,
       });
       notify('<i class="fa-solid fa-circle-info" style="margin-right:10px;font-size:20px;color:white"></i>Transaction saved successfully.', 'green');
     } catch (err) {

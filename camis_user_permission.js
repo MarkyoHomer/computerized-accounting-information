@@ -235,3 +235,24 @@ if (dropdownListTrans) {
 function handleEnterKey(e, id) {
   if (e.key === 'Enter') { e.preventDefault(); document.getElementById(id)?.blur(); }
 }
+
+// ── Inline handler aliases (called from HTML oninput/onchange) ────────────
+function validateInput(event) {
+  const el = event.target;
+  el.value = el.value.replace(/[^0-9.,]/g, '');
+  if (namtf) namtf.style.border = el.value.trim() ? '1px solid #ccc' : '1px solid red';
+  _updateSaveBtn();
+}
+
+function updateDropdowns() {
+  // Called after origin/dest/type change — refresh txn ID and memo
+  if (typeof _refreshTxnId === 'function') _refreshTxnId();
+  if (typeof _refreshMemo  === 'function') _refreshMemo();
+  _updateSaveBtn();
+}
+
+function getCurrentDateTime() {
+  const now = new Date();
+  const pad = n => String(n).padStart(2, '0');
+  return `${pad(now.getMonth()+1)}/${pad(now.getDate())}/${now.getFullYear()} ${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
+}

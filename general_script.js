@@ -228,3 +228,22 @@ function openTab(event, tabName) {
 
 
       
+
+// ── Sidebar submenu toggles ───────────────────────────────────────────────
+function toggleSubmenu(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.style.display = el.style.display === 'block' ? 'none' : 'block';
+}
+
+function togglebcasSubmenu(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.style.display = el.style.display === 'block' ? 'none' : 'block';
+}
+
+function subSubmenu(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.style.display = el.style.display === 'block' ? 'none' : 'block';
+}

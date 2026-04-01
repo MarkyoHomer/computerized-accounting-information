@@ -58,10 +58,11 @@ export async function fetchFundTransfers(date) {
     collection(db, COLLECTIONS.BCAS_FUND_TRANSFERS),
     where('branchCode', '==', branch),
     where('date', '==', date),
-    orderBy('createdAt', 'asc'),
   );
   const snap = await getDocs(q);
-  return snap.docs.map(d => ({ id: d.id, ...d.data() }));
+  return snap.docs
+    .map(d => ({ id: d.id, ...d.data() }))
+    .sort((a, b) => (a.createdAt?.toMillis?.() ?? 0) - (b.createdAt?.toMillis?.() ?? 0));
 }
 
 // ── Update fund transfer status (Active / Voided) ─────────────────────────
