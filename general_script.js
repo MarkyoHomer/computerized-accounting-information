@@ -36,6 +36,15 @@ document.addEventListener('DOMContentLoaded', () => {
         
             document.getElementById(targetTab).classList.add('active');
             document.getElementById('content-' + targetTab).classList.add('active');
+
+            if (targetTab === 'tab5' && typeof window.renderFTTable === 'function') {
+              const today = new Date().toISOString().slice(0, 10);
+              const fromEl = document.getElementById('datefromFTlist');
+              const toEl   = document.getElementById('datetoFTlist');
+              if (fromEl) fromEl.value = today;
+              if (toEl)   toEl.value   = today;
+              window.renderFTTable({ dateFrom: today, dateTo: today });
+            }
   
             // first tab of the content as a default tab
             document.getElementById('sub-' + targetTab +'-tab1').classList.add('active');

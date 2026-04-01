@@ -167,11 +167,11 @@ export async function renderFTTable(filters = {}) {
 // ── Open FT overlay (view/update) ────────────────────────────────────────
 function openFTOverlay(event, ft) {
   event.preventDefault();
-  const overlayId = 'overlay0';
+  const overlayId = 'overlay2';
   const overlay = document.getElementById(overlayId);
   if (!overlay) return;
 
-  const set = (id, val) => { const el = document.getElementById(id); if (el) el.value = val; };
+  const set = (id, val) => { const el = document.getElementById(id); if (el) el.value = val ?? ''; };
   set('viewtrnxtype',   ft.type);
   set('viewamount',     ft.amount);
   set('vieworigin',     ft.origin);
@@ -186,20 +186,19 @@ function openFTOverlay(event, ft) {
   set('viewcftrdate',   ft.reviewedDate || '');
   set('viewcftclby',    ft.clearedBy || '');
   set('viewcftcldate',  ft.clearedDate || '');
+  set('viewcftbank',    (ft.type === 'Withdraw' || ft.type === 'Deposit') ? (ft.bank || ft.memo) : '');
 
-  if (ft.type === 'Withdraw' || ft.type === 'Deposit') {
-    set('viewcftbank', ft.bank || ft.memo);
-  } else {
-    set('viewcftbank', '');
-  }
+  // Header title
+  const headr = document.getElementById('headr');
+  if (headr) headr.value = `${ft.type} Transaction`;
 
-  // Store id for status update
-  overlay.dataset.ftId = ft.id;
-  overlay.dataset.ftStatus = ft.status;
-
-  // Show status badge
+  // Status badge — keep heading status
   const statusEl = document.getElementById(`NStatus-${overlayId}`);
   if (statusEl) statusEl.textContent = ft.status;
+
+  // Store id for status update actions
+  overlay.dataset.ftId     = ft.id;
+  overlay.dataset.ftStatus = ft.status;
 
   // Role-based buttons
   _applyRoleButtons(overlayId, ft.status, ft.type);
@@ -240,15 +239,13 @@ function _applyRoleButtons(overlayId, status, type) {
 
 // ── Confirm status update from overlay ───────────────────────────────────
 export async function confirmFTStatusUpdate(overlayId, newStatus) {
-  const overlay = document.getElementById(overlayId);
+  const overlay = document.getElementById(overlayId || 'overlay2');
   if (!overlay) return;
   const id = overlay.dataset.ftId;
   if (!id) return;
 
   await updateFTStatus(id, newStatus);
   overlay.classList.remove('show');
-
-  // Refresh table
   renderFTTable(_getCurrentFilters());
 }
 
