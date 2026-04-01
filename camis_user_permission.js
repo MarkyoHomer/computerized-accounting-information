@@ -55,8 +55,6 @@ function expandview() {
     ? '<i class="fas fa-circle-arrow-right"></i>'
     : '<i class="fas fa-circle-arrow-left"></i>';
 }
-
-// ── Open Add-New overlay (overlay1) ──────────────────────────────────────
 function opennewOverlay(overlayId, event, tableId, rowIndex, colIndex) {
   event.preventDefault();
 
@@ -187,16 +185,6 @@ function getCurrentDateTime() {
   const now = new Date();
   const pad = n => String(n).padStart(2, '0');
   return `${pad(now.getMonth()+1)}/${pad(now.getDate())}/${now.getFullYear()} ${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
-}
-
-function expandview() {
-  if (!modalwidth) return;
-  const wide = parseInt(getComputedStyle(modalwidth).width) >= 800;
-  modalwidth.style.width = wide ? '470px' : '915px';
-  if (fieldsetcontainer) fieldsetcontainer.style.gap = wide ? '20px' : '5px';
-  if (toggleButton) toggleButton.innerHTML = wide
-    ? '<i class="fas fa-circle-arrow-right"></i>'
-    : '<i class="fas fa-circle-arrow-left"></i>';
 }
 
 // ── Amount field validation ───────────────────────────────────────────────
