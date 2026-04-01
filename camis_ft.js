@@ -6,13 +6,13 @@
  */
 
 import {
-  addDocument, updateDocument, getDocuments,
-  toDisplayDate, toDisplayDateTime, todayISO, fmtNum,
+  addDocument, updateDocument,
+  toDisplayDate, todayISO,
 } from './db_service.js';
 import { db, COLLECTIONS } from './firebase.js';
 import { currentUser } from './auth_guard.js';
 import {
-  collection, query, where, orderBy, getDocs, doc, updateDoc, serverTimestamp,
+  collection, query, where, orderBy, getDocs,
 } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
 
 // ── Load FT records with filters ──────────────────────────────────────────

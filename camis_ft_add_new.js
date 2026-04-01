@@ -66,12 +66,6 @@ function _refreshMemo() {
 }
 
 // ── Origin dropdown ───────────────────────────────────────────────────────
-function toggleDropdownneworig() {
-  const open = dropdownList5.style.display === "block";
-  _allDropdownsClose(null);
-  dropdownList5.style.display = open ? "none" : "block";
-}
-
 function filterDropdownneworig() {
   const f = searchInput5.value.toUpperCase();
   dropdownList5.style.display = f ? "block" : "none";
@@ -104,12 +98,6 @@ dropdownList5.addEventListener("click", function(event) {
 window.addEventListener("click", e => { if (!e.target.closest('.dropdown')) dropdownList5.style.display = "none"; });
 
 // ── Destination dropdown ──────────────────────────────────────────────────
-function toggleDropdownnewdest() {
-  const open = dropdownList6.style.display === "block";
-  _allDropdownsClose(null);
-  dropdownList6.style.display = open ? "none" : "block";
-}
-
 function filterDropdownnewdest() {
   const f = searchInput6.value.toUpperCase();
   dropdownList6.style.display = f ? "block" : "none";
@@ -245,8 +233,8 @@ function saveftnew() {
   if (xMsg) xMsg.textContent = `Are you sure you want to save this ${tnstype.value} transaction amounting to ${newftamt.value}?`;
 }
 
-function closeftnew(conf, ova) {
-  document.getElementById('ftconfirmation').classList.remove('show');
+function closeftnew() {
+  document.getElementById('ftconfirmation')?.classList.remove('show');
 }
 
 // NOTE: confirmed() is defined in the <script type="module"> block in camis.html
