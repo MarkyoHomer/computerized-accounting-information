@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-	  <title>CAMIS Replica</title>
+	  <title>CAS Phase III</title>
     <link rel="icon" href="cas.ico" type="image/x-icon">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="bcas.css">
@@ -12,20 +12,22 @@
     <script src="https://kit.fontawesome.com/e814f7c69b.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
 </head>
 <body>
 
 
  <div class="wrapper">
     <div class="sidebar">
-        <h4 style="color: #807CDF;">Mark Homer Celis<p style="font-size: 10px;"> Management Information System</p></h4>
+        <h4 style="color: #807CDF;">Computerized Accounting<p style="font-size: 10px;"> Management Information System - Replica version</p></h4>
 	 
        <ul>
             
 
            <li Id="Integ-Arrow" class="toggle-btn" onclick="toggleSubmenu('IntSub')">
            <a href="#"><i class="fas fa-clapperboard" style= "color: rgb(11, 161, 11); font-size: 18px" >
-           </i>Integrations<i id="arrow1" style="position: absolute; right: 10px;" class="fas fa-angle-down" >
+           </i>Integrations<i id="arrow1" style="position: absolute; right: 10px;" class="fa-solid fa-angle-down" >
            </i></a></li>
         
            
@@ -64,7 +66,7 @@
             <ul class="submenu" id="FTSub">
 
                <ul id ="FT-RcR">
-                <li "><a href="#" id="tab4" data-tab="tab4"><i class="fas fa-calculator" style= "color: rgb(10, 186, 10); font-size: 14px">
+                <li ><a href="#" id="tab4" data-tab="tab4"><i class="fas fa-calculator" style= "color: rgb(10, 186, 10); font-size: 14px">
                 </i>Recon Report</a></li>
                 </ul>
 
@@ -96,7 +98,7 @@
                  </ul>
 
             <li Id="Exp-Arrow" class="toggle-btn" onclick="toggleSubmenu('ExpSub')">
-                <a href="#"><i style= "color: rgb(11, 161, 11); font-size: 18px"" class="fas fa-money-check-dollar">
+                <a href="#"><i style= "color: rgb(11, 161, 11); font-size: 18px" class="fas fa-money-check-dollar">
                 </i>Expenses<i id="arrow3" style="position: absolute; right: 10px;" class="fas fa-angle-down">
                 </i></a>
                 
@@ -124,10 +126,19 @@
                          <li><a href="#" data-tab="tab12"><i class="fas fa-list-check" style= "color: rgb(10, 186, 10); font-size: 14px"></i>Manage Earnings</a></li>
                          <li class="icon-text"><a href="#" data-tab="tab13"><i class="fas fa-list-check" style= "color: rgb(10, 186, 10); font-size: 14px"></i></a><span>Manage <br>  Employee Roles</span></li>
                      </ul>
+
+                     <li Id="Settle-Arrow" class="toggle-btn" onclick="toggleSubmenu('SettleSub')">
+                        <a href="#"><i style= "color: rgb(11, 161, 11); font-size: 18px" class="fas fa-money-bill-transfer">
+                        </i>Settlements<i id="arrow-settle" style="position: absolute; right: 10px;" class="fas fa-angle-down">
+                        </i></a>
+                        </li>
+                         <ul class="submenu" id="SettleSub">
+                             <li><a href="#" data-tab="tab-camis-settle"><i class="fas fa-list-check" style= "color: rgb(10, 186, 10); font-size: 14px"></i>Settlement Window</a></li>
+                         </ul>
          
 
                      <li Id="Reprt-Arrow" class="toggle-btn" onclick="toggleSubmenu('ReprtSub')">
-                        <a href="#"><i style= "color: rgb(11, 161, 11); font-size: 18px"" class="fas fa-paste">
+                        <a href="#"><i style= "color: rgb(11, 161, 11); font-size: 18px" class="fas fa-paste">
                         </i>Reporting<i id="arrow5" style="position: absolute; right: 10px;" class="fas fa-angle-down">
                         </i></a>
                         
@@ -144,7 +155,7 @@
                          </ul>
 
                          <li Id="Montr-Arrow" class="toggle-btn" onclick="toggleSubmenu('MontrSub')">
-                            <a href="#"><i style= "color: rgb(11, 161, 11); font-size: 18px"" class="fas fa-earth-america">
+                            <a href="#"><i style= "color: rgb(11, 161, 11); font-size: 18px" class="fas fa-earth-america">
                             </i>Monitoring<i id="arrow6" style="position: absolute; right: 10px;" class="fas fa-angle-down">
                             </i></a>
                             
@@ -159,7 +170,7 @@
                              </ul>
       
                              <li Id="Setup-Arrow" class="toggle-btn" onclick="toggleSubmenu('SetupSub')">
-                                <a href="#"><i style= "color: rgb(11, 161, 11); font-size: 18px"" class="fas fa-gear">
+                                <a href="#"><i style= "color: rgb(11, 161, 11); font-size: 18px" class="fas fa-gear">
                                 </i>Setup<i id="arrow7" style="position: absolute; right: 10px;" class="fas fa-angle-down">
                                 </i></a>
                                 
@@ -179,10 +190,11 @@
                                      <li><a href="#" data-tab="tab28"><i class="fas fa-wrench" style= "color: rgb(10, 186, 10); font-size: 14px"></i>Cluster Profiles</a></li>
                                      <li><a href="#" data-tab="tab29"><i class="fas fa-wrench" style= "color: rgb(10, 186, 10); font-size: 14px"></i>File Profiles</a></li>
                                      <li><a href="#" data-tab="tab30"><i class="fas fa-wrench" style= "color: rgb(10, 186, 10); font-size: 14px"></i>HO Transactions</a></li>
+                                     <li><a href="#" data-tab="tab-settle-setup"><i class="fas fa-wrench" style= "color: rgb(10, 186, 10); font-size: 14px"></i>Settlement Setup</a></li>
                                  </ul>         
 
                                  <li Id="IntSetup-Arrow" class="toggle-btn" onclick="toggleSubmenu('IntSetupSub')" >
-                                    <a href="#"><i style= "color: rgb(11, 161, 11); font-size: 18px"" class="fas fa-gears">
+                                    <a href="#"><i style= "color: rgb(11, 161, 11); font-size: 18px" class="fas fa-gears">
                                     </i>Integration Setup<i id="arrow8" style="position: absolute; right: 10px;" class="fas fa-angle-down">
                                     </i></a>
                                     
@@ -215,26 +227,25 @@
   <div class="tab-container">
         <!-- Tab Bar -->
 
-        <div class="headwrapper" style="margin-left: 70%;  height: 48px;">
-          <nav style="width: 15%; height: 20px; text-align: left; margin-left: 0px; font-size: 14;">
-            <header>
-                 <button type="button" onclick="logout()" style=" cursor: pointer; float:right; background-color: transparent;border:none; margin-right: 20px;  height: 20px; width: 25px;" >   
-                  <i  style="color:white;"  class= "fas fa-right-to-bracket"></i></button>
-
-                <li style="float:right;  margin-right: 20px;">-user</li>
-                <li style="float:right;  margin-right: 0px; "id="userRole"></li>
-              </header>
-              </nav> 
-         </div>
 
         <div class="headwrapper" >
 
-            <nav style="width: 70%; height: 20px; text-align: left; margin-left: 0px; font-size: 14;">
-            <header>Computerized Accounting Management Information System
+           
+              <header>
+                <nav style=" width: 75%;font-size: 16px; font-weight: bold;" id="xtitle"></nav>                  
+                 
+                <div style="color: white; font-size: 16px; font-weight: bold;" >                 
+               
+                 <button type="button" onclick="logout()" style=" cursor: pointer; float:right; background-color: transparent;border:none; 
+                   margin-right: 100px;  height: 20px; width: 25px;" >   
+                  <i  style="color:white;"  class= "fas fa-right-to-bracket"></i></button>
 
+                <ul style="float:right;  margin-right: 10px;">-user</ul>
+                <ul style="float:right;  margin-right: 0px; "id="userRole"></ul>
+                </div>
               </header>
-              </nav> 
-              <nav style="width: 10%; height: 20px; text-align: left; margin-left: 0px; font-size: 14;">
+          
+             <!-----nav style="width: 10%; height: 20px; text-align: left; margin-left: 0px; font-size: 14;"> ---> 
 
         </div>
 
@@ -245,6 +256,11 @@
             <div class="tab" id="tab3">Summarized Integration Status</div>
             <div class="tab" id="tab4">Fund Transfer Recon Report</div>
             <div class="tab" id="tab5">Fund Transfer Transaction List</div>
+            <div class="tab" id="tab10">Earning Reports</div>
+            <div class="tab" id="tab11">Employee Earnings</div>
+            <div class="tab" id="tab12">Manage Earnings</div>
+            <div class="tab" id="tab-settle-setup">Settlement Setup</div>
+            <div class="tab" id="tab-camis-settle">CAMIS Settlements</div>
     
 
         </div>
@@ -255,12 +271,10 @@
   
   
   <!------------------------------------------------------------BCAS----------------------------------------------------------------------------->
-          <div id="content-tab100" class="content">
+          <div id="content-tab100" class="content"><br><br>
                     <div class="headwrapper">
-                      <nav style="width: 70%; height: 20px; text-align: left; margin-left: 0px; font-size: 14;">
-                      <header>Branch CAS </header>
-                      </nav>
-                    </div><br><br>
+                                 
+                    </div>
 
 
                     <div class="form-container" >
@@ -268,7 +282,7 @@
                       <form style="padding:0px; width:1150px; height:600px; background-color: white; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); ">
                         
                         <h4 style="background-color: white; color: black; font-size: 12px; padding: 5px;">Branch Computerized Accounting System</h4>
-                        <header style="background-color:rgb(3, 41, 103); padding:12px"></header>
+                        <header style="background-color:rgb(3, 41, 103); padding:12px;  margin-bottom: 0px;"></header>
                       
                         <div class=bcaswrapper style="height:600px;">
                           <div class=sidebar style="width:200px; height:537px;background-color:rgb(9, 55, 128)">                      
@@ -317,6 +331,27 @@
                                  <ul id="bcasInc" class="bcassubmenus" style="display:block; padding-left: 0px; margin-top: 10px;" >
                                   <li><a style="color:white;font-size: 15px" id="sub-tab100-tab7" data-tab="sub-tab100-tab7"><i class="fas fa-money-bill-1" style= "color: white; font-size: 15px" >
                                       </i>Incentives</a>
+                                      
+                                      </li>
+                                  </ul>
+
+
+                                   <ul id="bcasEmp" class="bcassubmenus" style="display:block; padding-left: 0px; margin-top: 10px;" >
+                                  <li><a style="color:white;font-size: 15px" id="sub-tab100-tab18" data-tab="sub-tab100-tab18"><i class="fas fa-users" style= "color: white; font-size: 15px" >
+                                      </i>Manage Employee</a>
+                                      </li>
+                                  </ul>
+
+                                   <ul id="bcasSettle" class="bcassubmenus" style="display:block; padding-left: 0px; margin-top: 10px;" >
+                                  <li><a style="color:white;font-size: 15px" id="sub-tab100-tab15" data-tab="sub-tab100-tab15"><i class="fas fa-money-bill-1" style= "color: white; font-size: 15px" >
+                                      </i>Record Settlements</a>
+                                      
+                                      </li>
+                                  </ul>
+
+                                   <ul id="bcasDue" class="bcassubmenus" style="display:block; padding-left: 0px; margin-top: 10px;" >
+                                  <li><a style="color:white;font-size: 15px" id="sub-tab100-tab16" data-tab="sub-tab100-tab17"><i class="fas fa-money-bill-1" style= "color: white; font-size: 15px" >
+                                      </i>Branch Recon</a>
                                       
                                       </li>
                                   </ul>
@@ -387,7 +422,12 @@
                             <div class="bcastab" style="margin:1px;" id="sub-tab100-tab12" onclick="openTab(event, 'subcon-tab100-tab12')">Record Fund transfer</div>
                             <div class="bcastab" style="margin:1px;"  id="sub-tab100-tab13" onclick="openTab(event, 'subcon-tab100-tab13')">Offline Fund transfer Update </div>
                             <div class="bcastab" style="margin:1px;"  id="sub-tab100-tab14" onclick="openTab(event, 'subcon-tab100-tab14')">Transaction Entries</div>
-                     
+                           
+                            <div class="bcastab" id="sub-tab100-tab15" onclick="openTab(event, 'subcon-tab100-tab15')">Record Settlements</div>
+                            <div class="bcastab" style="margin:1px;" id="sub-tab100-tab16" onclick="openTab(event, 'subcon-tab100-tab16')">Settle Record</div>
+                           <div class="bcastab" id="sub-tab100-tab17" onclick="openTab(event, 'subcon-tab100-tab17')">Branch Recon</div>
+                            <div class="bcastab" id="sub-tab100-tab18" onclick="openTab(event, 'subcon-tab100-tab18')">Manage Employee</div>
+                            
                           </div>
                  
                             
@@ -401,7 +441,7 @@
 
 <div id="subcon-tab100-tab1" class="subRcontent" style="  padding:0px">
                               
-      <header style="font-size: 16px; background-color:rgb(7, 21, 110); height:35px;margin-bottom:5px; padding:10px">
+      <header style="font-size: 16px; background-color:rgb(7, 21, 110); height:35px;margin-bottom:5px; padding:10px; box-shadow: none;" >
         <i class="fas fa-list" style="margin-right: 20px; font-size:12px;"></i>Transactions</header>              
                                 
       <nav style="margin-left:10px; width:600px; padding:0;">
@@ -409,8 +449,9 @@
       <input type="date" onchange="filtertransactionbydate()" id="trnxDate" name="trnxDate;" 
       style="width:  450px; font-size: 15px;" >
       </nav>
-      <button type="button" class="custom-button-blue"style="float:right; margin-right:20px;width:120px;"> 
-      <i class="fas fa-square-plus" style= "float:left;color:white; font-size: 14px; margin-left:10px"></i>New</button>
+      <button type="button"  onclick="NewtrW(event, 'BCAStransactions')" class="custom-button-blue"style="float:right; margin-right:20px;width:120px;"> 
+      <i class="fas fa-square-plus"   style="float:left;color:white; font-size: 14px; margin-left:10px"></i>New</button>
+
       <button type="button" class="custom-button-gray" style="background-color: gray; color: white;float:right;margin-right:10px;width:120px;">
       <i class="fas fa-rotate-right" style= "float:left;color:white; font-size: 14px; margin-left:10px"></i>Refresh</button>
                                           
@@ -461,29 +502,31 @@
                                  </div>
                        
                                  <div class="table-container">
-                                 <table class="scroll" id="BCAStransactions" >
-                                     <thead   style="width:100%;">
-                                         <tr >
+                                  <div class="scroll">
+                                 <table  id="BCAStransactions"  >
+                                     <thead   >
+                                         <tr>
                                              <th style="text-align: center;">View</th>
-                                             <th style="width: 40px;" >No.</th>
+                                             <th >No.</th>
                                              <th >Status</th>
                                              <th >Account Name</th>
                                              <th >Debit</th>
                                              <th >Credit</th>
                                              <th >Balance</th>
                                              <th >Remarks</th>
-                                             <th style="width: 120px;" >Upload Status</th>
+                                             <th >Upload Status</th>
                                              <th style="display:none;" >trId</th>
                                              <th style="display:none;" >ftref</th>
                                              <th style="display:none;" >date</th>
                                              <th style="display:none;" >area</th>
+                                             <th style="display:none;" >tranxref</th>
                                          </tr>
 
                                       
                                      </thead>
 
 
-                                     <tbody style="color:blue" >
+                                     <tbody style="color:blue;" >
 
                                       <tr class="AAA">
                                         <td><a><button type="button" id="bcas-btn-view1"
@@ -502,6 +545,7 @@
                                             <td  style="display:none;" >FT-AAA04012025-002-Active</td >
                                              <td  style="display:none;" >04/01/2025</td >
                                              <td  style="display:none;" >ZAA</td >
+                                              <td></td>
                                           
                                        </tr>
                                       <tr class="AAA">
@@ -521,6 +565,7 @@
                                             <td  style="display:none;" >FT-AAA03312025-003-Active</td >
                                             <td  style="display:none;" >03/31/2025</td>
                                             <td  style="display:none;" >ZAA</td >
+                                              <td></td>
                                        </tr>
 
                                        <tr class="AAA">
@@ -540,6 +585,7 @@
                                             <td  style="display:none;" >FT-AAA03312025-001-Active</td >
                                             <td  style="display:none;" >03/31/2025</td >
                                             <td  style="display:none;" >ZAA</td >
+                                              <td></td>
 
                                        </tr>
                                        <tr class="AAA">
@@ -559,6 +605,7 @@
                                             <td style="display:none;" >FT-AAA04012025-001-Active</td>
                                             <td  style="display:none;" >04/01/2025</td>
                                             <td style="display:none;" >ZAA</td>
+                                            <td></td>
                                        </tr>
 
                                        <tr class="AAA">
@@ -578,6 +625,7 @@
                                             <td style="display:none;" ></td >
                                             <td style="display:none;" >04/01/2025</td >
                                             <td style="display:none;" >ZAA</td >
+                                              <td></td>
                                           
                                        </tr>
                                       <tr class="AAA">
@@ -597,6 +645,7 @@
                                             <td  style="display:none;" ></td >
                                             <td   style="display:none;" >04/01/2025</td >
                                             <td  style="display:none;" >ZAA</td >
+                                              <td></td>
                                        </tr>
 
                                        
@@ -604,6 +653,7 @@
                                      </tbody>
                                  </table>
                                 </div>
+                              </div>
                                  <!-- Pagination -->
  
                                </fieldset>
@@ -666,7 +716,7 @@
               <label style=" font-size: 15px; color:rgb(15, 14, 14); margin-right:20px;" >Transaction Date:</label>
               </nav>
               <nav style=" width:190px;">
-              <input type="text" id="viewbcasdate" style="width:  250px; margin-left:10px;font-size: 12px;" read-only>
+              <input type="text" id="viewbcasdate" style="width:  250px; margin-left:10px;font-size: 12px;" readonly>
               </nav>
               </nav>
               <br>
@@ -676,7 +726,7 @@
             <label style=" font-size: 15px; color:rgb(15, 14, 14); margin-right:20px;">Transaction Number:</label>
             </nav>
             <nav style=" width:190px;">
-            <input type="text" id="viewbcastn" style="width:  250px; margin-left:10px;font-size: 12px; text-align: right;" read-only>
+            <input type="text" id="viewbcastn" style="width:  250px; margin-left:10px;font-size: 12px; text-align: right;" readonly>
             </nav>
             </nav>
             <br>
@@ -686,7 +736,26 @@
             <label style=" font-size: 15px; color:rgb(15, 14, 14); margin-right:20px;" for="bcasftDate">Account Code:</label>
             </nav>
             <nav style=" width:190px;">
-            <input type="text" id="viewbcasacode" style="width:  250px;margin-left:10px; font-size: 12px;" read-only>
+
+                                    <div class="dropdown" style="width:250px; border-bottom:1px solid  black; font-size: 12px; margin-left:10px; height: 35px">
+                                      <input type="text" id="viewbcasacode"  style="font-size: 12px; border: none;"
+                                      onkeyup="filterDropdownA()" onclick="toggleDropdownA()">
+                                      <span  class="arrow">&#129171;</span> <!-- Down arrow symbol -->
+                                      <div id="dropdownList-Anewtrax" class="dropdown-list">  
+                                          <div value="9999">9999</div>
+                                          <div value="5999">5999</div>     
+                                          <div value="MNL-9999">MNL-9999</div>
+                                          <div value="MNL-5999">MNL-5999</div>                                                                          
+                                          <div value="MNL-FTOB">MNL-FTOB</div>
+                                          <div value="MNL-FTHO">MNL-FTHO</div>
+                                          <div value="MNL-FTAREA">MNL-FTAREA</div>
+                                          <div value="MNL-5015">MNL-5015</div>
+
+                                         
+                                      </div>
+                                    </div>
+
+      
             </nav>
             </nav>
             <br>
@@ -696,7 +765,16 @@
             <label style=" font-size: 15px; color:rgb(15, 14, 14); margin-right:20px;" for="bcasftDate">Template:</label>
             </nav>
             <nav style=" width:190px;">
-            <input type="text" id="viewbcastemp" style="width:  250px; margin-left:10px;font-size: 12px;" read-only>
+
+                                      <div class="dropdown" style="width:250px; border-bottom:1px solid  black; font-size: 12px; margin-left:10px; height: 35px" >
+                                      <input type="text" id="viewbcastemp"  style="font-size: 12px; border: none;" readonly>
+                                      
+                                      <span  class="arrow">&#129171;</span> <!-- Down arrow symbol -->
+                                      <div id="dropdownList-Tnewtrax" class="dropdown-list" >                                       
+                                      
+                                      </div>
+                                    </div>
+    
             </nav>
             </nav>
             <br>
@@ -706,7 +784,8 @@
             <label style=" font-size: 15px; color:rgb(15, 14, 14); margin-right:20px;" for="bcasftDate">Amount:</label>
             </nav>
             <nav style=" width:190px;">
-            <input type="text" id="viewbcasamount" style="width:  250px;margin-left:10px; font-size: 12px;text-align: right;" read-only>
+            <input type="text" id="viewbcasamount"  style="width:  250px;margin-left:10px; font-size: 12px;text-align: right;" 
+             oninput="validateNumberInput(this)" >
             </nav>
             </nav>
             <br>
@@ -725,7 +804,7 @@
             <label style=" font-size: 15px; color:rgb(15, 14, 14); margin-right:20px;" for="bcasftDate">Remarks:</label>
             </nav>
             <nav style=" width:190px;">
-            <textarea type="text" rows="3" col="10" id="viewbcasremarks" style="width:  250px; overflow: hidden; 
+            <textarea type="text" rows="3" col="10" id="viewbcasremarks"  maxlength="100" style="width:  250px; overflow: hidden; 
             resize: none; height: 60px;  font-size: 12px;margin-left:10px;" read-only></textarea>
             </nav>
             </nav>
@@ -790,7 +869,7 @@
       
                       </nav>
                       <nav style="width:150px">
-                        <input id="tnscredit"style="width:150; border:none; border-bottom: 1px solid black; font: 12px;
+                        <input id="tnscredit" style="width:150; border:none; border-bottom: 1px solid black; font: 12px;
                         background-color:transparent; text-align: right;" value="0.00" read-only>
       
                       </nav>
@@ -801,32 +880,183 @@
                   
               </div>
 
-              <div id="subcon-tab100-tab14-2" class="BCASentrycontent active-subRtab-content" style="padding: 0;">
+              <div id="subcon-tab100-tab14-2" class="BCASentrycontent active-subRtab-content" style="padding:5px;">
 
-                <table id="bcastags" class="bcastags" style=" max-height: 345px;  height: 345px;  ">
-                  <thead >
-                    <tr >
-                    <th>Name</th>
-                    <th>Value</th>               
-                   </tr>
-                  </thead>
-                  <tbody>
-                   
-                  </tbody>
-               </table>             
+                <!-- Cash Shortages Tags Panel — shown only for account codes 9999/MNL-9999/5999/MNL-5999 -->
+                <div id="cashShortagePanel" style="display:none;">
+                  <fieldset style="border:1px solid #ccc; padding:10px; box-shadow:none; margin-bottom:8px;">
+                    <legend style="font-size:12px; color:rgb(7,21,110); font-weight:bold;">Cash Shortage / Overage Details</legend>
+
+                    <nav style="display:flex; gap:12px; flex-wrap:wrap; margin-bottom:8px;">
+                      <div>
+                        <label style="font-size:12px; color:gray;">Date Incurred:</label><br>
+                        <input type="date" id="shortDateIncurred"
+                          style="font-size:12px; width:160px; border:none; border-bottom:1px solid #ccc;"
+                          oninput="onShortageFieldChange()">
+                      </div>
+                      <div>
+                        <label style="font-size:12px; color:gray;">Employee Number:</label><br>
+                        <select id="shortEmpNumber" onchange="onShortageEmpChange()"
+                          style="font-size:12px; width:180px; height:28px;">
+                          <option value="">-- select employee --</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label style="font-size:12px; color:gray;">Employee Name:</label><br>
+                        <input type="text" id="shortEmpName" readonly
+                          style="font-size:12px; width:200px; border:none; border-bottom:1px solid #ccc; color:gray;">
+                      </div>
+                    </nav>
+
+                    <nav style="display:flex; gap:12px; flex-wrap:wrap; margin-bottom:8px;">
+                      <div>
+                        <label style="font-size:12px; color:gray;">Reason:</label><br>
+                        <select id="shortReason" onchange="onShortageReasonChange()"
+                          style="font-size:12px; width:200px; height:28px;">
+                          <option value="">-- select reason --</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label style="font-size:12px; color:gray;">Other Reason:</label><br>
+                        <input type="text" id="shortOtherReason" disabled
+                          placeholder="Specify other reason"
+                          style="font-size:12px; width:240px; border:none; border-bottom:1px solid #ccc;"
+                          oninput="onShortageFieldChange()">
+                      </div>
+                    </nav>
+
+                    <nav style="margin-bottom:4px;">
+                      <label style="font-size:12px; color:gray;">Auto-Remarks (read-only):</label><br>
+                      <input type="text" id="shortAutoRemarks" readonly
+                        style="font-size:12px; width:100%; border:none; border-bottom:1px solid #ccc; color:gray;">
+                    </nav>
+                  </fieldset>
+                </div>
+
+                <!-- Fallback generic tags table for non-shortage codes -->
+                <div id="genericTagsPanel">
+                  <table id="bcastags" class="bcastags" style="max-height:300px; height:300px;">
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>Value</th>
+                      </tr>
+                    </thead>
+                    <tbody></tbody>
+                  </table>
+                </div>
+
           </div>      
         </div> 
         </fieldset>
 
     </div> 
 
-  <li><button type="button" onclick="backtransactions('sub-tab100-tab1')" class="custom-button-gray" 
+  <li><button type="button" id="tclose" onclick="backtransactions('sub-tab100-tab1')" class="custom-button-gray" 
   style="background-color: gray; color: white;
   float:right; margin-right:70px;width:75px; margin-top: 10px;">
   <i class="fas fa-circle-left" style= "float:left;  color:white; font-size: 14px; margin-left:0px"></i>Close</button></li>
+  
+  <li><button type="button" id="tsave" onclick="savebcastransaction()" class="custom-button-blue" 
+  style="background-color: rgb(9, 55, 128); color: white;
+  float:right; margin-right:10px;width:75px; margin-top: 10px;">
+  <i class="fa-solid fa-floppy-disk" style= "float:left;  color:white; font-size: 14px; margin-left:0px"></i>Save</button></li>
+
+  <li><button type="button" id="tsavenew"  onclick="savenewbcastransaction()" class="custom-button-blue" 
+  style="background-color: rgb(9, 55, 128); color: white;
+  float:right; margin-right:10px;width:125px; margin-top: 10px;">
+  <i class="fa-solid fa-floppy-disk" style= "float:left;  color:white; font-size: 14px; margin-left:0px"></i>Save & New</button></li>
+
+  <li><button type="button" id="trev"  onclick="reversebcastransaction()" class="custom-button-blue" 
+  style="background-color: red; color: white;
+  float:right; margin-right:10px;width:100px; margin-top: 10px;">
+  <i class="fa-solid fa-clock-rotate-left" style= "float:left;  color:white; font-size: 14px; margin-left:0px"></i>Reverse</button></li>
 
 
 </fieldset>
+
+
+
+<div id="bcastransactionconfirmation" class="suboverlay" style="background-color: transparent;">
+  <div class="modal" style="min-height: 200px; background-color: #eeeded;">
+
+    <nav style="width: 100%;" >
+    <li style="font-weight: lighter;"> Confirmation!
+      
+    </nav>
+      <fieldset style="box-shadow: none; border-top: 1px solid gray; height: 150px;padding:0; ">
+        <fieldset style="box-shadow: none;" >
+        <nav style="width: 100%; height: 50%; margin-top:20px;">
+          <nav style="width:20%;" >
+        <i class="fa-solid fa-circle-info" style="margin-right:10px; font-size:50px; color:blue"></i>
+         </nav>
+         <nav style="width: 80%;" >
+        <textarea id="bcastransactionmessage"  rows="5" col="10" style="font-size: 16px; background-color: #eeeded;
+         border:none; width: 100%; height: 20%; font-weight: lighter;">
+       </textarea>
+      </nav>
+      </nav>
+     </fieldset>    
+
+      <a><button type="button" id="bcas-btn-rev-no" style="margin-left:10px; width:50px; float:right;"
+        onclick="bcascloseconfirm()"class="custom-button-gray">
+       No</button></a>
+
+      <a><button type="button" id="bcas-btn-savenew-yes" style=" width:50px; float:right;"
+       onclick="savenewbcastrconfirm()"class="custom-button-blue">
+       Yes</button></a>
+
+       <a><button type="button" id="bcas-btn-save-yes" style=" width:50px; float:right;"
+       onclick="savebcastrconfirm()"class="custom-button-blue">
+       Yes</button></a>
+
+       <a><button type="button" id="bcas-btn-rev-yes" style=" width:50px; float:right;"
+        onclick="reverseconfirm()"class="custom-button-blue">
+       Yes</button></a>
+
+
+
+      </fieldset>
+  
+  </div>  <!-----modal-->
+ </div> 
+
+
+
+<div id="bcastransactionbranchselection" class="suboverlay" style="background-color: transparent;">
+  <div class="modal" style="min-height: 200px; background-color: #eeeded;">
+
+    <nav style="width: 100%;" >
+    <li style="font-weight: lighter;"> Please Select Reconciling Branch
+      
+    </nav>
+
+      <fieldset style="box-shadow: none; border-top: 1px solid gray; height: 150px;padding:0; ">
+        <fieldset style="box-shadow: none;" >
+          <select id="brselect" style="width: 220px; font-size: 12px; height: 35px; border: none; cursor: pointer;">
+            <option value="" style="color: gray;">Select Branch</option>
+            <option value="AAA">AAA</option>
+            <option value="AAB">AAB</option>
+            <option value="AAC">AAC</option>
+          </select>
+     </fieldset>    
+
+      <a><button type="button" id="bcas-btn-brselect-no" style="margin-left:10px; width:50px; float:right;"
+        onclick="bcasclosebrselect()"class="custom-button-gray">
+       Close</button></a>
+
+       <a><button type="button" id="bcas-btn-rev-yes" style=" width:50px; float:right;"
+        onclick="reverseconfirm()"class="custom-button-blue">
+       OK</button></a>
+
+
+
+      </fieldset>
+  
+  </div>  <!-----modal-->
+ </div> 
+
+
 
 
 </div>                         
@@ -843,32 +1073,514 @@
                              </div>
 
 
+
+
+<!-----------------------------------------------BCAS Manage Employee---------------------------------------------------------------->
+
+<div id="subcon-tab100-tab18" class="subRcontent" style="padding: 0;">
+
+  <header style="font-size: 16px; background-color:rgb(7, 21, 110); height:35px;margin-bottom:5px; box-shadow: none;padding:10px">
+    <i class="fas fa-users" style="margin-right: 20px; font-size:12px;"></i>Manage Employee</header>
+
+  <button type="button" onclick="openAddEmployeeWindow()" class="custom-button-blue"
+    style="float:right; margin-right:20px; margin-top:5px; width:130px;">
+    <i class="fas fa-square-plus" style="float:left;color:white;font-size:14px;margin-left:10px"></i>Add Employee</button>
+  <br><br>
+
+  <fieldset style="width:99.5%; height:460px; margin:3px; box-shadow:none; border:3px solid black;">
+    <div class="table-container">
+      <table class="ftscroll" id="bcasEmployeeTable" style="height:420px;">
+        <thead>
+          <tr>
+            <th style="width:30px;">View</th>
+            <th>Date/Time</th>
+            <th>Role</th>
+            <th>Schedule</th>
+            <th>Employee No.</th>
+            <th>First Name</th>
+            <th>M.I.</th>
+            <th>Surname</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </fieldset>
+
+  <!-- Add Employee Overlay -->
+  <div id="addEmployeeOverlay" class="suboverlay" style="display:none; background-color:rgba(0,0,0,0.4);">
+    <div class="modal" style="min-width:500px; background-color:#fff;">
+      <li style="font-weight:700; font-size:16px;"><i class="fas fa-user-plus" style="margin-right:10px; color:rgb(7,21,110);"></i>Add Employee</li><br>
+      <fieldset style="border:1px solid #ccc; padding:15px; box-shadow:none;">
+
+        <nav style="width:100%; margin-bottom:12px;">
+          <label style="font-size:13px; color:gray;">Date/Time:</label><br>
+          <input type="text" id="empDatetime" readonly
+            style="width:100%; font-size:13px; border:none; border-bottom:1px solid #ccc; color:gray;">
+        </nav>
+
+        <nav style="width:100%; margin-bottom:12px;">
+          <label style="font-size:13px; color:gray;">Role:</label><br>
+          <select id="empRole" onchange="onEmpRoleChange()" style="width:100%; font-size:13px; height:32px;">
+            <option value="" hidden>Select Role</option>
+            <option value="BH">BH</option>
+            <option value="Cashier">Cashier</option>
+            <option value="Security Guard">Security Guard</option>
+            <option value="PSB Associate">PSB Associate</option>
+            <option value="PEPP Operator">PEPP Operator</option>
+          </select>
+        </nav>
+
+        <nav style="width:100%; margin-bottom:12px;">
+          <label style="font-size:13px; color:gray;">Schedule:</label><br>
+          <select id="empSchedule" style="width:100%; font-size:13px; height:32px;">
+            <option value="fulltime">Full Time</option>
+            <option value="halfday">Half Day</option>
+          </select>
+        </nav>
+
+        <nav style="width:100%; margin-bottom:12px;">
+          <label style="font-size:13px; color:gray;">Employee Number:</label><br>
+          <select id="empNumber" style="width:100%; font-size:13px; height:32px;">
+            <option value="">-- select role first --</option>
+          </select>
+        </nav>
+
+        <nav style="width:100%; margin-bottom:12px; display:flex; gap:10px;">
+          <div style="flex:1;">
+            <label style="font-size:13px; color:gray;">First Name:</label><br>
+            <input type="text" id="empFirstName" style="width:100%; font-size:13px; border:none; border-bottom:1px solid #ccc;">
+          </div>
+          <div style="width:60px;">
+            <label style="font-size:13px; color:gray;">M.I.:</label><br>
+            <input type="text" id="empMiddleInitial" maxlength="1" style="width:100%; font-size:13px; border:none; border-bottom:1px solid #ccc;">
+          </div>
+          <div style="flex:1;">
+            <label style="font-size:13px; color:gray;">Surname:</label><br>
+            <input type="text" id="empSurname" style="width:100%; font-size:13px; border:none; border-bottom:1px solid #ccc;">
+          </div>
+        </nav>
+
+        <nav style="text-align:right; margin-top:15px;">
+          <button type="button" onclick="closeAddEmployeeWindow()" class="custom-button-gray" style="width:80px; margin-right:10px;">Cancel</button>
+          <button type="button" onclick="submitAddEmployee()" class="custom-button-blue" style="width:80px;">Save</button>
+        </nav>
+      </fieldset>
+    </div>
+  </div>
+
+</div>
+
+<!-----------------------------------------------BCAS record settlement---------------------------------------------------------------->
+
+
+<div id="subcon-tab100-tab15" class="subRcontent" style="padding: 0;">
+
+  <header style="font-size: 16px; background-color:rgb(7, 21, 110); height:35px;margin-bottom:5px; box-shadow: none;padding:10px">
+    <i class="fas fa-list" style="margin-right: 20px; font-size:12px;"></i>Record Settlements</header>  
+    
+<fieldset style="width: 99.5%; height: 460px; margin-top:2px;margin: 3px;  box-shadow: none; border:3px solid black">
+
+  <nav style="margin-left:10px; width:900px; padding:0;margin-top:10px;">
+                      
+          <nav style="margin-left:0px; width:400px; padding:0; ">
+            <nav style=" width:120px;">
+            <label style=" font-size: 15px; color:rgb(15, 14, 14); margin-right:20px;" for="bcasSETDatefr">Date from:</label>
+            </nav>
+
+            <nav style=" width:280px;">
+            <input type="date" onchange="filterftbydate()" 
+            style="width:  270px; font-size: 15px;" id="bcasSETDatefr" name="bcasftDate;">
+            </nav>
+          </nav>
+
+        <nav style="margin-left:0px; width:500px; padding:0;">
+           <nav style="margin-left:10px; width:120px; ">    
+           <label style=" font-size: 15px; color:rgb(15, 14, 14); margin-right:20px;">Select Status:</label>
+           </nav>
+
+           <nav style="margin-left:10px; width:270px; ">
+           <select id="settledstatus" class="form-control placeholder"  style="width:260px;" onchange="resetfield()">
+            <option hidden>All</option>
+            <option>All</option>
+            <option>Settled</option>
+            <option>Partial</option>
+            <option>Unsettled</option>
+           </select>
+         </nav>
+
+
+
+     </nav>
+  </nav>
+<nav style="margin-left:10px; width:900px; padding:0;margin-top:5px;">
+                      
+  <nav style="margin-left:0px; width:400px; padding:0; ">
+      <nav style=" width:120px;">
+      <label style=" font-size: 15px; color:rgb(15, 14, 14); margin-right:20px;" for="bcasSETDateto">Date to:</label>
+      </nav>
+
+      <nav style=" width:280px;">
+      <input type="date" onchange="filterftbydate()" 
+      style="width:  270px; font-size: 15px;" id="bcasSETDateto" name="bcasftDate;">
+      </nav>
+  </nav>
+
+  <nav style="margin-left:0px; width:500px; padding:0;">
+    <nav style="margin-left:10px; width:120px; ">    
+    <label style=" font-size: 15px; color:rgb(15, 14, 14); margin-right:20px;">Employee:</label>
+    </nav>
+
+    <nav style="margin-left:10px; width:270px; ">
+                <div class="dropdown" style="width:260px; font-size: 12px;  height: 35px">
+                  <input type="text" id="settleEmp" placeholder="Select Employee" style="font-size: 12px;"
+                  onkeyup="settlefilterDropdownEmp()" onclick="settletoggleDropdownEmp()">
+                  <span  class="arrow">&#129171;</span> <!-- Down arrow symbol -->
+                  <div id="settledropdownListEmp" class="dropdown-list">                                       
+                        <div data-value="1234">1234: June Dela Cruz</div>
+                        <div data-value="1235">1235: May Dela Cruz</div>
+                        <div data-value="1236">1236: Octavio Dela Cruz</div>
+                        <div data-value="1237">1237: Julius Dela Cruz</div>
+                        <div data-value="1238">1238: Febian Dela Cruz</div>
+                  </div>
+                </div>
+   </nav>
+  </nav>
+</nav>
+
+<nav style="margin-left:10px; width:910px; padding:0;margin-top:5px;">
+
+     <nav style="margin-left:0px; width:380px; padding:0;margin-top:5px; margin-bottom: 5px;">
+          <nav style="margin-left:0px; width:120px; ">    
+          <label style=" font-size: 15px; color:rgb(15, 14, 14); margin-right:20px;">Report Type:</label>
+          </nav>
+
+          <nav style="margin-left:0px; width:250px; ">
+ 
+                <div class="dropdown" style="width:240px; font-size: 12px;  height: 35px">
+                  <input type="text" id="settlereporttype" placeholder="Select Report" style="font-size: 12px;"
+                  onkeyup="settlefilterDropdownReport()" onclick="settletoggleDropdownReport()">
+                  <span  class="arrow">&#129171;</span> <!-- Down arrow symbol -->
+                  <div id="settledropdownList" class="dropdown-list">                                       
+                        <div data-value="Cash Shortages">Cash Shortages</div>
+                        <div data-value="Cash Shortages-Others">Cash Shortages-Others</div>
+                        <div data-value="Cash Overages">Cash Overages</div>
+                        <div data-value="Cash Overages-Others">Cash Overages-Others</div>
+                        <div data-value="Accounts Payabl">Accounts Payable</div>
+                  </div>
+                </div>
+
+
+          </nav>
+    </nav>
+
+
+    <li><button type="button" onclick="filterBCASsettlementTable()" id="settlefilter" class="custom-button-blue" 
+    style="color: white;float:right;margin-right:0px;width:120px; margin-top: 5px;" >
+    <i class="fas fa-filter" style= "float:left;color:white; font-size: 14px; margin-left:10px"></i>Filter Record</button></li>
+  
+</nav> 
+
+
+<div class="table-container">
+<table class="ftscroll" id="BCASsettletable" style= "height: 320px;">
+   <thead  >
+       <tr >
+        <th style="width: 30px; text-align: center;">View</th>
+           <th style="width: 30px; text-align: center;">Date</th>       
+           <th >Template</th>
+            <th >Status</th>
+           <th >Employee No.</th>
+           <th >Name</th>
+           <th >Amount</th>
+           <th >Settled Amount</th>
+           <th >Remaining</th>   
+           <th style="display: none;" >Remarks</th>
+           <th style="display: none;" >RefNo.</th> 
+   
+           
+       
+       </tr>
+    
+   </thead>
+
+   <tbody style="color:rgb(15, 15, 15)" >
+
+      <tr>
+      <td><a><button type="button" id="bcas-btn-ret1"  for = "retry" style=" width:40px;"
+        onclick="viewsettle(event)" class="custom-button-bcaseye">
+       <i  class= "fas fa-eye"></i></button></a></td>  
+      <td>09/22/2025</td>
+      <td>Cash Shortages</td>
+       <td>Settled</td>
+      <td>1234</td>
+      <td>June Dela Cruz</td>
+      <td>350.50</td>
+      <td>350.50</td>
+      <td>0.00</td>
+      <td style="display: none;" >1234: June Dela Cruz (Cashiering) </td>
+      <td style="display: none;" >AAA0000109222025</td>
+     
+     
+       </tr>
+
+  <tr>
+      <td><a><button type="button" id="bcas-btn-ret1"  for = "retry" style=" width:40px;"
+        onclick="viewsettle(event)" class="custom-button-bcaseye">
+       <i  class= "fas fa-eye"></i></button></a></td>  
+      <td>10/20/2025</td>
+      <td>Cash Shortages</td>
+      <td>Partial</td>
+      <td>1236</td>
+      <td>Octavio Dela Cruz</td>
+      <td>1,000.00</td>
+      <td>500.00</td>
+      <td>500.00</td>
+      <td style="display: none;" >1236: Octavio Dela Cruz (Cashiering) </td>
+      <td style="display: none;" >AAA0000110202025</td>
+
+      
+     
+       </tr>
+
+
+         <tr>
+      <td><a><button type="button" id="bcas-btn-ret1"  for = "retry" style=" width:40px;"
+        onclick="viewsettle(event)" class="custom-button-bcaseye">
+       <i  class= "fas fa-eye"></i></button></a></td>  
+      <td>10/26/2025</td>
+      <td>Cash Shortages</td>
+      <td>Unsettled</td>
+      <td>1235</td>
+      <td>May Dela Cruz</td>
+      <td>1,300.00</td>
+      <td>0.00</td>
+      <td>1,300.00</td>
+      <td style="display: none;" >1235: May Dela Cruz (Cashiering) </td>
+      <td style="display: none;" >AAA0000110262025</td>
+      
+     
+       </tr>
+
+
+   </tbody>
+
+  
+</table>
+
+
+</div>
+
+</fieldset>
+
+<div id="bcassettleconfirmation" class="suboverlay" style="background-color: transparent;">
+  <div class="modal" style="min-height: 200px; background-color: #eeeded;">
+
+    <nav style="width: 100%;" >
+    <li style="font-weight: lighter;"> Confirmation!
+      
+    </nav>
+      <fieldset style="box-shadow: none; border-top: 1px solid gray; height: 150px;padding:0; ">
+        <fieldset style="box-shadow: none;" >
+        <nav style="width: 100%; height: 50%; margin-top:20px;">
+          <nav style="width:20%;" >
+        <i class="fa-solid fa-circle-info" style="margin-right:10px; font-size:50px; color:blue"></i>
+         </nav>
+         <nav style="width: 80%;" >
+        <textarea id="bcassettlemessage"  rows="5" col="10" style="font-size: 16px; background-color: #eeeded;
+         border:none; width: 100%; height: 20%; font-weight: lighter;">
+       </textarea>
+      </nav>
+      </nav>
+     </fieldset>    
+
+      <a><button type="button" id="bcas-btn-settle-close" style="margin-left:10px; width:50px; float:right;"
+        onclick="bcascloseretry()"class="custom-button-gray">
+       No</button></a>
+
+       <a><button type="button" id="bcas-btn-settle" style=" width:50px; float:right;"
+        onclick="settleconfirmed()"class="custom-button-blue">
+       Yes</button></a>
+      </fieldset>
+  
+  </div>  <!-----modal-->
+ </div> 
+
+</div> 
+
+
+
+<!-----------------------------------------------BCAS settlement---------------------------------------------------------------->
+
+
+<div id="subcon-tab100-tab16" class="subRcontent" style="padding: 0;">
+
+  <header style="font-size: 16px; background-color:rgb(7, 21, 110); height:35px;margin-bottom:5px; box-shadow: none;padding:10px">
+    <i class="fas fa-list" style="margin-right: 20px; font-size:12px;"></i>Settle Record</header>  
+    
+<fieldset style="width: 99.5%; height: 460px; margin-top:2px;margin: 3px;  box-shadow: none; border:3px solid black">
+ <fieldset style=" box-shadow: none; border:1px solid black; margin: 2px">
+  <nav style="margin-left:10px; width:900px; padding:0;margin-top:10px;">
+                      
+     
+          
+            <label style=" font-size: 15px; color: gray; margin-right:20px;">Date:</label>       
+            <input type="text" readonly
+             style="width:  100px; font-size: 15px; margin-left: 30px; color: gray;margin-right:2cqmin; " id="setdate">        
+     
+            <label style=" font-size: 15px; color: gray; margin-right:10px;" >Employee:</label>       
+            <input type="text" readonly
+             style="width:  330px; font-size: 15px;color: gray;margin-right:20px; " id="setemp">  
+ 
+
+            <label style=" font-size: 15px; color: gray; margin-right:10px;">Amount:</label>       
+            <input type="text" readonly
+             style="width:  120px; font-size: 15px;color: gray;" id="setamount"> 
+
+
+  </nav>
+
+    <nav style="margin-left:10px; width:900px; padding:0;margin-top:10px; margin-bottom:10px;">
+                      
+     
+          
+            <label style=" font-size: 15px; color: gray; margin-right:20px;" for="bcasSETDatefr">Remarks:</label>       
+            <input type="text" readonly
+             style="width:  350px; font-size: 15px; color: gray;" id="setremarks">        
+     
+            <label style=" font-size: 15px; color: gray; margin-right:20px; margin-left: 20px;" >Transaction Reference:</label>       
+            <input type="text" readonly
+             style="width:  200px; font-size: 15px; color: gray;" id="setref">  
+
+        
+
+
+  </nav>
+
+      <nav style="margin-left:10px; width:900px; padding:0;margin-top:10px; margin-bottom:10px;">
+                      
+     
+          
+            <label style=" font-size: 15px; color:rgb(15, 14, 14); margin-right:20px;" >Amount to Settle:</label>       
+            <input type="text" 
+             style="width:  100px; font-size: 15px; " id="amttoset">        
+     
+            <label style=" font-size: 15px; color:rgb(15, 14, 14); margin-right:20px; margin-left: 20px;">Other remarks:</label>       
+            <input type="text" placeholder="Input remarks"
+             style="width:  200px; font-size: 15px;" id="setotherrem">  
+        
+            <button type="button" onclick="settleclosed()" id="settleclose" class="custom-button-gray" 
+            style="color: white;margin-right:10px; float:right; width:90px; margin-top: 5px;" >
+            <i class="fas fa-filter" style= "float:left;color:white; font-size: 14px; margin-left:10px"></i>Close</button>
+
+            <button type="button" onclick="settle()" id="settle" class="custom-button-blue" 
+            style="color: white;margin-right:10px; float:right; width:90px; margin-top: 5px;" >
+            <i class="fas fa-filter" style= "float:left;color:white; font-size: 14px; margin-left:10px"></i>Settle</button>
+
+
+
+  </nav>
+
+  </fieldset>  
+
+
+
+<div class="table-container">
+<table class="ftscroll" id="BCASsettletable-individual" style= "height: 300px;">
+   <thead  >
+       <tr >
+        <th >Date of Settlement</th>
+           <th>Template</th>       
+           <th >Settled Amount</th>            
+           <th >Record Status</th>
+           <th >Reverse</th>    
+           <th style="display: none;" >ref</th>   
+           
+       
+       </tr>
+    
+   </thead>
+
+   <tbody style="color:rgb(15, 15, 15)" >
+      
+      <tr style="display: none;">
+        <td >09/23/2025</td>  
+        <td >Payment to Shortages</td>
+        <td >350.00</td>         
+        <td >Active</td>
+        <td><a><button type="button" id="bcas-btn-rev-set" style=" width:40px;"
+        onclick="revsettled(event)" class="custom-button-bcasvoid">
+       <i  class= "fa-solid fa-clock-rotate-left"></i></button></a></td>
+       <td style="display: none;" >AAA0000109222025</td>
+     </tr>
+
+
+        <tr style="display: none;">
+        <td >10/23/2025</td>  
+        <td >Payment to Shortages</td>
+        <td >300.00</td>  
+        <td >Active</td>
+        <td><a><button type="button" id="bcas-btn-rev-set" style=" width:40px;"
+        onclick="revsettled(event)" class="custom-button-bcasvoid">
+       <i  class= "fa-solid fa-clock-rotate-left"></i></button></a></td>
+       <td style="display: none;" >AAA0000110202025</td>
+     </tr>
+
+        <tr style="display: none;">
+        <td >10/25/2025</td>  
+        <td >Payment to Shortages</td>
+        <td >200.00</td>  
+        <td >Active</td>
+        <td><a><button type="button" id="bcas-btn-rev-set" style=" width:40px;"
+        onclick="revsettled(event)" class="custom-button-bcasvoid">
+       <i  class= "fa-solid fa-clock-rotate-left"></i></button></a></td>
+       <td style="display: none;" >AAA0000110202025</td>
+     </tr>
+
+   </tbody>
+
+  
+</table>
+
+
+</div>
+
+</fieldset>
+
+</div> 
+
 <!-----------------------------------------------BCAS Fund transfer---------------------------------------------------------------->
 
 
 <div id="subcon-tab100-tab6" class="subRcontent" style="padding: 0;">
 
-  <header style="font-size: 16px; background-color:rgb(7, 21, 110); height:35px;margin-bottom:5px; padding:10px">
+  <header style="font-size: 16px; background-color:rgb(7, 21, 110); height:35px;margin-bottom:5px; box-shadow: none;padding:10px">
     <i class="fas fa-list" style="margin-right: 20px; font-size:12px;"></i>Fund Transfers</header>                     
                                 
-  <nav style="margin-left:20px; width:600px; padding:0;">
+  <nav style="margin-left:20px; width:500px; padding:0;">
    <label style=" font-size: 15px; color:rgb(15, 14, 14); margin-right:20px;" for="bcasftDate">Date:</label>
    <input type="date" onchange="filterftbydate()" 
    style="width:  250px; font-size: 15px;" id="bcasftDate" name="bcasftDate;">
   </nav>
   <button type="button" onclick="updatecasft('sub-tab100-tab13')" class="custom-button-blue"style="float:right; margin-right:20px;width:120px;"> 
-    <i class="fas fa-pen-to-square" style= "float:left;color:white; font-size: 14px;"></i>Offline Update</button>
+    <i class="fas fa-pen-to-square" style= "float:left;color:white; font-size: 14px;"></i>Update Offline</button>
 
 
     
   <li><button type="button" onclick="recordft('sub-tab100-tab12')" data-tab="sub-tab100-tab12"  class="custom-button-blue" 
-    style="color: white;float:right;margin-right:10px;width:100px;">
-    <i class="fas fa-square-plus" style= "float:left;color:white; font-size: 14px; margin-left:10px"></i>Record</button></li>
+    style="color: white;float:right;margin-right:10px;width:120px;">
+    <i class="fas fa-square-plus" style= "float:left;color:white; font-size: 14px; margin-left:5px"></i>Record Offline</button></li>
+
+
+    <li><button type="button" onclick="bcasconfirmfetch()" id="fetch" class="custom-button-blue" 
+    style="color: white;float:right;margin-right:10px;width:120px;">
+    <i class="fas fa-square-plus" style= "float:left;color:white; font-size: 14px; margin-left:10px"></i>Fetch Record</button></li>
   
   </nav><br><br>
 
 
-<fieldset style="width: 99.5%; height: 420px; margin-top:2px;margin: 3px;  box-shadow: none; border:3px solid rgb(227, 220, 220)">
+<fieldset style="width: 99.5%; height: 420px; margin-top:2px;margin: 3px;  box-shadow: none; border:3px solid darkblue">
 
 
 
@@ -877,7 +1589,7 @@
 <table class="ftscroll" id="BCASfttable">
    <thead  >
        <tr >
-        <th style="width: 30px; text-align: center;">Retry Upload</th>
+        <th style="width: 30px; text-align: center;">Record</th>
            <th style="width: 30px; text-align: center;">Copy</th>       
            <th >Transaction Date</th>
            <th >Transfer Type</th>
@@ -890,7 +1602,7 @@
            <th >Status</th>
            <th >Update Status</th>                  
            <th >Time Updated</th>           
-           <th style="text-align: center;" >Void</th>  
+           <th style="text-align: center; display: none;" >Void</th>  
            <th style="display: none;">FTRefcode</th> 
            <th style="display: none;">No.</th> 
            <th style="display:none;" >AREA</th>
@@ -921,10 +1633,11 @@
           <td>110010 SA AREA PNB EUPI-BAYAWAN CITY-NEGROS ORIENTAL:6450/1110-102-133-6450</td>        
           <td>Active</td>
           <td>Updated</td>      
-          <td id="ft-sub-tab100-tab6-con1-1"></td> 
-            <td><a><button type="button" id="bcas-btn-void1" style=" width:40px;"
+          <td  id="ft-sub-tab100-tab6-con1-1"></td> 
+            <td style="display: none;"><a><button type="button" id="bcas-btn-void1" style=" width:40px;"
               onclick="voidencryp(event)" class="custom-button-bcasvoid">
-             <i  class= "fas fa-ban"></i></button></a></td>  
+             <i  class= "fas fa-ban"></i>
+            </button></a></td>  
           <td style="display: none;">FT-AAA03312025-001-Active</td>   
           <td style="display: none;">001</td> 
           <td style="display:none;" >ZAA</td> 
@@ -950,7 +1663,7 @@
           <td>Active</td>
           <td>Updated</td>           
           <td id="ft-sub-tab100-tab6-con1-2"></td>        
-          <td>
+          <td style="display: none;">
             <button type="button" id="bcas-btn-void2" style="border:none; width:40px;" 
                     onclick="voidencryp(event)" 
                     class="custom-button-bcasvoid">
@@ -982,10 +1695,10 @@
           <td>Updated</td>  
 
           <td id="ft-sub-tab100-tab6-con1-3"></td>       
-          <td><a><button type="button" id="bcas-btn-void3" style=" border:none; width:40px;"
+          <td style="display: none;"><a><button type="button" id="bcas-btn-void3" style=" border:none; width:40px;"
             onclick="voidencryp(event)" class="custom-button-bcasvoid">
            <i  class= "fas fa-ban"></i></button></a></td>
-           <td style="display: none;">FTBR-AAA032025-003-Active</td>   
+           <td style="display: none;">FT-AAA032025-003-Active</td>   
            <td style="display: none;">003</td> 
            <td style="display:none;" >ZAA</td> 
      </tr>
@@ -1001,7 +1714,7 @@
           <td>03/31/2025</td>   
           <td>Withdraw</td>
           <td >AAA-13-002002S00S0SAJ</td>
-          <td >HO MBTC</td>
+          <td >AREA MBTC</td>
           <td >AAA</td>
           <td >2,000,000.00</td>
           <td >9876: DELA CRUZ JUAN</td>
@@ -1029,7 +1742,7 @@
           <td>04/01/2025</td>   
           <td>Withdraw</td>
           <td>AAA-13-002002S00S0SAS</td>
-          <td>HO MBTC</td>
+          <td>AREA MBTC</td>
           <td>AAA</td>
           <td>1,000,000.00</td>
           <td>9876: DELA CRUZ JUAN</td>
@@ -1038,7 +1751,7 @@
           <td>Updated</td>                
     
           <td id="ft-sub-tab100-tab6-con1-4"></td>       
-          <td><a><button type="button" id="bcas-btn-void5" style=" border:none; width:40px;"
+          <td style="display: none;"><a><button type="button" id="bcas-btn-void5" style=" border:none; width:40px;"
             onclick="voidencryp(event)" class="custom-button-bcasvoid">
            <i  class= "fas fa-ban"></i></button></a></td>
            <td style="display: none;">FT-AAA04012025-002-Active</td>
@@ -1061,7 +1774,7 @@
   <div class="modal" style="min-height: 200px; background-color: #eeeded;">
 
     <nav style="width: 100%;" >
-    <li style="font-weight: lighter;"> Information!
+    <li style="font-weight: lighter;"> Confirmation!
       
     </nav>
       <fieldset style="box-shadow: none; border-top: 1px solid gray; height: 150px;padding:0; ">
@@ -1071,7 +1784,7 @@
         <i class="fa-solid fa-circle-info" style="margin-right:10px; font-size:50px; color:blue"></i>
          </nav>
          <nav style="width: 80%;" >
-        <textarea id="bcasmessage"  rows="5" col="10" style="font-size: 16px; background-color: #eeeded;
+        <textarea id="bcasretrymessage"  rows="5" col="10" style="font-size: 16px; background-color: #eeeded;
          border:none; width: 100%; height: 20%; font-weight: lighter;">
        </textarea>
       </nav>
@@ -1090,7 +1803,45 @@
   </div>  <!-----modal-->
  </div> 
 
+
+
+
+
+ <div id="bcasftfetchconfirmation" class="suboverlay" style="background-color: transparent;">
+  <div class="modal" style="min-height: 200px; background-color: #eeeded;">
+
+    <nav style="width: 100%;" >
+    <li style="font-weight: lighter;"> Confirmation!
+      
+    </nav>
+      <fieldset style="box-shadow: none; border-top: 1px solid gray; height: 150px;padding:0; ">
+        <fieldset style="box-shadow: none;" >
+        <nav style="width: 100%; height: 50%; margin-top:20px;">
+          <nav style="width:20%;" >
+        <i class="fa-solid fa-circle-info" style="margin-right:10px; font-size:50px; color:blue"></i>
+         </nav>
+         <nav style="width: 80%;" >
+        <textarea id="fetchmessage"  rows="5" col="10" style="font-size: 16px; background-color: #eeeded;
+         border:none; width: 100%; height: 20%; font-weight: lighter;">
+       </textarea>
+      </nav>
+      </nav>
+     </fieldset>    
+
+      <a><button type="button" id="bcas-btn-fetch-close" style="margin-left:10px; width:50px; float:right;"
+        onclick="bcasclosefetch()"class="custom-button-gray">
+       No</button></a>
+
+       <a><button type="button" id="bcas-btn-fetch" style=" width:50px; float:right;"
+        onclick="fetchFTData()" class="custom-button-blue">
+       Yes</button></a>
+      </fieldset>
+  
+  </div>  <!-----modal-->
+ </div> 
+
 </div>
+
 
 
 
@@ -1249,7 +2000,7 @@
         <i class="fa-solid fa-circle-info" style="margin-right:10px; font-size:50px; color:blue"></i>
          </nav>
          <nav style="width: 80%;" >
-        <textarea id="bcasmessage"  rows="5" col="10" style="font-size: 16px; background-color: #eeeded;
+        <textarea id="bcasNEWmessage"  rows="5" col="10" style="font-size: 16px; background-color: #eeeded;
          border:none; width: 100%; height: 20%; font-weight: lighter;">
        </textarea>
       </nav>
@@ -1496,9 +2247,17 @@
      
       
   </div>  <!-----modal-->
+
+
  </div>   <!-----end of suboverlay--->
  
 </div>
+
+
+</div>
+
+
+
 
 
 <!-----------------------------------BCAS overlay------------------------------------------------------>
@@ -1512,7 +2271,7 @@
  
     </nav>
       <fieldset style="box-shadow: none; border-top: 1px solid gray; height: 150px;padding:0; ">
-        <fieldset style="box-shadow: none;"" >
+        <fieldset style="box-shadow: none;" >
         <nav style="width: 100%; height: 50%; margin-top:20px;">
           <nav style="width:20%;" >
         <i class="fa-solid fa-triangle-exclamation" style="margin-right:10px; font-size:50px; color: orange"></i>
@@ -1545,13 +2304,8 @@
  <!-------------------------------------------Detailed Status ----------------------------------------------------------------------------------------> 
         
         
-  <div id="content-tab1" class="content">
-                 <div class="headwrapper" >
-                    <nav style="width: 70%; height: 20px; text-align: left; margin-left: 0px; font-size: 14;">
-                        <header>Detailed Status </header>
-                        </nav>
-                 
-                </div><br><br>
+  <div id="content-tab1" class="content"><br><br>
+
                     <div class="form-container">
                         
                         <form>
@@ -1660,26 +2414,15 @@
 
  <!---------------------------------Extraction Progress----------------------------------------------------------------------------->      
 
-                <div id="content-tab2" class="content">
-                <div class="headwrapper" >
-                  
-                    <nav style="width: 70%; height: 20px; text-align: left; margin-left: 0px; font-size: 14;">
-                        <header>Extraction Progress</header>
-                        </nav>
-                </div><br><br>
+                <div id="content-tab2" class="content"><br><br>
                 <div class="form-container">
                     <form></form>
                 </div>
                 </div>
 
 
-                <div id="content-tab3" class="content">
-                <div class="headwrapper" >
-                  
-                    <nav style="width: 75%; height: 20px; text-align: left; margin-left: 0px; font-size: 14;">
-                        <header>Summarized Integration Status</header>
-                        </nav>
-                </div><br><br>
+                <div id="content-tab3" class="content"><br><br>
+     
                 <div class="form-container">
                     <form></form>
                 </div>
@@ -1687,13 +2430,8 @@
 
 <!------------------------------Fund Transfer Recon Report-------------------------------------------------------------------------------------------------------------------------------------->
 
-       <div id="content-tab4" class="content">
-                  <div class="headwrapper" >
-                  
-                    <nav style="width: 70%; height: 20px; text-align: left; margin-left: 0px; font-size: 14;">
-                        <header>Fund Transfer Recon Report</header>
-                        </nav>
-                  </div><br><br>
+       <div id="content-tab4" class="content"><br><br>
+
 
 
         <div class="form-container">
@@ -1720,22 +2458,39 @@
                              
                                 </nav>
 
-                                <nav style="width: 230px;"><br><br>
+
+                                 <nav style="width: 150px;"><br><br>
                                 
-                                    <div class="dropdown" style="width:220px; font-size: 12px;  height: 35px">
+                                    <select id="selectrecreport" style="width: 140px; height:30px;">
+                                      <option value="" disabled selected hidden>Select report type</option>
+                                      <option >Variance Report</option>
+                                      <option >Variance and Tally</option>
+                                    
+                                    </select>
+
+                               </nav>
+
+
+
+
+
+
+                                <nav style="width: 130px;"><br><br>
+                                
+                                    <div class="dropdown" style="width:120px; font-size: 12px;  height: 35px">
                                       <input type="text" id="cluster" placeholder="All Cluster" style="font-size: 12px;"
                                       onkeyup="filterDropdowncluster()" onclick="toggleDropdowncluster()">
                                       <span  class="arrow">&#129171;</span> <!-- Down arrow symbol -->
                                       <div id="dropdownList-cluster" class="dropdown-list">                                       
-                                        <div >Cluster 1: NORTH LUZON and CAR</div>
-                                        <div >Cluster 2: CENTRAL LUZON</div>      
-                                        <div >Cluster 3: NCR PLUS</div>
-                                        <div >CLUSTER 4A: SOUTH LUZON</div> 
-                                        <div >CLUSTER 4B: SOUTH LUZON</div>
-                                        <div >Cluster 5: WESTERN VISAYAS</div>
-                                        <div >Cluster 6: CENTRAL EASTERN VISAYAS </div> 
-                                        <div >Cluster 7: NORTH WESTERN MINDANAO</div>
-                                        <div >Cluster 8: SOUTH EASTERN MINDANAO</div>       
+                                        <div >Cluster 1</div>
+                                        <div >Cluster 2</div>      
+                                        <div >Cluster 3</div>
+                                        <div >CLUSTER 4A</div> 
+                                        <div >CLUSTER 4B</div>
+                                        <div >Cluster 5</div>
+                                        <div >Cluster 6</div> 
+                                        <div >Cluster 7</div>
+                                        <div >Cluster 8</div>       
                                          
                                       </div>
                                     </div>
@@ -1744,9 +2499,9 @@
 
 
 
-                                <nav style="width: 150px;"><br><br>                                
+                                <nav style="width: 130px;"><br><br>                                
                                    
-                                    <div class="dropdown" style="width:140px; font-size: 12px;  height: 35px">
+                                    <div class="dropdown" style="width:120px; font-size: 12px;  height: 35px">
                                       <input type="text" id="Area" placeholder="All Area" style="font-size: 12px;"
                                       onkeyup="filterDropdownarearecon()" onclick="toggleDropdownarearecon()">
                                       <span  class="arrow">&#129171;</span> <!-- Down arrow symbol -->
@@ -1763,11 +2518,11 @@
                                  </nav>
                             
 
-                                <nav style="width: 150px;"><br><br>                              
+                                <nav style="width: 130px;"><br><br>                              
                                       
 
 
-                                        <div class="dropdown" style="width:140px; font-size: 12px;  height: 35px">
+                                        <div class="dropdown" style="width:120px; font-size: 12px;  height: 35px">
                                           <input type="text" id="recnBranch" placeholder="All Branch" style="font-size: 12px;"
                                           onkeyup="filterDropdownbranchrecon()" onclick="toggleDropdownbranchrecon()">
                                           <span  class="arrow">&#129171;</span> <!-- Down arrow symbol -->
@@ -1785,7 +2540,7 @@
                                 </nav>
                                
                                         
-                                <nav style="width: 180px;"><br><br>                               
+                                <nav style="width: 170px;"><br><br>                               
                                   
 
 
@@ -1806,22 +2561,21 @@
 
                                 </nav>
                                 <nav style="width: 90px;"><br>
-                                <button type="button" onclick="reconreportfilter()" style=" float: right; margin: 20px;" class="custom-button-blue"><i class="fas fa-file" style= "color: white; font-size: 14px; margin-right:5px"></i>Request</button>
+                                <button type="button" onclick="reconreportfilters()" style=" float: right; margin: 20px;" class="custom-button-blue"><i class="fas fa-file" style= "color: white; font-size: 14px; margin-right:5px"></i>Request</button>
                                 </nav> <br><br> <br><br>
                                
                              
-                                <fieldset style="width: 100%; margin-top: 20px;">
+                                <fieldset style="width: 100%; margin-top: 20px;" >
                                 <!-- Search Bar -->
                                 
-                                <div class="search-container" >
+                                <div class="search-container"  >
                                     <nav style="width: 73%; height: 20px; text-align: left; margin-left: 15px; font-size: 12; font-weight: bold; margin-bottom: 15px;">
-                                    <h4> Fund Transfer and Journal Entries Reconciliation (Variance)</h4> 
-                                    </nav>
-                                  
+                                    <h4 id="reporttitlerecon"> Fund Transfer and Journal Entries Reconciliation</h4> 
+                                    </nav>                                 
                                     
                                 </div> 
                                       
-                                <div class="table-container" >
+                                <div class="table-container" id="variancerecon"  style="display:none">
                                   <table  id="summaryrecontable" class="recontable" >
                                     <thead >
                                         <tr >                                      
@@ -1995,209 +2749,11 @@
       
       
                                   </div>
-                                </fieldset>
-
-                                  <fieldset style="width: 100%; margin-top: 20px;">
+                  
                                     <!-- Search Bar -->
                                     
-                                    <div class="search-container" >
-                                        <nav style="width: 73%; height: 20px; text-align: left; margin-left: 15px; font-size: 12; font-weight: bold; margin-bottom: 15px;">
-                                        <h4> Fund Transfer and Journal Entries Reconciliation (Reconciled)</h4> 
-                                        </nav>
-                                      
-                                        
-                                    </div> 
-                                  <div class="table-container" >
-                                    <table  id="summaryrecontabletally" class="recontable" >
-                                      <thead >
-                                          <tr >                                      
-                                              <th>Cluster</th>
-                                              <th>Area Count</th>
-                                              <th>Branch Count</th>
-                                              <th>Transaction Count</th> 
-                                              <th>Total Amount</th>   
-                                              <th>Download</th>    
-                                              <th style="width: 70px;">Action</th>                                                                 
-                                          </tr>
-                                          
-                                      </thead>
-        
-        
-        
-                                      <tbody>
-        
-                                          <tr  style="font-weight: 600;" >
-                                              
-                                              <td style="padding-left: 20px;">Cluster 1: NORTH LUZON and CAR</td>
-                                              <td>4</td>
-                                              <td>4</td>
-                                              <td>4</td>
-                                              <td>12,500,000.00</td>
-                                              <td><i style= "color: rgb(0, 9, 0);" class="fas fa-cloud-arrow-down"></i></a></td>
-                                              <td ><button type="button" onclick="expand(this)" style="background-color: white; cursor: pointer;
-                                               border:none; user-select: none;">
-                                                <i style= "color: rgb(0, 9, 0); font-size: 16px;" class="fas fa-sort-down"></i></button></td>
-                                           
-                                          </tr>
-                                                    <div >
-                                                        <tr class="hiddenrows"  style="  border-top: 1px solid #e0dede;">                                               
-                                                          <td style="padding-left: 50px;">ZDP PANGASINAN EAST</td> 
-                                                          <td></td>
-                                                          <td>1</td>
-                                                          <td>1</td>
-                                                          <td>500,000.00</td>
-                                                          <td><a href="#"><i style= "color: rgb(0, 9, 0);" class="fas fa-cloud-arrow-down"></i></a></td>  
-                                                          <td><a href="#"><i style= "color: rgb(0, 9, 0); margin-right:15px;" class="fas fa-eye"></i></a></td>     
-                                                                                        
-                                                        </tr>
-        
-                                                        <tr class="hiddenrows">
-                                                          
-                                                          <td  style="padding-left: 50px;">ZDO PANGASINAN WEST</td>
-                                                          <td></td>
-                                                          <td>2</td>
-                                                          <td>2</td>
-                                                          <td>1,000,000.00</td>
-                                                          <td><a href="#"><i style= "color: rgb(0, 9, 0);" class="fas fa-cloud-arrow-down"></i></a></td>  
-                                                          <td><a href="#"><i style= "color: rgb(0, 9, 0); margin-right:15px;" class="fas fa-eye"></i></a></td>  
-                                                                                              
-                                                        </tr>
-                                                    
-                                                        <tr class="hiddenrows"  style="  border-bottom: 1px solid #e0dede;">   
-                                                   
-                                                          <td style="padding-left: 50px;">ZCQ	BAG-GUET</td>
-                                                          <td ></td>
-                                                          <td>2</td>
-                                                          <td>2</td>
-                                                          <td>1,000,000.00</td>
-                                                          <td><a href="#"><i style= "color: rgb(0, 9, 0);" class="fas fa-cloud-arrow-down"></i></a></td> 
-                                                          <td><a href="#"><i style= "color: rgb(0, 9, 0); margin-right:15px;" class="fas fa-eye"></i></a></td>  
-                                                                                            
-                                                        </tr>
-        
-                                                      </div>   
-        
-                                            <tr  style="font-weight: 600;" >
-                                       
-                                            <td style="padding-left: 20px;">Cluster 2: CENTRAL LUZON</td>
-                                            <td>4</td>
-                                            <td>4</td>
-                                            <td>4</td>
-                                            <td>11,500,000.00</td>
-                                            <td><a href="#"><i style= "color: rgb(0, 9, 0);" class="fas fa-cloud-arrow-down"></i></a></td>
-                                            <td><a href="#"><i style= "color: rgb(0, 9, 0);font-size: 16px;" class="fas fa-sort-down"></i></a></td>
-                                          </tr>
-        
-        
-                                          <tr  style="font-weight: 600;" >
-                                            
-                                            <td style="padding-left: 20px;">Cluster 3: NCR PLUS</td>
-                                            <td>4</td>
-                                            <td>10</td>
-                                            <td>13</td>
-                                            <td>120,500,000.00</td>
-                                            <td><a href="#"><i style= "color: rgb(0, 9, 0);" class="fas fa-cloud-arrow-down"></i></a></td>
-                                            <td><a href="#"><i style= "color: rgb(0, 9, 0);font-size: 16px;" class="fas fa-sort-down"></i></a></td>
-                                          </tr>
-        
-                                          <tr  style="font-weight: 600;" >
-                                    
-                                            <td style="padding-left: 20px;">CLUSTER 4A: SOUTH LUZON</td>
-                                            <td>4</td>
-                                            <td>5</td>
-                                            <td>8</td>
-                                            <td>50,500,000.00</td>
-                                            <td><a href="#"><i style= "color: rgb(0, 9, 0);" class="fas fa-cloud-arrow-down"></i></a></td>
-                                            <td><a href="#"><i style= "color: rgb(0, 9, 0);font-size: 16px;" class="fas fa-sort-down"></i></a></td>
-                                          </tr>
-        
-                                          <tr  style="font-weight: 600;" >
-                                          
-                                            <td style="padding-left: 20px;">CLUSTER 4B: SOUTH LUZON</td>
-                                            <td>4</td>
-                                            <td>4</td>
-                                            <td>10</td>
-                                            <td>11,500,000.00</td>
-                                            <td><a href="#"><i style= "color: rgb(0, 9, 0);" class="fas fa-cloud-arrow-down"></i></a></td>
-                                            <td><a href="#"><i style= "color: rgb(0, 9, 0);font-size: 16px;" class="fas fa-sort-down"></i></a></td>
-                                          </tr>
-        
-        
-        
-                                          <tr  style="font-weight: 600;" >
-                                            
-                                            <td style="padding-left: 20px;">Cluster 5: WESTERN VISAYAS</td>
-                                            <td>4</td>
-                                            <td>4</td>
-                                            <td>5</td>
-                                            <td>7,500,000.00</td>
-                                            <td><a href="#"><i style= "color: rgb(0, 9, 0);" class="fas fa-cloud-arrow-down"></i></a></td>
-                                            <td><a href="#"><i style= "color: rgb(0, 9, 0);font-size: 16px;"class="fas fa-sort-down"></i></a></td>
-                                          </tr>
-        
-                                          <tr  style="font-weight: 600;" >
-                                     
-                                            <td style="padding-left: 20px;">Cluster 6: CENTRAL EASTERN VISAYAS</td>
-                                            <td>4</td>
-                                            <td>4</td>
-                                            <td>9</td>
-                                            <td>17,500,000.00</td>
-                                            <td><a href="#"><i style= "color: rgb(0, 9, 0);" class="fas fa-cloud-arrow-down"></i></a></td>
-                                            <td><a href="#"><i style= "color: rgb(0, 9, 0);font-size: 16px;" class="fas fa-sort-down"></i></a></td>
-                                          </tr>
-                                          <tr  style="font-weight: 600;" >
-                                         
-                                            <td style="padding-left: 20px;">Cluster 7: NORTH WESTERN MINDANAO</td>
-                                            <td>6</td>
-                                            <td>7</td>
-                                            <td>8</td>
-                                            <td>19,000,000.00</td>
-                                            <td><a href="#"><i style= "color: rgb(0, 9, 0);" class="fas fa-cloud-arrow-down"></i></a></td>
-                                            <td><a href="#"><i style= "color: rgb(0, 9, 0);font-size: 16px;" class="fas fa-sort-down"></i></a></td>
-                                          </tr>
-                                          <tr  style="font-weight: 600;" >
-                                          
-                                            <td style="padding-left: 20px;">Cluster 8: SOUTH EASTERN MINDANAO</td>
-                                            <td>5</td>
-                                            <td>6</td>
-                                            <td>10</td>
-                                            <td>13,500,000.00</td>
-                                            <td><a href="#"><i style= "color: rgb(0, 9, 0);" class="fas fa-cloud-arrow-down"></i></a></td>
-                                            <td><a href="#"><i style= "color: rgb(0, 9, 0);font-size: 16px;" class="fas fa-sort-down"></i></a></td>
-                                          </tr>
-        
-                                          <tr  style="font-weight: 600; "  >
-                                         
-                                            <td>Total</td>
-                                            <td>39</td>
-                                            <td>48</td>
-                                            <td>71</td>
-                                            <td>264,000,000.00</td>
-                                            <td><a href="#"><i style= "color: rgb(0, 9, 0);" class="fas fa-cloud-arrow-down"></i></a></td>
-                                            <td><a href="#"><i style= "color: rgb(0, 9, 0); margin-right:15px;" class="fas fa-eye"></i></a></td>  
-                                          </tr>
-                                      </tbody>
-                                   </table>
-        
-        
-                                    </div>
-
-
-                            
-                               </fieldset>
-                             
-
-                        <fieldset style="width: 100%; margin-top: 20px;">
-                                    <!-- Search Bar -->
-                                    
-                                    <div class="search-container" >
-                                        <nav style="width: 73%; height: 20px; text-align: left; margin-left: 15px; font-size: 12; font-weight: bold; margin-bottom: 15px;">
-                                        <h4> Fund Transfer and Journal Entries Reconciliation</h4> 
-                                        </nav>
-                                      
-                                        
-                                    </div> 
-                                  <div class="table-container" >
+                                
+                                  <div class="table-container"  id="allrecon" style="display:none">
                                     <table  id="summaryrecontabletally" class="recontable" >
                                       <thead >
                                           <tr >                                      
@@ -2246,6 +2802,7 @@
                                                           <td>500,000.00</td>
                                                           <td>1</td>
                                                           <td>1</td>
+                                                          <td>1</td>
                                                           <td>500,000.00</td>
                                                           <td><a href="#"><i style= "color: rgb(0, 9, 0);" class="fas fa-cloud-arrow-down"></i></a></td>  
                                                           <td><a href="#"><i style= "color: rgb(0, 9, 0); margin-right:15px;" class="fas fa-eye"></i></a></td>     
@@ -2260,7 +2817,7 @@
                                                           <td>2</td>
                                                           <td>1,000,000.00</td>
                                                           <td>2</td>
-                                                          <td>2</td>
+                                                          <td>2</td>                                                          
                                                           <td>1,000,000.00</td>
                                                           <td><a href="#"><i style= "color: rgb(0, 9, 0);" class="fas fa-cloud-arrow-down"></i></a></td>  
                                                           <td><a href="#"><i style= "color: rgb(0, 9, 0); margin-right:15px;" class="fas fa-eye"></i></a></td>  
@@ -2412,12 +2969,12 @@
                                             <td>48</td>
                                             <td>71</td>
                                             <td>264,000,000.00</td>
-                                             <td>39</td>
-                                            <td>48</td>
-                                            <td>71</td>
-                                            <td>264,000,000.00</td>
+                                             <td>27</td>
+                                            <td>28</td>
+                                            <td>32</td>
+                                            <td>14,500,000.00</td>
                                             <td><a href="#"><i style= "color: rgb(0, 9, 0);" class="fas fa-cloud-arrow-down"></i></a></td>
-                                            <td><a href="#"><i style= "color: rgb(0, 9, 0); margin-right:15px;" class="fas fa-eye"></i></a></td>  
+                                            <td><a href="#"><i style= "color: rgb(0, 9, 0); margin-right:15px;" class="fas fa-sort-down"></i></a></td>  
                                           </tr>
                                       </tbody>
                                    </table>
@@ -2434,7 +2991,7 @@
                             <div id="subcon-tab4-tab2" class="subRcontent" style="padding:0;">    
                               
 
-                              <nav style="width: 170px;"><br>
+                           <!----<nav style="width: 170px;"><br>
                               
                                 <label style="font-size: 10px; color:gray; padding: 20px;" for="datefromFTrecon">Start Date:</label><br>
                                 <input style= "margin-left: 20px;" type="date" id="date-summaryrecon-from" name="datefromFTrecon;" onchange="ftdatechangerecon()">
@@ -2447,13 +3004,13 @@
 
                                <nav style="width: 90px;"><br>
                                 <button type="button" onclick="reconreportfilter()" style=" margin-bottom: 30px; float: right; margin: 20px;" class="custom-button-blue"><i class="fas fa-file" style= "color: white; font-size: 14px; margin-right:5px"></i>Request</button>
-                                </nav>
+                                </nav>   --->   
                        
 
                            <fieldset style="width: 100%; margin-top: 20px; border-radius: 10px; padding:0;">
                             <div class="search-container" >
                               <nav style="width: 73%; height: 20px; text-align: left; margin-left: 15px; font-size: 12; font-weight: bold; margin-bottom: 15px;">
-                              <h4> Summary of Unreconciled Fund Transfer and JE </h4> 
+                              <h4>Fund Transfer and Journal Entries </h4> 
                               </nav>
                             
                               
@@ -2482,7 +3039,8 @@
                      <th style="font-size: 9px;">Debit</th> 
                      <th style="font-size: 9px;">Credit</th>
                      <th style="font-size: 9px;">Remarks</th>
-                     <th style="font-size: 9px;">UploadTime</th>   
+                     <th style="font-size: 9px;">UploadTime</th>  
+                    <th style="font-size: 9px;">Transaction Ref No.</th>    
                  </tr>
           
               
@@ -2513,6 +3071,7 @@
                 <td >5,000,000.00</td>
                 <td >BBB-13-002002S00S0SAU-AAA/9876: DELA CRUZ JUAN</td>
                 <td >03/31/2025 13:04:01</td> 
+                <td >BBB0000103312025</td> 
             </tr>
 
             <tr class="AAW">                                 
@@ -2520,7 +3079,7 @@
               <td>03/07/2025</td>
               <td>Deposit</td>         
               <td >AAW-13-002002S00S0SAT</td>
-              <td >HO MBTC</td>
+              <td >AREA MBTC</td>
               <td >AAW</td>
               <td >12,000,000.00</td>
               <td >1234: DELA CRUZ JUAN</td>
@@ -2536,6 +3095,7 @@
               <td >2,000,000.00</td>
               <td >110010 SA AREA PNB EUPI-BAYAWAN CITY-NEGROS ORIENTAL:6450/1110-102-133-6450</td>
               <td >03/07/2025 15:14:01</td> 
+              <td >AAW0000403072025</td> 
           </tr>
 
           <tr class="AAW">                                 
@@ -2543,7 +3103,7 @@
             <td>03/07/2025</td>
             <td>Withdraw</td>         
             <td >AAW-13-002002S00S0SAS</td>
-            <td >HO MBTC</td>
+            <td >AREA MBTC</td>
             <td >AAW</td>
             <td >12,000,000.00</td>
             <td >1234: DELA CRUZ JUAN</td>
@@ -2559,6 +3119,7 @@
             <td >0.00</td>
             <td >311010 SA AREA MBTC EUPI-BAYAWAN CITY-NEGROS ORIENTAL:6450/2110-102-133-6452</td>
             <td >03/07/2025 15:14:01</td> 
+            <td >AAW0000103072025</td>
         </tr>
 
 
@@ -2583,6 +3144,7 @@
             <td >1,500,000.00</td>
             <td >AAB-13-002002S00S0SAT-AAA/1234: DELA CRUZ JUAN</td>
             <td >04/01/2025 10:10:01</td> 
+            <td >AAB0000104012025</td>
         </tr>
 
           
@@ -2607,6 +3169,7 @@
                     <td ></td>
                     <td ></td>
                     <td ></td> 
+                    <td ></td>  
                 </tr>
           
           
@@ -2632,6 +3195,7 @@
                     <td ></td>
                     <td ></td>
                     <td ></td> 
+                    <td ></td>  
                </tr>
               
 
@@ -2656,6 +3220,7 @@
                 <td >2,000,000.00</td>
                 <td >AAS-13-002002S00S0SAU-AAA/1234: DELA CRUZ JUAN</td>
                 <td >03/31/2025 12:04:01</td> 
+                <td >AAS0000103312025</td>
             </tr>
 
             <tr class="AAS">                             
@@ -2679,6 +3244,7 @@
               <td >10,000,000.00</td>
               <td >AAS-13-002002S00S0SAU-AAA/1234: DELA CRUZ JUAN</td>
               <td >03/08/2025 11:04:01</td> 
+              <td >AAS0000103082025</td>
           </tr>
 
 
@@ -2704,6 +3270,7 @@
             <td >0.00</td>
             <td >AAS-13-002002S00S0SAU-AAA/1234: DELA CRUZ JUAN</td>
             <td >03/08/2025 15:04:01</td> 
+            <td >AAS0000303082025</td>
         </tr>
 
         <tr class="AAS">                             
@@ -2727,6 +3294,7 @@
           <td >11,000,000.00	</td>
           <td >AAS-13-002002S00S0SAK/1234: DELA CRUZ JUAN</td>
           <td >03/08/2025 15:04:01</td> 
+          <td >AAS0000403082025</td>
       </tr>
 
 
@@ -2752,6 +3320,7 @@
                      <td ></td>
                      <td ></td>
                      <td ></td>  
+                     <td ></td>  
                </tr>  
            
           
@@ -2759,7 +3328,7 @@
                     <td>04/01/2025</td>   
                     <td>Withdraw</td>
                     <td>AAA-13-002002S00S0SAS</td>
-                    <td>HO MBTC</td>
+                    <td>AREA MBTC</td>
                     <td>AAA</td>
                     <td>1,000,000.00</td>
                     <td>9876: DELA CRUZ JUAN</td>
@@ -2775,6 +3344,7 @@
                      <td ></td>
                      <td ></td>
                      <td ></td> 
+                     <td ></td>  
                </tr>
           
           
@@ -2822,13 +3392,8 @@
 <!--------------------------FT Transaction List------------------------------------------------------------------------------------------------------------------------------------------------->
                 
             
-<div id="content-tab5" class="content">
-        <div class="headwrapper" >
-                   
-          <nav style="width: 70%; height: 20px; text-align: left; margin-left: 0px; font-size: 14;">
-                <header>Fund Transfer Transaction List</header>
-                        </nav>
-          </div><br><br>
+<div id="content-tab5" class="content"><br><br>
+
 
     <div class="form-container">
 
@@ -2916,6 +3481,7 @@
                   <div Class="cmd" value="Denied">Denied</div>
                   <div Class="alltype" value="Under Review">Under Review</div>
                   <div Class="alltype" value="Voided">Voided</div>
+                  <div Class="alltype" value="Voided">Pending-Void</div>
               </div>
           </div>
 
@@ -2942,11 +3508,10 @@
                             </div>
                                              
            
-            
-                              
+                                  
                            
  <!-------------------------------------------------------alltransactions FT---------------------------------                            
-                                <!-- Search Bar -->
+                                <!-Search Bar -->
                                 
 
                         <div id="subcon-tab5-tab1" class="subRcontent active-subRtab-content" style="padding: 0;">
@@ -2961,7 +3526,7 @@
                                     <div class="input-container">
                                         <i class="fas fa-magnifying-glass" style= "color: rgb(132, 176, 248); font-size: 14px; margin-left:10px"></i>
                                         <input type="text" id="searchftall" placeholder="Search" style="width: 510px;" onkeyup="searchTable()">
-                                        <button type="button" onclick="alert('Button clicked!')">x</button>
+                                        <button type="button" style="border-radius:80px;width: 30px; padding:5px" onclick="clearsearchbar()">x</button>
                                     </div>
                                      </nav>
                                     <nav style="width: 60px; float:right" >
@@ -3012,7 +3577,7 @@
                                             <th style="font-size: 12px; display:none;">Closed by</th>   
                                             <th style="font-size: 12px; display:none;">Closed date</th>
                                             <th style="font-size: 12px; display:none;">Transaction logs</th>   
-                                            <th style="font-size: 12px; display:none;">Prior Status</th> 
+                                            <th style="font-size: 12px; display:none;">Previous Status</th> 
                                             <th style="font-size: 12px; display:none;">ftid</th>                                   
                                         </tr>
 
@@ -3068,16 +3633,17 @@
                                             <td style="display:none;">--</td>
                                             <td style="display:none;">--</td>
                                             <td style="display:none;"></td>
+                                            <td style="display:none;"></td>
                                             <td style="display:none;">FT-AAA03312025-001-Active</td>
                                         </tr>
                                         <tr class="ZAA-bank">
-                                            <td><a href="#"<button type="button" id="FT-btn-view" onclick="openOverlay('overlay2', event, 'ft-data-table', 3, 10, this)" class="custom-button-eye"><i  class= "fas fa-eye"></i></button></a>
+                                            <td><a href="#"><button type="button" id="FT-btn-view" onclick="openOverlay('overlay2', event, 'ft-data-table', 3, 10, this)" class="custom-button-eye"><i  class= "fas fa-eye"></i></button></a>
                                                 <a href="#"><button type="button" id="FT-btn-paste" onclick="encryptRow('ft-data-table', 3, event,  1,2,5,6)" class="custom-button-copy"><i  class= "fas fa-copy"></i></button></a></td>
                                                 <td>04/01/2025</td>                                           
                                                 <td>Withdraw</td>
                                                 <td>AAA-13-002002S00S0SAS</td>
                                                 <td>1,000,000.00</td>
-                                                <td>HO MBTC</td>                                    
+                                                <td>AREA MBTC</td>                                    
                                                 <td  class="AAA">AAA</td>
                                                 <td>1234: DELA CRUZ JUAN</td>
                                                 <td>311010 SA AREA MBTC EUPI-BAYAWAN CITY-NEGROS ORIENTAL:6452/2110-102-133-6452</td>
@@ -3100,7 +3666,7 @@
                                                 <td>Withdraw</td>
                                                 <td>AAA-13-002002S00S0SAJ</td>
                                                 <td>2,000,000.00</td>                                         
-                                                <td>HO MBTC</td>
+                                                <td>AREA MBTC</td>
                                                 <td class="AAA">AAA</td>
                                                 <td>1234: DELA CRUZ JUAN</td>
                                                 <td>311010 SA AREA MBTC EUPI-BAYAWAN CITY-NEGROS ORIENTAL:6450/2110-102-133-6452</td>
@@ -3122,7 +3688,7 @@
                                                 <td>Withdraw</td>
                                                 <td>AAW-13-002002S00S0SAS</td>
                                                 <td>12,000,000.00</td>
-                                                <td>HO MBTC</td>
+                                                <td>AREA MBTC</td>
                                                 <td class="AAW">AAW</td>
                                                 <td>1234: DELA CRUZ JUAN</td>
                                                 <td>311010 SA AREA MBTC EUPI-BAYAWAN CITY-NEGROS ORIENTAL:6450/2110-102-133-6452</td>
@@ -3317,7 +3883,7 @@
             
                
              </nav><br><br>
-             <nav style="width: 460px;margin-top:10px"">
+             <nav style="width: 460px;margin-top:10px">
               <nav style="width: 240px;">
                <li style="font-size:12px; color:grey;margin-top:10px;">Transfer Type</li>
                <input type="text" id="pastetype"  style="width:220px; font-size:15px;"  placeholder="" disabled>
@@ -3485,7 +4051,7 @@
                         <div class="dropdown" >
                         <input type="text" id="newftamt" placeholder=""
                         style="width:200px; border:none;font-size: 12px; margin-left:10px;margin-top:5px;"
-                        oninput="validateInput(event)" onblur="formatNumber(event)" 
+                        oninput="validateInput(event)" onblur="this.value = formatNumber(this.value)"
                         onkeypress="checkEnter(event)">                
                         <legend id="namt" for = "newftamt" style="font-size: 11px; margin-left:5px;">Amount</legend>
                       </div> 
@@ -3636,7 +4202,7 @@
                   
     
                   <nav style="width: 460px;"><br>
-                    <button type="button" id="Ft-btn-close" onclick="closeOverlay('overlay1')" class="custom-button-gray" style="width:70px; float:right;">Close</button>
+                    <button type="button" id="Ft-btn-close" onclick="closeOverlay('overlay1')" class="custom-button-gray" style="width:70px; float:right; color:white;">Close</button>
                     <button type="button" id="FT-btn-save-overlay1"  onclick="saveftnew()" style="width:70px;  float:right;margin-right: 10px;" class="custom-button-blue">Save</button>
                   
                   </nav><br>
@@ -3743,7 +4309,7 @@
               </nav>
               
               <nav style="width: 30px;"><br>
-                <button type="button" class="toggle-btn" id="toggleButton" style="width:30px;height:50px;margin-top:15px; float:right;">
+                <button type="button" class="expand-btn" id="toggleButton" onclick="expandview()" style="width:30px;height:50px;margin-top:15px; float:right;">
                 <i class="fa-solid fa-circle-arrow-right"></i></button>   
               </nav>
              
@@ -3769,7 +4335,7 @@
           </fieldset>      
 
  
-          <fieldset class="form-content" id="formContent" style="   width: 410px; border:1px solid #cecbcb ; padding: 15px;border-radius: 0px; 
+          <fieldset class="form-content" id="formContent" style=" width: 410px; border:1px solid #cecbcb ; padding: 15px;border-radius: 0px; 
           height:410px; margin-left:0px; margin-top:0px;">       
                
             <nav style="width: 410px;">
@@ -3817,7 +4383,7 @@
              </nav><br>   
              
              
-             <nav style="width: 410px;">
+            <!---- <nav style="width: 410px;">
              <table id="transaction-logs" class="logs"  >
               <thead style="height:10px;">
 
@@ -3834,7 +4400,7 @@
 
               </tbody>
             </table>
-            </nav>
+            </nav> ----->
 
         
             </fieldset>     
@@ -3842,11 +4408,12 @@
     
       </div>
       <nav style="min-width: 410px; margin-top: 15px; float:right;">
-        <button type="button" id="Ft-btn-close" onclick="closeOverlay('overlay2')" class="custom-button-gray" style="width:70px; margin-right:10px;float:right;">Close</button>
+        <button type="button" id="Ft-btn-close" onclick="closeOverlay('overlay2')" class="custom-button-gray" style="width:70px; margin-right:10px;float:right; color: white;">Close</button>
         <button type="button" id="FT-btn-save-overlay2" style="width:70px; float:right;margin-right: 10px;" class="custom-button-blue" onclick="alert('Button Cancelled!')">Save</button>
         <button type="button" id="FT-btn-cancel-new-overlay2" onclick="openSubOverlay('suboverlay2','cancel-new')" style="width:70px;  float:right;margin-right: 10px;" class="custom-button-red" >Void</button>
         <button type="button" id="FT-btn-cancel-ack-overlay2" onclick="openSubOverlay('suboverlay2','cancel-ack')" style="width:170px;  float:right;margin-right: 10px;" class="custom-button-red" >Cancel Acknowledged</button>
-        <button type="button" id="FT-btn-ack-overlay2" onclick="openSubOverlay('suboverlay2','ack')" style="width:100px;  float:right;margin-right: 10px;" class="custom-button-blue" >Acknowledge</button>
+        <button type="button" id="FT-btn-ack-overlay2" onclick="acknowledgemessage('ack')" style="width:100px;  float:right;margin-right: 10px;" class="custom-button-blue" >Acknowledge</button>
+        <!---- <button type="button" id="FT-btn-ack-overlay2" onclick="openSubOverlay('suboverlay2','ack')" style="width:100px;  float:right;margin-right: 10px;" class="custom-button-blue" >Acknowledge</button>--->
         <button type="button" id="FT-btn-deny-overlay2" onclick="openSubOverlay('suboverlay2','deny')" style="width:70px;  float:right;margin-right: 10px;" class="custom-button-red" >Deny</button>
         <button type="button" id="FT-btn-cancel-denied-overlay2" onclick="openSubOverlay('suboverlay2','cancel-deny')" style="width:70px; background-color: rgb(21, 185, 21); float:right;margin-right: 10px;" class="custom-button-blue" >Recall</button>
         <button type="button" id="FT-btn-flag-overlay2" onclick="openSubOverlay('suboverlay2','flag')" style="width:150px;  float:right;margin-right: 10px;" class="custom-button-white" >Flag as Under Review</button>
@@ -3861,6 +4428,48 @@
 </div>
 
 </div>
+
+
+
+          <div id="ackconfirmation" class="suboverlay" style="background-color: transparent;">
+              <div class="modal" style="min-height: 200px; background-color: #eeeded;">
+            
+                <nav style="width: 100%;" >
+                <li style="font-weight: lighter;"> Confirmation!
+                  
+                </nav>
+                  <fieldset style="box-shadow: none; border-top: 1px solid gray; height: 150px;padding:0; ">
+                    <fieldset style="box-shadow: none;" >
+                    <nav style="width: 100%; height: 50%; margin-top:20px;">
+                      <nav style="width:20%;" >
+                    <i class="fa-solid fa-circle-info" style="margin-right:10px; font-size:50px; color:blue"></i>
+                     </nav>
+                     <nav style="width: 80%;" >
+                    <textarea id="ackmessage"  rows="5" col="10" style="font-size: 16px; background-color: #eeeded;
+                     border:none; width: 100%; height: 20%; font-weight: lighter;">
+                   </textarea>
+                  </nav>
+                  </nav>
+                 </fieldset>
+            
+                
+            
+                  <a><button type="button" id="bcas-btn-viewack" style=" width:50px; float:right;"
+                    onclick="closeackftnew('ackconfirmation')"class="custom-button-gray">
+                   No</button></a>
+            
+                   <a><button type="button" id="bcas-btn-viewack" style=" width:50px; float:right;"
+                    onclick="ackvalidateconfirm('ft-data-table', 2, 10, 'banktable', 1, 10,  'suboverlay2', 'overlay2')"class="custom-button-blue">
+                   Yes</button></a>
+
+
+   
+      </fieldset>
+
+  </div>  <!-----modal-->
+ </div>   <!-----suboverlay--------->
+
+
 <div id="suboverlay2" class="suboverlay">
   <div class="modal"style="min-width:430px; >
 
@@ -3869,10 +4478,11 @@
     </i> <input type="text" id="row-suboverlay2" style="border:none; font-size: 20px; width: 300px;"></li>
   
   </li> <br>
-      <fieldset style=" border:1px solid #cecbcb ; padding: 15px;border-radius: 0px; height:80%; margin:5;  box-shadow:none;">
+      <fieldset style=" border:1px solid #cecbcb ; padding: 15px;border-radius: 0px; height:80%; margin:5;  box-shadow:none; ">
         
          
-         <nav style="width: 350px;  justify-items: center; margin-bottom: 20px; ">
+         <nav style="width: 350px; margin-bottom: 20px;  
+            display: flex; flex-direction: column; align-items: center;">
           <li stype="font-weight: none; margin-top: 30px;"> Enter the CAPTCHA Below</li>
           
           <div class="captcha-image" id="captcha-code-suboverlay2">
@@ -3881,7 +4491,8 @@
                          
           <input type="text"  id="captcha-input-suboverlay2" placeholder="Enter Captcha" style="font-size: 20px; height:40px; width:250px; margin-top: 20px; border-bottom: 1px solid black; text-align: center;" >
             <p id="message-suboverlay2" style="font-size: 15px;"></p>
-          </nav>
+         </nav>
+
           <nav style="width: 300px;  justify-items: center;">
           <li style="float:left; margin-top:10px;font-size:12px; color:gray">Remarks:</li>
           <input type="text" id="remaks-suboverlay2" style="font-size: 18px; text-transform: uppercase; height:20px; width:350px; margin-top: 10px; border-bottom: 1px solid black;" >
@@ -3891,10 +4502,10 @@
           <button type="button" class="custom-button-blue" onclick="validateCaptcha('ft-data-table', 2, 10, 'banktable', 1, 10,  'suboverlay2', 'overlay2')" style=" margin-top:30px; width:250px; ">Confirm</button> <br>
           <button type="button" class="custom-button-blue" onclick="regenerateCaptcha('suboverlay2')" style="margin-top:10px; width:250px;">Regenerate CAPTCHA</button><br>
           <button type="button" class="custom-button-gray" onclick="closeSubOverlay('suboverlay2')"  style=" margin-top:10px; width:250px;">Close</button>
-        </nav>
-   
+          </nav>      
+
       </fieldset>
-  
+
   </div>  <!-----modal-->
  </div>   <!-----suboverlay--->
 
@@ -3922,6 +4533,401 @@
   </div>
 </div>
 
+<!------------------------------------------------------------CAMIS Settlement Setup (Feature 5)----------------------------------------------->
+<div id="content-tab-settle-setup" class="content"><br>
+  <div class="form-container">
+    <form style="min-width:1100px;">
+      <header style="font-size:16px; background-color:rgb(7,21,110); height:35px; margin-bottom:10px; padding:10px; box-shadow:none;">
+        <i class="fas fa-gear" style="margin-right:15px; font-size:12px;"></i>Settlement Setup</header>
+
+      <button type="button" onclick="openProfileForm(null)" class="custom-button-blue"
+        style="float:right; margin-right:20px; margin-bottom:10px; width:130px;">
+        <i class="fas fa-square-plus" style="float:left;color:white;font-size:14px;margin-left:10px;"></i>Add Profile</button>
+      <br><br>
+
+      <fieldset style="width:99%; margin:5px; box-shadow:none; border:3px solid black; height:400px;">
+        <div class="table-container">
+          <table class="ftscroll" id="settlementProfilesTable" style="height:360px;">
+            <thead>
+              <tr>
+                <th style="width:40px;">View</th>
+                <th>Main Template</th>
+                <th>Status</th>
+                <th>Requires Employee</th>
+                <th>Closing Template</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </fieldset>
+
+      <!-- Profile Form Overlay -->
+      <div id="settlementProfileForm" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%;
+        background:rgba(0,0,0,0.5); z-index:1000; justify-content:center; align-items:center;">
+        <div style="background:#fff; padding:20px; min-width:560px; max-height:90vh; overflow-y:auto; border-radius:4px;">
+          <li style="font-weight:700; font-size:15px;"><i class="fas fa-gear" style="margin-right:10px; color:rgb(7,21,110);"></i>Settlement Profile</li><br>
+          <fieldset style="border:1px solid #ccc; padding:15px; box-shadow:none;">
+
+            <nav style="margin-bottom:12px; display:flex; gap:20px; align-items:center;">
+              <label style="font-size:13px;">
+                <input type="checkbox" id="profileIsActive" checked style="margin-right:6px;">Active
+              </label>
+              <label style="font-size:13px;">
+                <input type="checkbox" id="profileRequiresEmployee" style="margin-right:6px;">Requires Employee
+              </label>
+            </nav>
+
+            <nav style="margin-bottom:12px;">
+              <label style="font-size:13px; color:gray;">Main Template:</label><br>
+              <input type="text" id="profileMainTemplate"
+                style="width:100%; font-size:13px; border:none; border-bottom:1px solid #ccc;">
+            </nav>
+
+            <nav style="margin-bottom:12px;">
+              <label style="font-size:13px; color:gray;">Branch Closing Template:</label><br>
+              <input type="text" id="profileClosingTemplate"
+                style="width:100%; font-size:13px; border:none; border-bottom:1px solid #ccc;">
+            </nav>
+
+            <nav style="margin-bottom:8px;">
+              <label style="font-size:13px; color:gray; font-weight:bold;">Head Office Accounts:</label>
+              <button type="button" onclick="addHOAccountRow()" class="custom-button-blue"
+                style="float:right; width:100px; font-size:12px;">+ Add Row</button>
+            </nav>
+            <table style="width:100%; border-collapse:collapse; margin-bottom:12px;">
+              <thead>
+                <tr style="background:#f0f0f0;">
+                  <th style="font-size:12px; padding:4px; text-align:left;">Account</th>
+                  <th style="font-size:12px; padding:4px; text-align:center;">Reverse Normality</th>
+                  <th style="width:40px;"></th>
+                </tr>
+              </thead>
+              <tbody id="hoAccountsTable"></tbody>
+            </table>
+
+            <nav style="text-align:right; margin-top:10px;">
+              <button type="button" onclick="document.getElementById('settlementProfileForm').style.display='none'"
+                class="custom-button-gray" style="width:80px; margin-right:10px;">Cancel</button>
+              <button type="button" onclick="submitProfileForm()" class="custom-button-blue" style="width:80px;">Save</button>
+            </nav>
+          </fieldset>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!------------------------------------------------------------CAMIS Settlement Window (Feature 7)---------------------------------------------->
+<div id="content-tab-camis-settle" class="content"><br>
+  <div class="form-container">
+    <form style="min-width:1100px;">
+      <header style="font-size:16px; background-color:rgb(7,21,110); height:35px; margin-bottom:10px; padding:10px; box-shadow:none;">
+        <i class="fas fa-money-bill-transfer" style="margin-right:15px; font-size:12px;"></i>CAMIS Settlement Window</header>
+
+      <!-- Filter bar -->
+      <fieldset style="width:99%; margin:5px; box-shadow:none; border:1px solid #ccc; padding:10px;">
+        <nav style="display:flex; gap:10px; flex-wrap:wrap; align-items:flex-end;">
+          <div>
+            <label style="font-size:12px; color:gray;">Date From:</label><br>
+            <input type="date" id="camisSETDatefr" style="font-size:12px; width:150px;">
+          </div>
+          <div>
+            <label style="font-size:12px; color:gray;">Date To:</label><br>
+            <input type="date" id="camisSETDateto" style="font-size:12px; width:150px;">
+          </div>
+          <div>
+            <label style="font-size:12px; color:gray;">Area:</label><br>
+            <input type="text" id="camisSETArea" placeholder="All Areas" style="font-size:12px; width:120px; border:none; border-bottom:1px solid #ccc;">
+          </div>
+          <div>
+            <label style="font-size:12px; color:gray;">Branch:</label><br>
+            <input type="text" id="camisSETBranch" placeholder="All Branches" style="font-size:12px; width:120px; border:none; border-bottom:1px solid #ccc;">
+          </div>
+          <div>
+            <label style="font-size:12px; color:gray;">Status (multi-select):</label><br>
+            <select id="camisSettleStatusList" multiple style="font-size:12px; width:160px; height:60px;">
+              <option value="Unsettled">Unsettled</option>
+              <option value="Partial">Partial</option>
+              <option value="Settled">Settled</option>
+            </select>
+          </div>
+          <div>
+            <label style="font-size:12px; color:gray;">Employee No.:</label><br>
+            <input type="text" id="camisSETEmp" placeholder="All" style="font-size:12px; width:120px; border:none; border-bottom:1px solid #ccc;">
+          </div>
+          <div style="align-self:flex-end;">
+            <button type="button" onclick="filterCamisSettlements()" class="custom-button-blue" style="width:100px;">
+              <i class="fas fa-filter" style="margin-right:5px;"></i>Filter</button>
+            <button type="button" onclick="exportCamisSettlementsExcel(window._camisSettleFilters||{})"
+              class="custom-button-gray" style="width:100px; margin-left:5px;">
+              <i class="fas fa-download" style="margin-right:5px;"></i>Export</button>
+          </div>
+        </nav>
+      </fieldset>
+
+      <fieldset style="width:99%; margin:5px; box-shadow:none; border:3px solid black; height:380px;">
+        <div class="table-container">
+          <table class="ftscroll" id="CAMISsettletable" style="height:340px;">
+            <thead>
+              <tr>
+                <th style="width:40px;">View</th>
+                <th>Date</th>
+                <th>Area</th>
+                <th>Branch</th>
+                <th>Template</th>
+                <th>Employee No.</th>
+                <th>Employee Name</th>
+                <th>Amount</th>
+                <th>Settled</th>
+                <th>Remaining</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </fieldset>
+
+      <!-- CAMIS Settle Record Overlay -->
+      <div id="camisSettleOverlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%;
+        background:rgba(0,0,0,0.5); z-index:1000; justify-content:center; align-items:center;">
+        <div style="background:#fff; padding:20px; min-width:500px; border-radius:4px;">
+          <li style="font-weight:700; font-size:15px;">Settle Record</li><br>
+          <fieldset style="border:1px solid #ccc; padding:15px; box-shadow:none;">
+            <nav style="display:flex; gap:12px; flex-wrap:wrap; margin-bottom:10px;">
+              <div><label style="font-size:12px; color:gray;">Date:</label><br>
+                <input type="text" id="camisSetDate" readonly style="font-size:12px; width:120px; border:none; border-bottom:1px solid #ccc; color:gray;"></div>
+              <div><label style="font-size:12px; color:gray;">Branch:</label><br>
+                <input type="text" id="camisSetBranch" readonly style="font-size:12px; width:100px; border:none; border-bottom:1px solid #ccc; color:gray;"></div>
+              <div><label style="font-size:12px; color:gray;">Area:</label><br>
+                <input type="text" id="camisSetArea" readonly style="font-size:12px; width:100px; border:none; border-bottom:1px solid #ccc; color:gray;"></div>
+            </nav>
+            <nav style="display:flex; gap:12px; flex-wrap:wrap; margin-bottom:10px;">
+              <div><label style="font-size:12px; color:gray;">Employee:</label><br>
+                <input type="text" id="camisSetEmp" readonly style="font-size:12px; width:200px; border:none; border-bottom:1px solid #ccc; color:gray;"></div>
+              <div><label style="font-size:12px; color:gray;">Amount:</label><br>
+                <input type="text" id="camisSetAmount" readonly style="font-size:12px; width:120px; border:none; border-bottom:1px solid #ccc; color:gray;"></div>
+              <div><label style="font-size:12px; color:gray;">Settled:</label><br>
+                <input type="text" id="camisSetSettled" readonly style="font-size:12px; width:120px; border:none; border-bottom:1px solid #ccc; color:gray;"></div>
+              <div><label style="font-size:12px; color:gray;">Remaining:</label><br>
+                <input type="text" id="camisSetRemaining" readonly style="font-size:12px; width:120px; border:none; border-bottom:1px solid #ccc; color:gray;"></div>
+              <div><label style="font-size:12px; color:gray;">Status:</label><br>
+                <input type="text" id="camisSetStatus" readonly style="font-size:12px; width:100px; border:none; border-bottom:1px solid #ccc; color:gray;"></div>
+            </nav>
+            <nav style="text-align:right; margin-top:10px;">
+              <button type="button" onclick="document.getElementById('camisSettleOverlay').classList.remove('show'); document.getElementById('camisSettleOverlay').style.display='none';"
+                class="custom-button-gray" style="width:80px;">Close</button>
+            </nav>
+          </fieldset>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!------------------------------------------------------------CAMIS Earning Setup (Feature 8)-------------------------------------------------->
+<div id="content-tab12" class="content"><br>
+  <div class="form-container">
+    <form style="min-width:1100px;">
+      <header style="font-size:16px; background-color:rgb(7,21,110); height:35px; margin-bottom:10px; padding:10px; box-shadow:none;">
+        <i class="fas fa-money-bill-1" style="margin-right:15px; font-size:12px;"></i>Manage Earning Setup</header>
+
+      <button type="button" onclick="openEarningSetupForm(null)" class="custom-button-blue"
+        style="float:right; margin-right:20px; margin-bottom:10px; width:130px;">
+        <i class="fas fa-square-plus" style="float:left;color:white;font-size:14px;margin-left:10px;"></i>Add Item</button>
+      <br><br>
+
+      <fieldset style="width:99%; margin:5px; box-shadow:none; border:3px solid black; height:400px;">
+        <div class="table-container">
+          <table class="ftscroll" id="earningSetupTable" style="height:360px;">
+            <thead>
+              <tr>
+                <th style="width:40px;">Edit</th>
+                <th>Name</th>
+                <th>With Activation</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </fieldset>
+
+      <!-- Earning Setup Form Overlay -->
+      <div id="earningSetupForm" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%;
+        background:rgba(0,0,0,0.5); z-index:1000; justify-content:center; align-items:center;">
+        <div style="background:#fff; padding:20px; min-width:400px; border-radius:4px;">
+          <li style="font-weight:700; font-size:15px;"><i class="fas fa-money-bill-1" style="margin-right:10px; color:rgb(7,21,110);"></i>Earning Item</li><br>
+          <fieldset style="border:1px solid #ccc; padding:15px; box-shadow:none;">
+            <nav style="margin-bottom:12px;">
+              <label style="font-size:13px; color:gray;">Item Name:</label><br>
+              <input type="text" id="earningItemName"
+                style="width:100%; font-size:13px; border:none; border-bottom:1px solid #ccc;">
+            </nav>
+            <nav style="margin-bottom:12px; display:flex; gap:20px;">
+              <label style="font-size:13px;">
+                <input type="checkbox" id="earningWithActivation" style="margin-right:6px;">With Activation
+              </label>
+              <label style="font-size:13px;">
+                <input type="checkbox" id="earningIsActive" checked style="margin-right:6px;">Active
+              </label>
+            </nav>
+            <nav style="text-align:right; margin-top:10px;">
+              <button type="button" onclick="document.getElementById('earningSetupForm').style.display='none'"
+                class="custom-button-gray" style="width:80px; margin-right:10px;">Cancel</button>
+              <button type="button" onclick="submitEarningSetupForm()" class="custom-button-blue" style="width:80px;">Save</button>
+            </nav>
+          </fieldset>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!------------------------------------------------------------CAMIS Employee Earnings (Feature 9)---------------------------------------------->
+<div id="content-tab11" class="content"><br>
+  <div class="form-container">
+    <form style="min-width:1100px;">
+      <header style="font-size:16px; background-color:rgb(7,21,110); height:35px; margin-bottom:10px; padding:10px; box-shadow:none;">
+        <i class="fas fa-money-bill-1" style="margin-right:15px; font-size:12px;"></i>Add Employee Earnings</header>
+
+      <fieldset style="width:99%; margin:5px; box-shadow:none; border:1px solid #ccc; padding:10px;">
+        <nav style="display:flex; gap:12px; flex-wrap:wrap; margin-bottom:10px;">
+          <div>
+            <label style="font-size:12px; color:gray;">Date:</label><br>
+            <input type="text" id="earningDate" readonly
+              style="font-size:12px; width:140px; border:none; border-bottom:1px solid #ccc; color:gray;">
+          </div>
+          <div>
+            <label style="font-size:12px; color:gray;">Earning Item:</label><br>
+            <select id="earningItemSelect" style="font-size:12px; width:220px; height:28px;">
+              <option value="">-- select item --</option>
+            </select>
+          </div>
+        </nav>
+
+        <!-- Employee list table -->
+        <div class="table-container" style="max-height:200px; overflow-y:auto; margin-bottom:10px;">
+          <table style="width:100%; border-collapse:collapse;" id="earningEmployeeTable">
+            <thead style="background:#f0f0f0;">
+              <tr>
+                <th style="font-size:12px; padding:4px;">Employee No.</th>
+                <th style="font-size:12px; padding:4px;">Employee Name</th>
+                <th style="font-size:12px; padding:4px;">Amount</th>
+                <th style="width:40px;"></th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+
+        <!-- Add employee row -->
+        <nav style="display:flex; gap:10px; align-items:flex-end; margin-bottom:10px;">
+          <div>
+            <label style="font-size:12px; color:gray;">Add Employee:</label><br>
+            <select id="earningEmpSelect" style="font-size:12px; width:220px; height:28px;">
+              <option value="">-- select employee --</option>
+            </select>
+          </div>
+          <button type="button" onclick="addEarningEmployee()" class="custom-button-blue" style="width:80px; height:28px; font-size:12px;">Add</button>
+        </nav>
+
+        <nav style="display:flex; gap:12px; align-items:flex-end; margin-bottom:10px;">
+          <div>
+            <label style="font-size:12px; color:gray;">Total Amount:</label><br>
+            <input type="text" id="earningTotalAmount" readonly
+              style="font-size:12px; width:140px; border:none; border-bottom:1px solid #ccc; color:gray; text-align:right;">
+          </div>
+          <div style="flex:1;">
+            <label style="font-size:12px; color:gray;">Remarks (<span id="earningRemarksCount">0</span>/50):</label><br>
+            <textarea id="earningRemarks" maxlength="50" rows="2"
+              oninput="document.getElementById('earningRemarksCount').textContent=this.value.length"
+              style="width:100%; font-size:12px; border:1px solid #ccc; resize:none;"></textarea>
+          </div>
+        </nav>
+
+        <nav style="text-align:right;">
+          <button type="button" onclick="saveEarningEntry()" class="custom-button-blue" style="width:100px;">Save</button>
+        </nav>
+      </fieldset>
+    </form>
+  </div>
+</div>
+
+<!------------------------------------------------------------CAMIS Earnings Report (Feature 10)---------------------------------------------->
+<div id="content-tab10" class="content"><br>
+  <div class="form-container">
+    <form style="min-width:1100px;">
+      <header style="font-size:16px; background-color:rgb(7,21,110); height:35px; margin-bottom:10px; padding:10px; box-shadow:none;">
+        <i class="fas fa-file-lines" style="margin-right:15px; font-size:12px;"></i>Earnings Report</header>
+
+      <!-- Filter bar -->
+      <fieldset style="width:99%; margin:5px; box-shadow:none; border:1px solid #ccc; padding:10px;">
+        <nav style="display:flex; gap:10px; flex-wrap:wrap; align-items:flex-end;">
+          <div>
+            <label style="font-size:12px; color:gray;">Date From:</label><br>
+            <input type="date" id="earningsReportFrom" style="font-size:12px; width:150px;">
+          </div>
+          <div>
+            <label style="font-size:12px; color:gray;">Date To:</label><br>
+            <input type="date" id="earningsReportTo" style="font-size:12px; width:150px;">
+          </div>
+          <div>
+            <label style="font-size:12px; color:gray;">Item:</label><br>
+            <select id="earningsReportItem" style="font-size:12px; width:180px; height:28px;">
+              <option value="">All Items</option>
+            </select>
+          </div>
+          <div>
+            <label style="font-size:12px; color:gray;">Employee Type:</label><br>
+            <select id="earningsEmpTypeFilter" style="font-size:12px; width:200px; height:28px;">
+              <option value="Both">Both</option>
+              <option value="Associate and Regular SG">Associate and Regular SG</option>
+              <option value="Security Guard">Security Guard</option>
+            </select>
+          </div>
+          <div>
+            <label style="font-size:12px; color:gray;">Status:</label><br>
+            <select id="earningsStatusFilter" style="font-size:12px; width:160px; height:28px;">
+              <option value="All">All</option>
+              <option value="Approved">Approved</option>
+              <option value="Pending Activation">Pending Activation</option>
+              <option value="Rejected">Rejected</option>
+            </select>
+          </div>
+          <div style="align-self:flex-end;">
+            <button type="button" id="earningsReportFilter" class="custom-button-blue" style="width:80px;">
+              <i class="fas fa-filter" style="margin-right:5px;"></i>Filter</button>
+            <button type="button" id="earningsReportExport" class="custom-button-gray" style="width:80px; margin-left:5px;">
+              <i class="fas fa-download" style="margin-right:5px;"></i>Export</button>
+          </div>
+        </nav>
+      </fieldset>
+
+      <fieldset style="width:99%; margin:5px; box-shadow:none; border:3px solid black; height:380px;">
+        <div class="table-container">
+          <table class="ftscroll" id="earningsReportTable" style="height:340px;">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Item</th>
+                <th>Employee No.</th>
+                <th>Employee Name</th>
+                <th>Employee Type</th>
+                <th>Amount</th>
+                <th>Status</th>
+                <th>Remarks</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</div>
+
     <div id="xnotification" class="xnotification" >
       <p style="font-size: 14px; margin:10px;" id="xnotify"> </p>
     </div>   
@@ -3935,24 +4941,448 @@
 
 </body>
 
-<script src="camis_user_permission.js"></script>
+<!-- Legacy non-module scripts (UI helpers, encryption, table utils) -->
 <script src="general_script.js"></script>
 <script src="table.js"></script>
 <script src="arrow.js"></script>
 <script src="bcas.js"></script>
-<script src="bcas_ft_save_new.js"></script>
-<script src="bcas_ft_void.js"></script>
 <script src="bcas_ft_encryp.js"></script>
 <script src="bcas_ft_decrypt_update.js"></script>
 <script src="bcas_ft_retry.js"></script>
-<script src="bcas_transaction_upload.js"></script>
+<script src="bcas_ft_fetch_online.js"></script>
+<script src="bcas_settle_dropdownfilter.js"></script>
 <script src="camis_ft_copy_encrypt.js"></script>
 <script src="camis_ft_captcha.js"></script>
 <script src="camis_ft_offline_update.js"></script>
 <script src="camis_ft_filter_table.js"></script>
-<script src="camis_ft_add_new.js"></script>
-<script src="camis_ft_list_download.js"></script>
 <script src="camis_ft_recon_report.js"></script>
 <script src="camis_ft_recon_dropdown.js"></script>
+<script src="camis_ft_list_download.js"></script>
+<script src="camis_ft_add_new.js"></script>
+<script src="camis_user_permission.js"></script>
+
+<!-- Firestore-backed modules -->
+<script type="module">
+  import { initAuthGuard }          from './auth_guard.js';
+  import { initBcasTransactions }   from './bcas_transactions.js';
+  import { initBcasFundTransfers }  from './bcas_fund_transfers.js';
+  import { initBcasSettlements }    from './bcas_settlements.js';
+  import { initCamisFT }            from './camis_ft.js';
+  import { initCamisSettlements, renderCamisSettlementTable, openProfileForm, submitProfileForm } from './camis_settlements.js';
+  import { initCamisEarnings, openEarningSetupForm, submitEarningSetupForm, saveEmployeeEarnings, loadEarningSetup, renderEarningEmployeeRows } from './camis_earnings.js';
+  import {
+    saveEmployee, resolveDefaultEmployeeNumber, validateEditingRules,
+  } from './bcas_employees.js';
+  import { todayISO } from './db_service.js';
+  import {
+    buildAutoRemarks, validateShortageTag, REASON_OPTIONS, getShortageGroup,
+  } from './bcas_transactions.js';
+  import { db, COLLECTIONS } from './firebase.js';
+  import {
+    collection, query, where, getDocs,
+  } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+
+  // ── Cash Shortage panel handlers ─────────────────────────────────────────
+  // Called when account code changes in the transaction entry form
+  window.onAccountCodeChange = function (accountCode) {
+    const group = getShortageGroup(accountCode);
+    const panel   = document.getElementById('cashShortagePanel');
+    const generic = document.getElementById('genericTagsPanel');
+    if (!panel || !generic) return;
+
+    if (group) {
+      panel.style.display   = 'block';
+      generic.style.display = 'none';
+      // Set date incurred default to today
+      const dateEl = document.getElementById('shortDateIncurred');
+      if (dateEl) {
+        dateEl.value = todayISO();
+        dateEl.max   = todayISO();
+      }
+      // Populate reason dropdown
+      const reasonSel = document.getElementById('shortReason');
+      if (reasonSel) {
+        reasonSel.innerHTML = '<option value="">-- select reason --</option>';
+        (REASON_OPTIONS[group] || []).forEach(r => {
+          const opt = document.createElement('option');
+          opt.value = r; opt.textContent = r;
+          reasonSel.appendChild(opt);
+        });
+      }
+      // Load associate employees into dropdown
+      _loadAssociateEmployees();
+    } else {
+      panel.style.display   = 'none';
+      generic.style.display = 'block';
+    }
+    _updateShortageRemarks();
+  };
+
+  async function _loadAssociateEmployees() {
+    const sel = document.getElementById('shortEmpNumber');
+    if (!sel) return;
+    sel.innerHTML = '<option value="">-- select employee --</option>';
+    try {
+      const q = query(collection(db, COLLECTIONS.BCAS_EMPLOYEES), where('employeeType', '==', 'Associate'));
+      const snap = await getDocs(q);
+      snap.docs.forEach(d => {
+        const e = d.data();
+        const opt = document.createElement('option');
+        opt.value = e.employeeNumber;
+        opt.textContent = `${e.employeeNumber}: ${e.firstName} ${e.surname}`;
+        opt.dataset.name = `${e.firstName} ${e.middleInitial ? e.middleInitial + '. ' : ''}${e.surname}`;
+        sel.appendChild(opt);
+      });
+    } catch (err) { console.error('Failed to load employees:', err); }
+  }
+
+  window.onShortageEmpChange = function () {
+    const sel = document.getElementById('shortEmpNumber');
+    const nameEl = document.getElementById('shortEmpName');
+    if (!sel || !nameEl) return;
+    const selected = sel.options[sel.selectedIndex];
+    nameEl.value = selected?.dataset?.name || '';
+    _updateShortageRemarks();
+  };
+
+  window.onShortageReasonChange = function () {
+    const reason = document.getElementById('shortReason')?.value || '';
+    const otherEl = document.getElementById('shortOtherReason');
+    if (otherEl) {
+      const needsOther = ['Others', 'PEPP Transaction', 'Bank Transaction'].includes(reason);
+      otherEl.disabled = !needsOther;
+      if (!needsOther) otherEl.value = '';
+    }
+    _updateShortageRemarks();
+  };
+
+  window.onShortageFieldChange = function () { _updateShortageRemarks(); };
+
+  function _updateShortageRemarks() {
+    const tag = _getShortageTag();
+    const txnDate = document.getElementById('trnxDate')?.value || todayISO();
+    const remarksEl = document.getElementById('shortAutoRemarks');
+    if (remarksEl && tag.dateIncurred && tag.employeeName) {
+      remarksEl.value = buildAutoRemarks(tag, txnDate);
+    }
+  }
+
+  function _getShortageTag() {
+    return {
+      dateIncurred  : document.getElementById('shortDateIncurred')?.value  || '',
+      employeeNumber: document.getElementById('shortEmpNumber')?.value     || '',
+      employeeName  : document.getElementById('shortEmpName')?.value       || '',
+      reason        : document.getElementById('shortReason')?.value        || '',
+      otherReason   : document.getElementById('shortOtherReason')?.value   || '',
+    };
+  }
+
+  // Expose for use by savebcastransaction (called from general_script.js)
+  window.getShortageTagData = function () {
+    const panel = document.getElementById('cashShortagePanel');
+    if (!panel || panel.style.display === 'none') return null;
+    const tag = _getShortageTag();
+    const errors = validateShortageTag(tag);
+    if (errors.length) { alert(errors.join('\n')); return false; }
+    return { ...tag, autoRemarks: document.getElementById('shortAutoRemarks')?.value || '' };
+  };
+
+  // ── Manage Employee window handlers ──────────────────────────────────────
+  window.openAddEmployeeWindow = function () {
+    const overlay = document.getElementById('addEmployeeOverlay');
+    if (!overlay) return;
+    // Set datetime to now (read-only display)
+    const dtEl = document.getElementById('empDatetime');
+    if (dtEl) dtEl.value = new Date().toLocaleString('en-PH');
+    // Reset form
+    ['empRole','empSchedule','empFirstName','empMiddleInitial','empSurname'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.value = el.tagName === 'SELECT' ? '' : '';
+    });
+    const numSel = document.getElementById('empNumber');
+    if (numSel) { numSel.innerHTML = '<option value="">-- select role first --</option>'; }
+    overlay.style.display = 'flex';
+  };
+
+  window.closeAddEmployeeWindow = function () {
+    const overlay = document.getElementById('addEmployeeOverlay');
+    if (overlay) overlay.style.display = 'none';
+  };
+
+  window.onEmpRoleChange = async function () {
+    const role = document.getElementById('empRole')?.value || '';
+    const numSel = document.getElementById('empNumber');
+    if (!numSel || !role) return;
+
+    const defaultNum = await resolveDefaultEmployeeNumber(role);
+    const isSG = role.includes('SG') || role.includes('Security Guard');
+
+    numSel.innerHTML = '';
+    // Add default option
+    const opt = document.createElement('option');
+    opt.value = defaultNum;
+    opt.textContent = defaultNum;
+    numSel.appendChild(opt);
+
+    // If SG0000 placeholder, also show it as the only option (will be replaced on save)
+    if (!isSG) {
+      // For associates, allow manual entry by also adding a blank option
+      const blank = document.createElement('option');
+      blank.value = '';
+      blank.textContent = '-- enter manually --';
+      numSel.insertBefore(blank, numSel.firstChild);
+    }
+  };
+
+  window.submitAddEmployee = async function () {
+    const role     = document.getElementById('empRole')?.value?.trim()          || '';
+    const schedule = document.getElementById('empSchedule')?.value              || 'fulltime';
+    const empNo    = document.getElementById('empNumber')?.value?.trim()         || '';
+    const firstName= document.getElementById('empFirstName')?.value?.trim()      || '';
+    const mi       = document.getElementById('empMiddleInitial')?.value?.trim()  || '';
+    const surname  = document.getElementById('empSurname')?.value?.trim()        || '';
+
+    if (!role || !firstName || !surname) {
+      alert('Role, First Name, and Surname are required.');
+      return;
+    }
+
+    const validation = await validateEditingRules(role, schedule);
+    if (!validation.valid) {
+      alert(validation.message);
+      return;
+    }
+
+    try {
+      await saveEmployee({
+        role, schedule,
+        employeeNumber: empNo || 'SG0000',
+        firstName, middleInitial: mi, surname,
+        employeeType: (role.includes('SG') || role.includes('Security Guard')) ? 'SG' : 'Associate',
+        status: 'Active',
+        branchCode: document.getElementById('Bcasbranch')?.value || '',
+        createdAt: new Date().toISOString(),
+      });
+      alert('Employee saved successfully.');
+      window.closeAddEmployeeWindow();
+    } catch (err) {
+      alert('Error saving employee: ' + err.message);
+    }
+  };
+
+  // ── BCAS Settlement filter bridge ────────────────────────────────────────
+  // The legacy HTML button calls filterBCASsettlementTable() — bridge it to
+  // the Firestore-backed renderSettlementTable from bcas_settlements.js
+  window.filterBCASsettlementTable = function () {
+    const filters = {
+      dateFrom      : document.getElementById('bcasSETDatefr')?.value    || '',
+      dateTo        : document.getElementById('bcasSETDateto')?.value     || '',
+      report        : document.getElementById('settlereporttype')?.value  || '',
+      status        : document.getElementById('settledstatus')?.value     || 'All',
+      employeeNumber: document.getElementById('settleEmp')?.value         || '',
+    };
+    import('./bcas_settlements.js').then(m => m.renderSettlementTable(filters));
+  };
+
+  // ── CAMIS Settlement window handlers ─────────────────────────────────────
+  window.filterCamisSettlements = function () {
+    const statuses = Array.from(
+      document.getElementById('camisSettleStatusList')?.selectedOptions || []
+    ).map(o => o.value);
+    const filters = {
+      dateFrom      : document.getElementById('camisSETDatefr')?.value  || '',
+      dateTo        : document.getElementById('camisSETDateto')?.value   || '',
+      area          : document.getElementById('camisSETArea')?.value     || '',
+      branch        : document.getElementById('camisSETBranch')?.value   || '',
+      statuses,
+      employeeNumber: document.getElementById('camisSETEmp')?.value      || '',
+    };
+    window._camisSettleFilters = filters;
+    renderCamisSettlementTable(filters);
+  };
+
+  // Expose camis_settlements functions for inline onclick
+  window.openProfileForm    = openProfileForm;
+  window.submitProfileForm  = submitProfileForm;
+
+  // ── CAMIS Earnings window handlers ────────────────────────────────────────
+  // Populate earning item dropdown on Employee Earnings tab
+  async function _populateEarningItemDropdown(selId) {
+    const sel = document.getElementById(selId);
+    if (!sel) return;
+    const items = await loadEarningSetup();
+    sel.innerHTML = '<option value="">-- select item --</option>';
+    items.filter(i => i.isActive).forEach(i => {
+      const opt = document.createElement('option');
+      opt.value = i.id; opt.textContent = i.name;
+      opt.dataset.withActivation = i.withActivation ? '1' : '0';
+      sel.appendChild(opt);
+    });
+  }
+
+  async function _populateEarningEmpDropdown() {
+    const sel = document.getElementById('earningEmpSelect');
+    if (!sel) return;
+    const snap = await getDocs(collection(db, COLLECTIONS.BCAS_EMPLOYEES));
+    sel.innerHTML = '<option value="">-- select employee --</option>';
+    snap.docs.forEach(d => {
+      const e = d.data();
+      const opt = document.createElement('option');
+      opt.value = e.employeeNumber;
+      opt.textContent = `${e.employeeNumber}: ${e.firstName} ${e.surname}`;
+      opt.dataset.name = `${e.firstName} ${e.middleInitial ? e.middleInitial + '. ' : ''}${e.surname}`;
+      opt.dataset.type = e.employeeType || 'Associate';
+      sel.appendChild(opt);
+    });
+  }
+
+  // Called when Employee Earnings tab is opened
+  window.initEarningEntryTab = async function () {
+    const dateEl = document.getElementById('earningDate');
+    if (dateEl) dateEl.value = new Date().toLocaleDateString('en-PH');
+    await _populateEarningItemDropdown('earningItemSelect');
+    await _populateEarningEmpDropdown();
+  };
+
+  // Track employees added to the earning entry
+  window._earningEmployees = [];
+
+  window.addEarningEmployee = async function () {
+    const sel = document.getElementById('earningEmpSelect');
+    if (!sel || !sel.value) return;
+    const opt = sel.options[sel.selectedIndex];
+    if (window._earningEmployees.find(e => e.employeeNumber === sel.value)) return;
+    window._earningEmployees.push({
+      employeeNumber: sel.value,
+      employeeName  : opt.dataset.name || opt.textContent,
+      employeeType  : opt.dataset.type || 'Associate',
+      amount        : 0,
+    });
+    renderEarningEmployeeRows(window._earningEmployees);
+  };
+
+  window.removeEarningEmployee = function (idx) {
+    window._earningEmployees.splice(idx, 1);
+    renderEarningEmployeeRows(window._earningEmployees);
+  };
+
+  window.saveEarningEntry = async function () {
+    const itemSel = document.getElementById('earningItemSelect');
+    const remarks = document.getElementById('earningRemarks')?.value || '';
+    if (!itemSel?.value) { alert('Please select an earning item.'); return; }
+    if (!window._earningEmployees?.length) { alert('Add at least one employee.'); return; }
+    if (remarks.length > 50) { alert('Remarks must be 50 characters or less.'); return; }
+
+    const inputs = document.querySelectorAll('#earningEmployeeTable tbody input[type="number"]');
+    inputs.forEach((inp, i) => {
+      if (window._earningEmployees[i]) window._earningEmployees[i].amount = parseFloat(inp.value) || 0;
+    });
+
+    try {
+      await saveEmployeeEarnings({
+        date     : todayISO(),
+        item     : itemSel.options[itemSel.selectedIndex].textContent,
+        itemId   : itemSel.value,
+        employees: window._earningEmployees,
+        remarks,
+      });
+      const withAct = itemSel.options[itemSel.selectedIndex].dataset.withActivation === '1';
+      alert(withAct ? 'Saved — Pending Activation.' : 'Saved successfully.');
+      window._earningEmployees = [];
+      renderEarningEmployeeRows([]);
+    } catch (err) { alert('Error: ' + err.message); }
+  };
+
+  // Expose camis_earnings functions for inline onclick
+  window.openEarningSetupForm   = openEarningSetupForm;
+  window.submitEarningSetupForm = submitEarningSetupForm;
+
+  initAuthGuard((user) => {
+    // Apply role-based UI (replaces camis_user_permission.js logic)
+    const role = user.role;
+    document.getElementById('userRole').innerText = role;
+    _applyRolePermissions(role, user);
+
+    // Init all Firestore modules
+    initBcasTransactions();
+    initBcasFundTransfers();
+    initBcasSettlements();
+    initCamisFT();
+    initCamisSettlements();
+    initCamisEarnings();
+  });
+
+  function _applyRolePermissions(role, user) {
+    const hide = (...ids) => ids.forEach(id => {
+      const el = document.getElementById(id); if (el) el.style.display = 'none';
+    });
+    const show = (...ids) => ids.forEach(id => {
+      const el = document.getElementById(id); if (el) el.style.display = '';
+    });
+
+    // Default: hide everything sensitive
+    hide('tab100','Integ-Arrow','FT-Arrow','Trnx-Arrow','Exp-Arrow','Earn-Arrow',
+         'Reprt-Arrow','Montr-Arrow','Setup-Arrow','IntSetup-Arrow',
+         'BCAS','FT-btn-add','FT-btn-update');
+
+    if (role === 'admin') {
+      show('tab100','Integ-Arrow','FT-Arrow','Trnx-Arrow','Exp-Arrow','Earn-Arrow',
+           'Reprt-Arrow','Montr-Arrow','Setup-Arrow','IntSetup-Arrow',
+           'BCAS','FT-btn-add','FT-btn-update');
+      // Set default active tab
+      document.getElementById('tab100')?.classList.add('active');
+      document.getElementById('content-tab100')?.classList.add('active');
+      document.getElementById('sub-tab100-tab1')?.classList.add('active');
+      document.getElementById('subcon-tab100-tab1')?.classList.add('active');
+      document.getElementById('xtitle').innerText = 'Branch CAS';
+    } else if (role === 'zaa-aas' || role === 'zab-aas') {
+      const area = role.startsWith('zaa') ? 'ZAA' : 'ZAB';
+      const areaEl = document.getElementById('ft-Area-drop');
+      if (areaEl) { areaEl.value = area; areaEl.disabled = true; }
+      show('FT-Arrow','FT-btn-add','FT-btn-update');
+      document.getElementById('tab5')?.classList.add('active');
+      document.getElementById('content-tab5')?.classList.add('active');
+      document.getElementById('xtitle').innerText = 'Transaction List';
+      // Hide rows belonging to the other area
+      document.querySelectorAll(area === 'ZAA' ? '.ZAB' : '.ZAA').forEach(r => r.classList.add('hidden'));
+    } else if (role === 'zaa-aaa' || role === 'zab-aaa') {
+      const area = role.startsWith('zaa') ? 'ZAA' : 'ZAB';
+      const areaEl = document.getElementById('ft-Area-drop');
+      if (areaEl) areaEl.value = area;
+      show('Integ-Arrow','IntegDtS','FT-Arrow','FT-RcR','FT-TxL','Reprt-Arrow',
+           'RprtDtlr','Montr-Arrow','Mntr-Aud','FT-btn-update');
+      document.getElementById('tab4')?.classList.add('active');
+      document.getElementById('content-tab4')?.classList.add('active');
+      document.getElementById('xtitle').innerText = 'Detailed Status';
+      document.querySelectorAll(area === 'ZAA' ? '.ZAB' : '.ZAA').forEach(r => r.classList.add('hidden'));
+      document.querySelectorAll('.custom-button-copy').forEach(r => r.classList.add('hidden'));
+    } else if (role === 'cru') {
+      show('Integ-Arrow','IntegDtS','FT-Arrow','FT-RcR','FT-TxL',
+           'Reprt-Arrow','RprtDtlr','Montr-Arrow','Mntr-Aud');
+      document.getElementById('tab5')?.classList.add('active');
+      document.getElementById('content-tab5')?.classList.add('active');
+      document.getElementById('xtitle').innerText = 'Transaction List';
+      document.querySelectorAll('.custom-button-copy').forEach(r => r.classList.add('hidden'));
+    } else if (role === 'cmd') {
+      show('Integ-Arrow','IntegDtS','FT-Arrow','FT-RcR','FT-TxL',
+           'Reprt-Arrow','RprtDtlr','Montr-Arrow','Mntr-Aud');
+      document.getElementById('tab4')?.classList.add('active');
+      document.getElementById('content-tab4')?.classList.add('active');
+      document.getElementById('xtitle').innerText = 'Detailed Status';
+      document.querySelectorAll('.custom-button-copy,.noncmd').forEach(r => r.classList.add('hidden'));
+    } else if (role === 'aaa') {
+      // Branch user — show BCAS only
+      show('tab100','Trnx-Arrow','BCAS');
+      document.getElementById('tab100')?.classList.add('active');
+      document.getElementById('content-tab100')?.classList.add('active');
+      document.getElementById('sub-tab100-tab1')?.classList.add('active');
+      document.getElementById('subcon-tab100-tab1')?.classList.add('active');
+      document.getElementById('xtitle').innerText = 'Branch CAS';
+      // Pre-fill branch from user profile
+      const branchEl = document.getElementById('Bcasbranch');
+      if (branchEl && user.branch) branchEl.value = user.branch;
+    }
+  }
+</script>
 
 </html>

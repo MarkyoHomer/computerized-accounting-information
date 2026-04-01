@@ -1,5 +1,5 @@
 function checkUserLogin() {
-  const userRole = localStorage.getItem('userRole');  // Check for the user role or session token
+  const userRole = sessionStorage.getItem('userRole');  // Check for the user role or session token
 
   // If no userRole is found, redirect to the login page
   if (!userRole) {
@@ -21,7 +21,7 @@ const CamisFTtable = document.getElementById('ft-data-table')
 const dropdown = document.getElementById('ft-Area-drop');
 const droptype = document.getElementById('ft-trns-drop');
 const dropstat =  document.getElementById('ft-status-drop');
-const userRole = localStorage.getItem("userRole");
+const userRole = sessionStorage.getItem("userRole");
 const zaa = document.querySelectorAll('.ZAA');
 const zab = document.querySelectorAll('.ZAB');
 const zabbank = document.querySelectorAll('.ZAB-bank');
@@ -100,7 +100,27 @@ document.getElementById('dropdownList-trans').addEventListener('click', function
 
 
 
+//toggleButton.addEventListener('click', function() {
 
+function expandview (){
+
+const currentWidth = getComputedStyle(modalwidth).width;
+
+if (currentWidth < 800){
+ // if (modalwidth.style.width !== '915px') 
+    modalwidth.style.width = '915px'
+     fieldsetcontainer.style.gap = '5px'
+    toggleButton.innerHTML = '<i class="fas fa-circle-arrow-left"></i>';
+
+  } else if (currentWidth >= 800){
+    modalwidth.style.width = '470px'
+     fieldsetcontainer.style.gap = '20px'
+    toggleButton.innerHTML = '<i class="fas fa-circle-arrow-right"></i>';
+
+  }
+}
+
+//});
 
 function closeOverlay(overlayId) {
   document.getElementById(overlayId).classList.remove('show');
@@ -209,7 +229,7 @@ const cell = row.cells[colIndex];
 const cellValue = cell.innerText; 
 fieldsetcontainer.style.gap = '20px';
 NStatusoverlay2.value = cellValue 
-localStorage.setItem("Newrow", row);
+sessionStorage.setItem("Newrow", row);
 
   const buttons = {
   
@@ -279,7 +299,7 @@ fieldsetcontainer.style.gap = '20px';
 
     overlayheader.value = hcell + " Transaction"
     NStatusoverlay2.value = cellValue 
-    localStorage.setItem("Newrow", newrowIndex);
+    sessionStorage.setItem("Newrow", newrowIndex);
     viewtrnxtype.value =  row.cells[2].innerText
     viewamount.value = row.cells[4].innerText
     vieworigin.value =  row.cells[5].innerText
@@ -325,6 +345,7 @@ fieldsetcontainer.style.gap = '20px';
   switch (userRole) {
     case 'zaa-aas':
     case 'zab-aas':
+    case 'admin':
       handleAasRole(overlayId, cellValue, buttons);
       break;
     case 'cru':
@@ -356,7 +377,7 @@ function handleAasRole(overlayId, cellValue, buttons) {
     buttons.save.style.display = 'block';
   }
   
-  if (cellValue === 'Pending') {
+  if (cellValue === 'Pending' || cellValue === 'In-Transit') {
     buttons.canceln.style.display = 'block';
   }
 }
@@ -478,7 +499,7 @@ if (userRole === 'zaa-aas') {
      document.getElementById("Setup-Arrow").style.display='none';
      document.getElementById("IntSetup-Arrow").style.display='none';
 
-
+document.getElementById("xtitle").innerText = 'Transaction List';
      zab.forEach(row => {
 
    row.classList.add('hidden'); // Hide admin-only rows
@@ -532,6 +553,7 @@ if (userRole === 'zaa-aas') {
      document.getElementById('content-tab5').classList.add('active');
      document.getElementById('sub-tab5-tab1').classList.add('active');
      document.getElementById('subcon-tab5-tab1').classList.add('active');
+           document.getElementById("xtitle").innerText = 'Transaction List';
 
      zaa.forEach(row => {
 
@@ -583,6 +605,8 @@ if (userRole === 'zaa-aas') {
           document.getElementById('content-tab4').classList.add('active');
           document.getElementById('sub-tab4-tab1').classList.add('active');
           document.getElementById('subcon-tab4-tab1').classList.add('active');
+
+          document.getElementById("xtitle").innerText = 'Detailed Status';
           btncopy.forEach(row => {
             row.classList.add('hidden'); // Hide admin-only rows
           });
@@ -640,6 +664,8 @@ if (userRole === 'zaa-aas') {
               document.getElementById('content-tab4').classList.add('active');
               document.getElementById('sub-tab4-tab1').classList.add('active');
               document.getElementById('subcon-tab4-tab1').classList.add('active');
+
+                    document.getElementById("xtitle").innerText = 'Detailed Status';
               btncopy.forEach(row => {
                 row.classList.add('hidden'); // Hide admin-only rows
               });
@@ -698,15 +724,15 @@ if (userRole === 'zaa-aas') {
                   document.getElementById("sub-tab5-tab1").style.display='none';
                   document.getElementById("sub-tab5-tab2").style.display='none';
                   document.getElementById("sub-tab5-tab3").style.display='none';  
-
-
+                  document.getElementById("xtitle").innerText = 'Transaction List';
+          
                   btncopy.forEach(row => {
                     row.classList.add('hidden'); // Hide admin-only rows
                   });
             
             
             
-
+               
 
 
 
@@ -755,7 +781,7 @@ if (userRole === 'zaa-aas') {
      document.getElementById("sub-tab5-tab2").style.display='none';
      document.getElementById("sub-tab5-tab3").style.display='none';
 
-
+     document.getElementById("xtitle").innerText = 'Transaction List';
       zaabr.forEach(row => {
     
         row.classList.add('hidden'); 
@@ -777,6 +803,6 @@ if (userRole === 'zaa-aas') {
       document.getElementById("sub-tab5-tab2").style.display='none';
       document.getElementById("sub-tab5-tab3").style.display='none';
  
-
+     document.getElementById("xtitle").innerText = 'Detailed Status';
 }
 

@@ -165,6 +165,35 @@ function downloadreconcsv() {
 
 
 
+function reconreportfilters() {
+  const reportType = selectrecreport.value;
+  const reportTitle = document.getElementById('reporttitlerecon');
+  const varianceSection = variancerecon;
+  const allSection = allrecon;
+
+  if (reportType === 'Select report type') {
+    // hide both if no valid selection
+    varianceSection.style.display = 'none';
+    allSection.style.display = 'none';
+    reportTitle.value = '';
+    return;
+  }
+
+  if (reportType === 'Variance Report') {
+    reportTitle.textContent = 'Fund Transfer and Journal Entries Reconciliation (Variances)';
+    varianceSection.style.display = 'block';
+    allSection.style.display = 'none';
+  } 
+  else if (reportType === 'Variance and Tally') {
+    reportTitle.textContent = 'Fund Transfer and Journal Entries Reconciliation (All)';
+    allSection.style.display = 'block';
+    varianceSection.style.display = 'none';
+  }
+}
+
+
+
+
 
 function reconreportfilter(){
 

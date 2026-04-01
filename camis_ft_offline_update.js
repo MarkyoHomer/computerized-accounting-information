@@ -32,8 +32,8 @@ function camisftpaste(){
             const ftid = fields[13]
             const statsvoided = fields[9]
             console.log(fields)
-            localStorage.setItem("ftid", ftid );
-            localStorage.setItem("statsvoided", statsvoided );
+            sessionStorage.setItem("ftid", ftid );
+            sessionStorage.setItem("statsvoided", statsvoided );
             if (fields.length < 12  ) {
                 alert("Copied data is not in the standard format.");
             }        
@@ -70,8 +70,8 @@ function camisftpaste(){
                             updateto.value = "Voided" // | Voided from " + fields[5]
                             saveupdateft.disabled = false;
 
-                            localStorage.setItem("NewStatus", "Voided");
-                            localStorage.setItem("OldStatus", statusfrom.value);
+                            sessionStorage.setItem("NewStatus", "Voided");
+                            sessionStorage.setItem("OldStatus", statusfrom.value);
 
                             }else  {
 
@@ -93,8 +93,8 @@ function camisftpaste(){
 
                                 updateto.value = "In-Transit" 
                                 saveupdateft.disabled = false;
-                                localStorage.setItem("NewStatus", "In-Transit" );
-                                localStorage.setItem("OldStatus", statusfrom.value);
+                                sessionStorage.setItem("NewStatus", "In-Transit" );
+                                sessionStorage.setItem("OldStatus", statusfrom.value);
 
                             }else  {
 
@@ -117,16 +117,16 @@ function camisftpaste(){
 
                             updateto.value = "Voided"
                             saveupdateft.disabled = false;
-                            localStorage.setItem("NewStatus", "Voided" );
-                            localStorage.setItem("OldStatus", statusfrom.value);
+                            sessionStorage.setItem("NewStatus", "Voided" );
+                            sessionStorage.setItem("OldStatus", statusfrom.value);
                             
                             }else if ( (fields[9] !== 'Pending' || 'Active' )  && fields[10] === "Not Updated" 
                                 && (cellssearchid[10].innerText !== "Pending" || "In-Transit")) {
 
                             updateto.value = "Voided"
                             saveupdateft.disabled = false;
-                            localStorage.setItem("NewStatus", "Voided" );
-                            localStorage.setItem("OldStatus", statusfrom.value);
+                            sessionStorage.setItem("NewStatus", "Voided" );
+                            sessionStorage.setItem("OldStatus", statusfrom.value);
 
                             }else  {
 
@@ -138,7 +138,7 @@ function camisftpaste(){
                         
                         }    
                         
-                        localStorage.setItem("Newrow", i);
+                        sessionStorage.setItem("Newrow", i);
                        
                       break;
                     }
@@ -176,11 +176,14 @@ function closeupdateOverlay(overlayId) {
   }
 
 
-  function camisftofflineupdate(tableId, overlayId) {
- 
-    const updatemessage = document.getElementById('updatemessage') 
+  function camisftofflineupdate(tableId, overlayId) { 
+    const updatemessage = document.getElementById('updatemessage');
+
+     var xofflineupdate = "offlineUp";  
+     sessionStorage.setItem("offlineupdate", xofflineupdate);
+
      if ( updateto.value === "Voided" ){
-       
+
         openSubOverlay()
      }else{
         document.getElementById('ftupdateconfirmation').classList.add('show');

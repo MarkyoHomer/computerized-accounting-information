@@ -17,6 +17,7 @@ function downftallcsv() {
       row.querySelectorAll('td, th').forEach((cell, cellIndex) => {
         // Skip the first column (cellIndex === 0)
         if (cellIndex === 0) return;
+        if (cellIndex === 18) return;
         
         // Get cell data and escape commas by wrapping it in quotes
         let cellData = cell.innerText.trim();

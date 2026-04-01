@@ -9,6 +9,12 @@
     
 }
 
+.disabled-option {
+  opacity: 0.4;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
 
 .ftlist th, td {
     padding: 10px;
@@ -188,6 +194,7 @@ overflow: hidden;
 #summaryrecontable td:nth-child(4) {
   font-size: 14px;
 
+
 }
 
 #summaryrecontable,
@@ -238,11 +245,12 @@ overflow: hidden;
 #summaryrecontabletally th,
 #summaryrecontabletally td {
   border: none;
+
 }
 
 
 #summaryrecontabletally th{
-  background-color: green;
+  background-color: darkblue;
 }
 #summaryrecontabletally {
   border-collapse: collapse;

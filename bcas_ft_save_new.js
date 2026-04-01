@@ -151,7 +151,7 @@ function updateFields(fields) {
     ft6.value = fields[2];
     ft7.value = fields[5]; 
     var area = fields[10];
-    localStorage.setItem('area',area)
+    sessionStorage.setItem('area',area)
 }
 
 
@@ -239,7 +239,7 @@ function handleReceive(fields, bcasftrow, savebcasft, BCASoverlayId) {
 function savebft(){
 
     document.getElementById('bcasftconfirmation').classList.add('show');
-    document.getElementById('bcasmessage').textContent =   "Are you sure you want to save this Transaction?"
+    document.getElementById('bcasNEWmessage').textContent =   "Are you sure you want to save this Transaction?"
 }
 
 function bcascloseftnew() {
@@ -273,14 +273,21 @@ function bcasconfirm(){
     const regex = /((AREA|HO)\s+(LBP|PNB|MBTC|UB))/;    
     const match = inputString.match(regex);
     const result = match ? match[0] : "Pattern not found.";
-    
+
+    const visibleFTRows = Array.from(BCASfttable.rows).filter(
+    row => row.style.display !== "none"
+    );
+
+    const numcell = visibleFTRows.length - 1
+
+
     dateCell.textContent = formatDate(new Date());
     typeCell.textContent = ft1.value;
     tnsIdCell.textContent = ft6.value;
     amountCell.textContent = ft2.value;
-    noCell.textContent = FTtablebody.rows.length.toString().padStart(3, '0');
+    noCell.textContent = numcell.toString().padStart(3, '0');
     noCell.style.display = 'none'
-    areaCell.textContent =  localStorage.getItem('area');
+    areaCell.textContent =  sessionStorage.getItem('area');
     areaCell.style.display = 'none'
     courierCell.textContent = ft3.value;
     memoCell.textContent = ft5.value;
@@ -353,8 +360,8 @@ const retry = document.createElement('button');
         const retryrow = event.target.closest('tr');   
         const tableBody = retryrow.parentNode;
         const rowIndex = Array.from(tableBody.children).indexOf(retryrow) + 1;      
-        localStorage.setItem("retryrow", rowIndex); // to post in the localstorage the fttablerow where the retrybutton is located
-        document.getElementById('bcasmessage').textContent =   "You are reuploding " + 
+        sessionStorage.setItem("retryrow", rowIndex); // to post in the sessionStorage the fttablerow where the retrybutton is located
+        document.getElementById('bcasretrymessage').textContent =   "You are uploding " + 
         xtableBody.rows[rowIndex].cells[3].innerText + " Transaction. Do you want to proceed?" 
     }
 
@@ -419,7 +426,7 @@ const retry = document.createElement('button');
          const voidrow = event.target.closest('tr');   
          const tableBody = voidrow.parentNode;
          const rowIndex = Array.from(tableBody.children).indexOf(voidrow) + 1;  
-         localStorage.setItem("voidrow", rowIndex); // to post in the localstorage the fttablerow where the retrybutton is located
+         sessionStorage.setItem("voidrow", rowIndex); // to post in the sessionStorage the fttablerow where the retrybutton is located
      
      
          const buttonrow = event.target.closest('tr');     
@@ -497,19 +504,19 @@ const retry = document.createElement('button');
 
      retryCell.appendChild(retry);
      copyCell.appendChild(copy);
-     voidCell.appendChild(voided);
+    // voidCell.appendChild(voided);
       
 }
-let countdownTime = 10; 
+let countdownTime = 5; 
 
 function bcasconfirmed() {  
 
     const waiting = document.getElementById('bcasftuploadwaiting');
     const xwaiting = document.getElementById('xwaiting'); 
     bcasconfirm();      
-    waiting.classList.add('show');
-    xwaiting.innerHTML = '<i class="fa-solid fa-circle-info" style="margin-right:10px; font-size:30px; color:white"></i>' +
-            " Uploading Fund Transfer Transaction in  10"
+   // waiting.classList.add('show');
+//    xwaiting.innerHTML = '<i class="fa-solid fa-circle-info" style="margin-right:10px; font-size:30px; color:white"></i>' +
+   //         " Uploading Fund Transfer Transaction in  5"
     const tabs = document.querySelectorAll('.bcastab');
     tabs.forEach(tab => tab.classList.remove('active'));
     document.getElementById('sub-tab100-tab6').classList.add('active');
@@ -517,15 +524,15 @@ function bcasconfirmed() {
     document.getElementById('subcon-tab100-tab12').classList.remove('active');
     document.getElementById('subcon-tab100-tab13').classList.remove('active');
     document.getElementById('bcasftconfirmation').classList.remove('show');
-    const timerInterval = setInterval(() => {
-        if (countdownTime > 0) {
+ //   const timerInterval = setInterval(() => {
+     //   if (countdownTime > 0) {
            
-            xwaiting.innerHTML = '<i class="fa-solid fa-circle-info" style="margin-right:10px; font-size:30px; color:white"></i>' +
-            " Uploading Fund Transfer Transaction in  " + countdownTime;
-            countdownTime--; 
-        } else { 
-            clearInterval(timerInterval); 
-            waiting.classList.remove('show'); 
+     //       xwaiting.innerHTML = '<i class="fa-solid fa-circle-info" style="margin-right:10px; font-size:30px; color:white"></i>' +
+       //     " Uploading Fund Transfer Transaction in  " + countdownTime;
+       //     countdownTime--; 
+     //   } else { 
+      //      clearInterval(timerInterval); 
+       //     waiting.classList.remove('show'); 
 
             showNotification(); 
 
@@ -533,13 +540,13 @@ function bcasconfirmed() {
             xnotification.style.bottom = '75px';
             xnotification.style.right = '75px';
             xnotification.style.width = '300px';  
-            xnotification.style.backgroundColor = 'orange';
+            xnotification.style.backgroundColor = 'green';
 
             // Set notification text
             xnotify.innerHTML = '<i class="fa-solid fa-circle-info" style="margin-right:10px; font-size:20px; color:white"></i>' + 
-            "Transaction has been saved but failed to update the server.";
-        }
-    }, 1000); 
+            "Transaction has been saved";
+     //   }
+ //   }, 1000); 
 
 }
 

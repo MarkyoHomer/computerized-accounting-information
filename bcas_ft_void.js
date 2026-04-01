@@ -15,7 +15,7 @@ function voidencryp(event) {
     const voidrow = event.target.closest('tr');   
     const tableBody = voidrow.parentNode;
     const rowIndex = Array.from(tableBody.children).indexOf(voidrow) + 1;  
-    localStorage.setItem("voidrow", rowIndex); // to post in the localstorage the fttablerow where the retrybutton is located
+    sessionStorage.setItem("voidrow", rowIndex); // to post in the sessionStorage the fttablerow where the retrybutton is located
 
 
     const buttonrow = event.target.closest('tr');     

@@ -1,5 +1,5 @@
     // Select the <li> element with the id "toggleArrow"
-   document.getElementById('Integ-Arrow').addEventListener('click', function() {
+document.getElementById('Integ-Arrow').addEventListener('click', function() {
     var arrow = document.getElementById('arrow1');
     
     if (arrow.classList.contains('fa-angle-down')) {

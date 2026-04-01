@@ -96,23 +96,30 @@ function uploadingtransaction(){
 
     for (let i = 1; i < ftRow.length; i++) {
         let cellrecord = ftRow[i].getElementsByTagName("td");         
-      
+   
         for (let j = 1; j < trRow.length; j++) {
             let cellupload = trRow[j].getElementsByTagName("td"); 
-               
-              if (cellrecord[8].textContent === cellupload[10].innerText && selecteddate === cellupload[11].innerText ){  
+                
+              if (cellrecord[8].textContent === cellupload[10].innerText && selecteddate === cellupload[11].innerText ){                
              
-                  cellrecord[10].textContent = cellupload[11].innerText
-                  cellrecord[11].textContent = cellupload[1].innerText
-                  cellrecord[12].textContent = cellupload[2].innerText
-                  cellrecord[13].textContent = Bcasbranch.value
-                  cellrecord[14].textContent = cellupload[3].innerText                 
-                  cellrecord[15].textContent = cellupload[4].innerText
+                  cellrecord[10].textContent = cellupload[11].innerText;
+                  cellrecord[11].textContent = cellupload[1].innerText;
+                  cellrecord[12].textContent = cellupload[2].innerText;
+                  cellrecord[13].textContent = Bcasbranch.value;
+                  cellrecord[14].textContent = cellupload[3].innerText;                 
+                  cellrecord[15].textContent = cellupload[4].innerText;
                   cellrecord[15].style.textAlign = 'right';
-                  cellrecord[16].textContent = cellupload[5].innerText
+                  cellrecord[16].textContent = cellupload[5].innerText;
                   cellrecord[16].style.textAlign = 'right';
-                  cellrecord[17].textContent = cellupload[7].innerText
-                  cellrecord[18].textContent = formattedDateTime
+                  cellrecord[17].textContent = cellupload[7].innerText;
+                  cellrecord[18].textContent = cellupload[12].innerText;
+                 if (!cellrecord[19]) {
+                  const newCell = ftRow[i].insertCell(18);
+                  newCell.textContent = formattedDateTime; // or '' if you prefer
+                   } else {
+                  cellrecord[19].textContent = formattedDateTime;
+                  }
+
 
               } 
 

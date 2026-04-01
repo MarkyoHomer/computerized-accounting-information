@@ -1,3 +1,17 @@
+    // Get today's date in the required format (YYYY-MM-DD)
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = (today.getMonth() + 1).toString().padStart(2, '0');
+    const day = today.getDate().toString().padStart(2, '0');
+    const hours = today.getHours().toString().padStart(2, '0');
+    const minutes = today.getMinutes().toString().padStart(2, '0');
+    const seconds = today.getSeconds().toString().padStart(2, '0');
+    const formattedDateTime = `${month}/${day}/${year} ${hours}:${minutes}:${seconds}`; //  mm/dd/yyyy hh:mm:ss
+    const formattedDate = `${year}-${month}-${day}`;  // yyyy-mm-dd
+    const refformattedDate = `${day}${month}${year}`;  // ddmmyyyy   
+    const RecordDateTime = `${month}/${day}/${year} ${hours}:${minutes}:${seconds}`;
+    
+
 document.addEventListener('DOMContentLoaded', () => {
     const tabs = document.querySelectorAll('.tab');
     const submenuLinks = document.querySelectorAll('.submenu a');
@@ -7,6 +21,12 @@ document.addEventListener('DOMContentLoaded', () => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
             const targetTab = e.target.getAttribute('data-tab');
+
+
+               // Update header with the clicked menu text
+            const clickedText = e.target.innerText.trim();
+            document.getElementById("xtitle").innerText = clickedText;
+            
   
             // Remove active class from all tabs and content
             tabs.forEach(tab => tab.classList.remove('active'));
@@ -20,20 +40,31 @@ document.addEventListener('DOMContentLoaded', () => {
             // first tab of the content as a default tab
             document.getElementById('sub-' + targetTab +'-tab1').classList.add('active');
             document.getElementById('subcon-' + targetTab +'-tab1').classList.add('active');
+            
 
             if (document.getElementById('sub-tab4-tab1')) {
             document.getElementById('sub-tab4-tab2').classList.remove('active');
             document.getElementById('subcon-tab4-tab2').classList.remove('active');
              }
 
-            document.getElementById('sub-' + targetTab +'-tab14-1').classList.add('active');
-            document.getElementById('subcon-' + targetTab +'-tab14-1').classList.add('active');
-
+              if (document.getElementById('sub-tab100-tab14')) {
+            document.getElementById('sub-tab100-tab14-1').classList.add('active');
+            document.getElementById('subcon-tab100-tab14-1').classList.add('active');
+             }
         
-            document.getElementById('sub-' + targetTab +'-tab6').classList.remove('active');
-            document.getElementById('subcon-' + targetTab +'-tab6').classList.remove('active');
-            document.getElementById('sub-' + targetTab +'-tab14-2').classList.remove('active');
-            document.getElementById('subcon-' + targetTab +'-tab14-2').classList.remove('active');
+
+
+
+       try {
+        document.getElementById('sub-' + targetTab + '-tab6').classList.remove('active');
+        document.getElementById('subcon-' + targetTab + '-tab6').classList.remove('active');
+        document.getElementById('sub-' + targetTab + '-tab14-2').classList.remove('active');
+        document.getElementById('subcon-' + targetTab + '-tab14-2').classList.remove('active');
+       } catch (error) {
+
+       }
+
+
 
             if (document.getElementById('sub-tab100-tab1')) {
               filtertransactionbydate()
@@ -43,9 +74,9 @@ document.addEventListener('DOMContentLoaded', () => {
               filterftbydate()
             }
           
-           
-            
-
+                     
+            // Update header with the clicked menu text
+  
             
         });
 
@@ -63,6 +94,33 @@ document.addEventListener('DOMContentLoaded', () => {
     // Format to mm/dd/yyyy
     return `${month.toString().padStart(2, '0')}/${day.toString().padStart(2, '0')}/${year}`;
   }
+
+  function refformatDate(date) {
+    const dateObj = new Date(date);
+    const month = dateObj.getMonth() + 1; // getMonth() returns 0-11, so add 1
+    const day = dateObj.getDate();
+    const year = dateObj.getFullYear();
+
+    // Format to mm/dd/yyyy
+    return `${month.toString().padStart(2, '0')}${day.toString().padStart(2, '0')}${year}`;
+  }
+
+  function formatDatetime(date) {
+    const dateObj = new Date(date);
+    const month = (dateObj.getMonth() + 1).toString().padStart(2, '0');   
+    const day = dateObj.getDate().toString().padStart(2, '0');
+    const year = dateObj.getFullYear();
+    const hours = dateObj.getHours().toString().padStart(2, '0');
+    const minutes = dateObj.getMinutes().toString().padStart(2, '0');
+    const seconds = dateObj.getSeconds().toString().padStart(2, '0');
+
+    // Format to mm/dd/yyyy
+    return `${month}/${day}/${year} ${hours}:${minutes}:${seconds}`; //  mm/dd/yyyy hh:mm:ss
+    
+  }
+
+
+
 
   function padNumber(num, length) {
     return num.toString().padStart(length, '0');
@@ -131,17 +189,7 @@ function openTab(event, tabName) {
     });
 
 
-    // Get today's date in the required format (YYYY-MM-DD)
-    const today = new Date();
-    const year = today.getFullYear();
-    const month = (today.getMonth() + 1).toString().padStart(2, '0');
-    const day = today.getDate().toString().padStart(2, '0');
-    const hours = today.getHours().toString().padStart(2, '0');
-    const minutes = today.getMinutes().toString().padStart(2, '0');
-    const seconds = today.getSeconds().toString().padStart(2, '0');
-    const formattedDate = `${year}-${month}-${day}`;  // yyyy-mm-dd
-    const refformattedDate = `${day}${month}${year}`;  // ddmmyyyy
-    const formattedDateTime = `${month}/${day}/${year} ${hours}:${minutes}:${seconds}`; //  mm/dd/yyyy hh:mm:ss
+
 
     // Set the default date value for the input field
     document.getElementById('datefrom').value = formattedDate;
@@ -154,9 +202,10 @@ function openTab(event, tabName) {
     document.getElementById('trnxDate').value = formattedDate;
     document.getElementById('bcasftDate').value = formattedDate;
     document.getElementById('bcasftaddDate').value = formattedDate;
-    document.getElementById('date-summaryrecon-from').value = formattedDate;
-    document.getElementById('date-summaryrecon-to').value = formattedDate;
-
+    //document.getElementById('date-summaryrecon-from').value = formattedDate;
+    //document.getElementById('date-summaryrecon-to').value = formattedDate;
+    document.getElementById('bcasSETDatefr').value = formattedDate;
+    document.getElementById('bcasSETDateto').value = formattedDate;
     
     // placeholder
 
@@ -169,10 +218,9 @@ function openTab(event, tabName) {
        });
 
        function logout() {
-        // Clear all items in localStorage
-        localStorage.clear();
- 
-          window.location.href = 'index.html' ;  // Modify this URL to your login page or home page
+        // Clear all items in sessionStorage
+        sessionStorage.clear();
+          window.location.href = 'index.html';
       }
 
 

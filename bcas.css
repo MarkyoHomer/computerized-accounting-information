@@ -305,18 +305,32 @@ font-weight: 700;
 .scroll {
     display: block;
     max-height: 320px;
-    overflow-y: auto;  
-
+    overflow-y: auto;   
+    width: 935px;
+    max-width: 935px;
+    table-layout: fixed;
 
 }
 
-.scroll th{
+.scroll table th{
     height: 0px;
     background-color: rgb(172, 168, 168);
     font-size: 10px;
     font-weight:lighter;
     padding:8px;
+    width: 935px;
+
 }
+
+.scroll table th:nth-child(8),
+.scroll table td:nth-child(8) {
+  max-width: 200px;
+  width: 200px;
+  white-space: normal;   /* allow wrapping */
+  word-wrap: break-word; /* break long words */
+  overflow-wrap: break-word; /* modern version */
+}
+
 
 
 .ftscroll {
@@ -336,6 +350,41 @@ font-weight: 700;
     padding:8px;
     height: 0px;
 }
+
+
+
+.plain-search-icon {
+  width: 22px;
+  height: 22px;
+  display: inline-block;
+  position: relative;
+}
+
+.plain-search-icon::before {
+  content: "";
+  width: 14px;
+  height: 14px;
+  border: 2px solid #000; /* plain black */
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.plain-search-icon::after {
+  content: "";
+  width: 12px;          /* longer handle */
+  height: 2px;
+  background: #000;
+  position: absolute;
+  bottom: 2px;
+  right: -6px;
+  transform: rotate(45deg);
+}
+
+
+
+
 .fieldset-container {
   display: flex; /* Using flexbox to align the fieldsets horizontally */
   gap: 5px; /* Space between fieldsets */

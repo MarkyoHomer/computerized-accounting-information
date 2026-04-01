@@ -37,6 +37,10 @@ document.addEventListener('DOMContentLoaded', () => {
               filterftbydate()
             }
 
+          if (document.getElementById('sub-tab100-tab15')) {
+              filterBCASsettlementTable()
+            }
+
         });
     });
 
@@ -66,6 +70,13 @@ document.addEventListener('DOMContentLoaded', () => {
             if (document.getElementById('sub-tab100-tab6')) {
               filterftbydate()
             }
+
+           if (document.getElementById('sub-tab100-tab15')) {
+              filterBCASsettlementTable()
+            }
+
+
+
 
             for (let i = 1; i < bcasftrow.length; i++) {
               let cellupdte = bcasftrow[i].getElementsByTagName("td");
@@ -155,6 +166,101 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
+
+
+    const tableBody = document.getElementById("bcasentries").getElementsByTagName('tbody')[0];
+    const tagsBody = document.getElementById("bcastags").getElementsByTagName('tbody')[0];
+    const trev =  document.getElementById('trev');
+    const tsave =  document.getElementById('tsave');
+    const tsavenew =  document.getElementById('tsavenew');
+    const taccount =  document.getElementById('dropdownList-Anewtrax');
+    const viewbcasamount =  document.getElementById('viewbcasamount');
+    const trnxDate =  document.getElementById('trnxDate');
+    const viewbcasdate =  document.getElementById('viewbcasdate');
+    const viewbcastn = document.getElementById('viewbcastn');
+    const viewbcasdesc  = document.getElementById('viewbcasdesc');
+    const viewbcasacode  = document.getElementById('viewbcasacode');
+
+function NewtrW(event, tableid) {
+    event.preventDefault(); 
+   
+    
+
+
+    const tabs = document.querySelectorAll('.bcastab');
+    tabs.forEach(tab => tab.classList.remove('active'));  
+    
+    // Add active class to the corresponding tab and content
+    document.getElementById('sub-tab100-tab14').classList.add('active');
+    document.getElementById('subcon-tab100-tab14').classList.add('active');
+    document.getElementById('subcon-tab100-tab1').classList.remove('active');  
+    
+    document.getElementById('sub-tab100-tab14-1').classList.add('active');
+    document.getElementById('subcon-tab100-tab14-1').classList.add('active');
+    document.getElementById('sub-tab100-tab14-2').classList.remove('active');
+    document.getElementById('subcon-tab100-tab14-2').classList.remove('active');
+   
+
+const tableBodyt = document.getElementById("BCAStransactions").getElementsByTagName('tbody')[0];
+const tdate =   formatDate(trnxDate.value);
+const allRows = Array.from(tableBodyt.rows);
+
+// filter rows na visible lang
+const visibleRows = allRows.filter(r => r.style.display !== "none");
+const refdates  =  refformatDate(trnxDate.value);
+// gamitin length ng visible rows
+if (visibleRows.length > 0) {
+    const lastRow = visibleRows[visibleRows.length - 1]; // last visible row
+    const tnsnum = parseInt(lastRow.cells[1].innerText) || 0;
+    const paddedNumber1 = padNumber(tnsnum + 1, 6);
+    viewbcasref.value = "AAA" + paddedNumber1 + refdates;
+} else {
+    // default if no visible rows
+    const paddedNumber1 = padNumber(1, 6);
+    viewbcasref.value = "AAA" + paddedNumber1 + refdates;
+}
+
+    
+     viewbcastn.value = ''
+     viewbcasacode.value = ''
+     viewbcastemp.value = ''
+     viewbcasamount.value = '0.00';
+    viewbcasamount.style.pointerEvents = 'none';
+     tnsdebit.value = '0.00';
+     tnscredit.value = '0.00';
+     viewbcasdesc.value = ''
+     viewbcasremarks.value = ''
+     viewbcasremarks.style.pointerEvents = 'none';  
+    viewbcasacode.style.pointerEvents = 'auto';
+    viewbcasamount.readOnly = false;
+     viewbcasremarks.readOnly = false;
+     viewbcasdesc.readOnly = true;
+      tagsBody.innerHTML = '';
+      tableBody.innerHTML = '';
+
+      trev.style.display = 'none'
+      tsave.style.display = 'block'
+      tsavenew.style.display = 'block'
+      
+      viewbcasdate.value = formatDate(trnxDate.value)
+      
+
+
+    if (visibleRows.length > 0) {
+    const lastRow = visibleRows[visibleRows.length - 1]; // last visible row
+    const tnsnum = parseInt(lastRow.cells[1].innerText) || 0;
+   
+    viewbcastn.value = tnsnum + 1
+} else {
+    // default if no visible rows
+    
+    viewbcastn.value = 1
+}
+
+
+}
+
+
   function viewentries(event, tableid) {
     event.preventDefault(); 
     const viewbtnrow = event.target.closest('tr');
@@ -167,13 +273,13 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('sub-tab100-tab14').classList.add('active');
     document.getElementById('subcon-tab100-tab14').classList.add('active');
     document.getElementById('subcon-tab100-tab1').classList.remove('active');  
+
     document.getElementById('sub-tab100-tab14-1').classList.add('active');
     document.getElementById('subcon-tab100-tab14-1').classList.add('active');
     document.getElementById('sub-tab100-tab14-2').classList.remove('active');
     document.getElementById('subcon-tab100-tab14-2').classList.remove('active');
 
-    const tableBody = document.getElementById("bcasentries").getElementsByTagName('tbody')[0];
-    const tagsBody = document.getElementById("bcastags").getElementsByTagName('tbody')[0];
+
    
     
     
@@ -313,7 +419,8 @@ if(AcctName=== 'PEPP Remittance'){
      
      viewbcasdesc.value = desc
      viewbcasremarks.value = memo
-     viewbcasref.value = "AAA"+paddedNumber+trnxDate.value
+     const refdates  =  refformatDate(trnxDate.value);
+     viewbcasref.value = "AAA"+paddedNumber+refdates;
      
    
 
@@ -340,12 +447,23 @@ if(AcctName=== 'PEPP Remittance'){
         tagsBody.appendChild(tagrow);
       });
 
+
+      if (viewbcasacode.value === 'MNL-FTOB' || viewbcasacode.value === 'MNL-FTHO' || viewbcasacode.value === 'MNL-FTAREA' ||viewbcasacode.value ===  'MNL-5015' ){
+          trev.style.display = 'block'
+      }else{
+          trev.style.display = 'none'
+      }
+
+      tsave.style.display = 'none'
+      tsavenew.style.display = 'none'
    
   }
 
 
   function backtransactions() {
     const tabs = document.querySelectorAll('.bcastab');
+   
+
     tabs.forEach(tab => tab.classList.remove('active')); 
 
     document.getElementById('sub-tab100-tab1').classList.add('active');
@@ -353,6 +471,9 @@ if(AcctName=== 'PEPP Remittance'){
     document.getElementById('subcon-tab100-tab14').classList.remove('active');
     document.getElementById('sub-tab100-tab14-2').classList.remove('active');
     document.getElementById('subcon-tab100-tab14-2').classList.remove('active');
+
+   
+    
 
   }
 
@@ -416,8 +537,7 @@ function filtertransactionbydate(){
   const bbRow = BCASbbeb.getElementsByTagName("tr");
   for  (let j = 1; j < bbRow.length; j++) {      
     const bbcell = bbRow[j].getElementsByTagName("td")
-    console.log(bbcell[0].innerText)
-    console.log(trnxDate.value)
+
     if(bbcell[0].innerText === tranxselecteddate){
  
       amtbb.value = bbcell[1].innerText
@@ -455,3 +575,171 @@ function filterftbydate(){
    
   }
 }
+
+
+
+
+const searchInputA = document.getElementById("viewbcasacode");
+const dropdownListA = document.getElementById("dropdownList-Anewtrax");
+const dropdownListT = document.getElementById("viewbcastemp");
+document.getElementById('viewbcasacode').addEventListener('keypress', function(event) {
+  if (event.key === 'Enter') {
+    event.preventDefault(); 
+  }
+});
+
+function toggleDropdownA () {
+    dropdownListA.style.display = dropdownListA.style.display === "block" ? "none" : "block";
+}
+
+function filterDropdownA () {
+
+
+  const filterA  = searchInputA.value.toUpperCase();
+  const itemsA = dropdownListA.getElementsByTagName("div");
+
+  // Show dropdown if there's input, otherwise hide it
+  dropdownListA.style.display = filterA  ? "block" : "none";
+
+  for (let i = 0; i < itemsA.length; i++) {
+      const itemA = itemsA [i];
+      const txtValueA = itemA.textContent || itemA.innerText;
+
+      if (txtValueA.toUpperCase().indexOf(filterA) > -1) {
+          itemA.style.display = "";
+      } else {
+          itemA.style.display = "none";
+      }
+  }
+}
+
+// Handle item selection
+dropdownListA.addEventListener("click", function(event) {
+  if (event.target.tagName === "DIV") {
+    const selectedValue = event.target.textContent.trim();
+    searchInputA.value = selectedValue;
+    dropdownListA.style.display = "none"; // hide dropdown
+
+    // now handle specific value logic
+    if (selectedValue === "MNL-FTOB") {
+      dropdownListT.value = "Expense Due to other branch";
+      viewbcasdesc.value  =  "To record expense due to other branch";
+
+       document.getElementById('bcastransactionbranchselection').classList.add('show');
+    } else if (selectedValue === "MNL-FTHO") {
+      dropdownListT.value = "Expense Due to Head Office";
+       viewbcasdesc.value  =  "To record expense due to head office";
+    } else if (selectedValue === "MNL-FTAREA") {
+      dropdownListT.value = "Expense Due to Area Office";
+       viewbcasdesc.value  =  "To record expense due to area office";
+    } else if (selectedValue === "MNL-5015") {
+      dropdownListT.value = "Other Income-Pawnshop";
+      viewbcasdesc.value  =  "To record Other Income-Pawnshop";
+    } else {
+      dropdownListT.value = "";
+      viewbcasdesc.value  =  "";
+    }
+viewbcasamount.style.pointerEvents = 'auto';
+viewbcasremarks.style.pointerEvents = 'auto';
+viewbcasamount.value = '0.00'
+
+if (selectedValue === "MNL-5015"){
+
+ensureRow(tableBody, 0).cells[0].innerText = 'Cash on hand';
+ensureRow(tableBody, 1).cells[0].innerText = 'Other income';
+}else{
+ensureRow(tableBody, 0).cells[0].innerText = 'Due to/from';
+ensureRow(tableBody, 1).cells[0].innerText = 'Cash on hand';
+
+}
+
+ensureRow(tableBody, 0).cells[1].innerText = 'Debit';
+ensureRow(tableBody, 1).cells[1].innerText = 'Credit';
+ensureRow(tableBody, 0).cells[2].innerText = '0.00';
+ensureRow(tableBody, 1).cells[2].innerText = '0.00';
+  }
+});
+
+// Close dropdown if clicked outside
+window.addEventListener("click", function(event) {
+
+  if (!event.target.closest('.dropdown')) {
+    dropdownListA.style.display = "none";
+  }
+});
+
+const selectElementA  = document.getElementById('viewbcasacode');
+
+selectElementA.addEventListener('change', function () {
+// Check if the placeholder option is selected (value is empty string)
+if (selectElementtyperecon.value === '') {
+  selectElementtyperecon.value = '';  // This will ensure the value is set to blank
+}
+});
+
+function ensureRow(tbody, index) {
+  while (tbody.rows.length <= index) {
+    tbody.insertRow();
+  }
+  const row = tbody.rows[index];
+  while (row.cells.length < 3) {
+    row.insertCell();
+  }
+  return row;
+}
+
+
+
+function formatNumber(value) {
+  // Handle null, undefined, or empty values
+  if (value == null || value === '') return '';
+
+  // Convert to string safely before replacing
+  const num = parseFloat(String(value).replace(/,/g, ''));
+
+  // Handle invalid number cases
+  if (isNaN(num)) return '';
+
+  // Format to 2 decimal places with commas
+  return num.toLocaleString(undefined, {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  });
+}
+
+
+
+
+// Shared function to format and update
+function formatAndUpdate() {
+  const formatted = formatNumber(viewbcasamount.value);
+  viewbcasamount.value = formatted;
+
+  // update your table cells (column index 2)
+  if (tableBody.rows.length >= 2) {
+    tableBody.rows[0].cells[2].textContent = formatted;
+    tableBody.rows[1].cells[2].textContent = formatted;
+  }
+
+     tnsdebit.value = formatted;
+     tnscredit.value = formatted;
+}
+
+// Format on blur (leave)
+viewbcasamount.addEventListener('blur', formatAndUpdate);
+
+// Format on Enter
+viewbcasamount.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    e.preventDefault(); // prevent form submit
+    formatAndUpdate();
+    viewbcasamount.blur(); // optional: move focus away to trigger blur behavior
+  }
+});
+
+
+
+
+
+
+

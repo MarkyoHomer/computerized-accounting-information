@@ -16,8 +16,6 @@ window.onload = function() {
 const searchInput = document.getElementById("ft-Area-drop");
 const dropdownList = document.getElementById("dropdownList");
 
-
-
 function toggleDropdown() {
   dropdownList.style.display = dropdownList.style.display === "block" ? "none" : "block";
 }
@@ -481,22 +479,14 @@ function ftdatechangerecon (){
 }
 
 
+function clearsearchbar(){
 
+document.getElementById('searchftall').value = '';
+searchTable();
+
+}
 
 // Add event listener for toggling the form
-toggleButton.addEventListener('click', function() {
 
-  if (modalwidth.style.width !== '915px') {
-    modalwidth.style.width = '915px'
-     fieldsetcontainer.style.gap = '5px'
-    toggleButton.innerHTML = '<i class="fas fa-circle-arrow-left"></i>';
-
-  } else {
-    modalwidth.style.width = '470px'
-     fieldsetcontainer.style.gap = '20px'
-    toggleButton.innerHTML = '<i class="fas fa-circle-arrow-right"></i>';
-
-  }
-});
 
 
