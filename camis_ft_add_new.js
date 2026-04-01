@@ -241,60 +241,16 @@ function AutoMemoleavefocus() { _refreshMemo(); }
 // ── Save / confirm ────────────────────────────────────────────────────────
 function saveftnew() {
   document.getElementById('ftconfirmation').classList.add('show');
-  xMessage.textContent = `Are you sure you want to save this ${tnstype.value} transaction amounting to ${newftamt.value}?`;
+  const xMsg = document.getElementById('xmessage');
+  if (xMsg) xMsg.textContent = `Are you sure you want to save this ${tnstype.value} transaction amounting to ${newftamt.value}?`;
 }
 
-function closeftnew() {
+function closeftnew(conf, ova) {
   document.getElementById('ftconfirmation').classList.remove('show');
 }
 
-async function confirmed(conf, ova) {
-  // Import addFTRecord from the Firestore module
-  const { addFTRecord, renderFTTable } = await import('./camis_ft.js');
-
-  const area = document.getElementById('ft-Area-drop').value;
-  const inputMemo = document.getElementById('newftmemo').value;
-  const regex = /((AREA|HO)\s+(LBP|PNB|MBTC|UB))/;
-  const match = inputMemo.match(regex);
-  const bankResult = match ? match[0] : '';
-
-  const data = {
-    date         : new Date().toISOString().slice(0, 10),
-    type         : tnstype.value,
-    transactionId: document.getElementById('newfttnxid').value,
-    origin       : neworigin.value || bankResult,
-    destination  : newdest.value   || bankResult,
-    amount       : newftamt.value,
-    courier      : newftcourier.value,
-    memo         : newftmemo.value,
-    bank         : nwbnk.value || '',
-    area,
-  };
-
-  try {
-    await addFTRecord(data);
-    document.getElementById('ftconfirmation').classList.remove('show');
-    closeOverlay(ova);
-
-    // Refresh the FT table
-    await renderFTTable({
-      dateFrom: document.getElementById('datefromFTlist')?.value || '',
-      dateTo  : document.getElementById('datetoFTlist')?.value   || '',
-    });
-
-    showNotification();
-    xnotification.style.bottom = '75px';
-    xnotification.style.right  = '75px';
-    xnotification.style.width  = '300px';
-    xnotification.style.backgroundColor = 'green';
-    xnotify.innerHTML = '<i class="fa-solid fa-circle-info" style="margin-right:10px;font-size:20px;color:white"></i>Transaction saved successfully.';
-  } catch (err) {
-    console.error('Error saving FT record:', err);
-    xnotification.style.backgroundColor = 'red';
-    xnotify.innerHTML = `<i class="fa-solid fa-circle-xmark" style="margin-right:10px;font-size:20px;color:white"></i>Error: ${err.message}`;
-    showNotification();
-  }
-}
+// NOTE: confirmed() is defined in the <script type="module"> block in camis.html
+// so it has direct access to addFTRecord from camis_ft.js
 
 function checkEnter(event) {
   if (event.target.value !== '' && event.key === 'Enter') {

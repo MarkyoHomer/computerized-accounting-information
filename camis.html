@@ -4967,7 +4967,7 @@
   import { initBcasTransactions }   from './bcas_transactions.js';
   import { initBcasFundTransfers }  from './bcas_fund_transfers.js';
   import { initBcasSettlements }    from './bcas_settlements.js';
-  import { initCamisFT }            from './camis_ft.js';
+  import { initCamisFT, addFTRecord, renderFTTable } from './camis_ft.js';
   import { initCamisSettlements, renderCamisSettlementTable, openProfileForm, submitProfileForm } from './camis_settlements.js';
   import { initCamisEarnings, openEarningSetupForm, submitEarningSetupForm, saveEmployeeEarnings, loadEarningSetup, renderEarningEmployeeRows } from './camis_earnings.js';
   import {
@@ -5167,6 +5167,50 @@
       window.closeAddEmployeeWindow();
     } catch (err) {
       alert('Error saving employee: ' + err.message);
+    }
+  };
+
+  // ── CAMIS FT confirmed save ───────────────────────────────────────────────
+  window.confirmed = async function (conf, ova) {
+    const area     = document.getElementById('ft-Area-drop')?.value || '';
+    const memo     = document.getElementById('newftmemo')?.value    || '';
+    const match    = memo.match(/((AREA|HO)\s+(LBP|PNB|MBTC|UB))/);
+    const bankResult = match ? match[0] : '';
+
+    const data = {
+      date         : new Date().toISOString().slice(0, 10),
+      type         : document.getElementById('tnstype')?.value      || '',
+      transactionId: document.getElementById('newfttnxid')?.value   || '',
+      origin       : document.getElementById('neworigin')?.value    || bankResult,
+      destination  : document.getElementById('newdest')?.value      || bankResult,
+      amount       : document.getElementById('newftamt')?.value     || '0',
+      courier      : document.getElementById('newftcourier')?.value || '',
+      memo,
+      bank         : document.getElementById('nwbnk')?.value        || '',
+      area,
+    };
+
+    const notify = (msg, color) => {
+      const box  = document.getElementById('xnotification');
+      const text = document.getElementById('xnotify');
+      if (!box || !text) return;
+      box.style.cssText = `display:flex;position:fixed;bottom:75px;right:75px;width:320px;background-color:${color};border-radius:6px;padding:10px;z-index:9999;`;
+      text.innerHTML = msg;
+      setTimeout(() => { box.style.display = 'none'; }, 3500);
+    };
+
+    try {
+      await addFTRecord(data);
+      document.getElementById('ftconfirmation')?.classList.remove('show');
+      if (typeof closeOverlay === 'function') closeOverlay(ova);
+      await renderFTTable({
+        dateFrom: document.getElementById('datefromFTlist')?.value || '',
+        dateTo  : document.getElementById('datetoFTlist')?.value   || '',
+      });
+      notify('<i class="fa-solid fa-circle-info" style="margin-right:10px;font-size:20px;color:white"></i>Transaction saved successfully.', 'green');
+    } catch (err) {
+      console.error('Error saving FT record:', err);
+      notify(`<i class="fa-solid fa-circle-xmark" style="margin-right:10px;font-size:20px;color:white"></i>Error: ${err.message}`, 'red');
     }
   };
 
