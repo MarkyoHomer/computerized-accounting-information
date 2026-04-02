@@ -1,12 +1,30 @@
 /**
  * sidebar.js
  * Injects the shared sidebar into any page.
- * Set window.SITE_ROOT before loading this script to control relative paths.
- * e.g. for pages/fund-transfer/: <script>window.SITE_ROOT='../../';</script>
- * For root-level pages (camis.html): <script>window.SITE_ROOT='./';</script>
+ *
+ * Set window.SITE_ROOT before loading this script.
+ * It must be the ABSOLUTE URL to the repo root, e.g.:
+ *   window.SITE_ROOT = 'https://markyohomer.github.io/computerized-accounting-information/';
+ * Or for local dev:
+ *   window.SITE_ROOT = '/';
+ *
+ * Auto-detection fallback: walks up from current URL to find the root
+ * by looking for the last segment before /pages/.
  */
 (function () {
-  const R = (window.SITE_ROOT || './').replace(/\/?$/, '/');
+  function getRoot() {
+    if (window.SITE_ROOT && (window.SITE_ROOT.startsWith('/') || window.SITE_ROOT.startsWith('http'))) {
+      return window.SITE_ROOT.replace(/\/?$/, '/');
+    }
+    const href = window.location.href;
+    // If URL contains /pages/, root is everything before /pages/
+    const pagesIdx = href.indexOf('/pages/');
+    if (pagesIdx !== -1) return href.substring(0, pagesIdx + 1);
+    // Root-level page (camis.html, index.html) — root is the directory of this file
+    return href.substring(0, href.lastIndexOf('/') + 1);
+  }
+
+  const R = getRoot();
 
   const SIDEBAR_HTML = `
 <div class="sidebar">
@@ -20,22 +38,6 @@
     <ul class="submenu" id="IntSub">
       <ul id="IntegDtS"><li><a href="${R}pages/integrations/detailed-status.html"><i class="fas fa-list" style="color:rgb(10,186,10);font-size:14px"></i> Detailed Status</a></li></ul>
       <ul id="IntegExP"><li><a href="${R}pages/integrations/extraction-progress.html"><i class="fas fa-list" style="color:rgb(10,186,10);font-size:14px"></i> Extraction Progress</a></li></ul>
-      <ul id="IntegSum"><li class="icon-text"><a href="${R}pages/integrations/summarized-status.html"><i class="fas fa-list" style="color:rgb(10,186,10);font-size:14px"></i></a><span>Summarized <br>Integration Status</span></li></ul>
-    </ul>
-
-    <li id="FT-Arrow" class="toggle-btn" onclick="toggleSubmenu('FTSub')">
-      <a href="#"><i class="fas fa-money-bill-transfer" style="color:rgb(11,161,11);font-size:18px"></i>
-      Fund Transfer<i style="position:absolute;right:10px;" class="fas fa-angle-down"></i></a>
-    </li>
-    <ul class="submenu" id="FTSub">
-      <ul id="FT-RcR"><li><a href="${R}pages/fund-transfer/recon-report.html"><i class="fas fa-calculator" style="color:rgb(10,186,10);font-size:14px"></i> Recon Report</a></li></ul>
-      <ul id="FT-TxL"><li><a href="${R}pages/fund-transfer/transaction-list.html"><i class="fas fa-table-list" style="color:rgb(10,186,10);font-size:14px"></i> Transaction List</a></li></ul>
-    </ul>
-
-    <li id="Trnx-Arrow" class="toggle-btn" onclick="toggleSubmenu('TrnxSub')">
-      <a href="#"><i class="fas fa-cash-register" style="color:rgb(11,161,11);font-size:18px"></i>
-      Transactions<i style="position:absolute;right:10px;" class="fas fa-angle-down"></i></a>
-    </li>
     <ul class="submenu" id="TrnxSub">
       <li><a href="${R}pages/transactions/head-office.html"><i class="fas fa-list-check" style="color:rgb(10,186,10);font-size:14px"></i> Head Office</a></li>
       <ul id="BCAS"><li><a href="${R}pages/transactions/branch-cas.html"><i class="fas fa-hourglass-half" style="color:rgb(11,161,11);font-size:14px"></i> Branch CAS</a></li></ul>
