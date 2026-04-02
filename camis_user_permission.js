@@ -256,3 +256,22 @@ function getCurrentDateTime() {
   const pad = n => String(n).padStart(2, '0');
   return `${pad(now.getMonth()+1)}/${pad(now.getDate())}/${now.getFullYear()} ${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
 }
+
+// ── FT filter button handler ──────────────────────────────────────────────
+function applyFTFilter() {
+  if (typeof window.renderFTTable !== 'function') return;
+
+  const get = id => document.getElementById(id)?.value?.trim() || '';
+
+  const filters = {
+    dateFrom: get('datefromFTlist'),
+    dateTo  : get('datetoFTlist'),
+    area    : get('ft-Area-drop'),
+    branch  : get('ft-branch-drop'),
+    status  : get('ft-status-drop'),
+    type    : get('ft-trns-drop'),
+    search  : get('searchftall'),
+  };
+
+  window.renderFTTable(filters);
+}

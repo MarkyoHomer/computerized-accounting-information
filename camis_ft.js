@@ -302,11 +302,7 @@ export function initCamisFT() {
 
   renderFTTable({ dateFrom: today, dateTo: today });
 
-  // Filter button
-  const filterBtn = document.getElementById('filterftbtn');
-  if (filterBtn) filterBtn.addEventListener('click', () => renderFTTable(_getCurrentFilters()));
-
-  // Search input
+  // Search input — re-query Firestore with current filters + search term
   const searchEl = document.getElementById('searchftall');
   if (searchEl) searchEl.addEventListener('input', () => renderFTTable(_getCurrentFilters()));
 
