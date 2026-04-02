@@ -55,11 +55,18 @@ function expandview() {
     ? '<i class="fas fa-circle-arrow-right"></i>'
     : '<i class="fas fa-circle-arrow-left"></i>';
 }
+
+function getCurrentDateTime() {
+  const now = new Date();
+  const pad = n => String(n).padStart(2, '0');
+  return `${pad(now.getMonth()+1)}/${pad(now.getDate())}/${now.getFullYear()} ${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
+}
+
+// ── Open Add-New overlay (overlay1) ──────────────────────────────────────
 function opennewOverlay(overlayId, event, tableId, rowIndex, colIndex) {
   event.preventDefault();
 
   if (overlayId !== 'overlay1') {
-    // View overlay — read row data
     const table = document.getElementById(tableId);
     const row   = table?.rows[rowIndex];
     if (row) {
@@ -75,8 +82,6 @@ function opennewOverlay(overlayId, event, tableId, rowIndex, colIndex) {
 
   if (overlayId === 'overlay1') {
     if (cby) cby.value = userRole;
-
-    // Reset validation borders
     if (ttypef)  ttypef.style.border  = '1px solid red';
     if (namtf)   namtf.style.border   = '1px solid #ccc';
     if (ncorf)   ncorf.style.border   = '1px solid #ccc';
@@ -85,11 +90,7 @@ function opennewOverlay(overlayId, event, tableId, rowIndex, colIndex) {
     if (notherf) notherf.style.border = '1px solid #ccc';
     if (nbank)   nbank.style.color    = '#ccc';
     if (nwbnk)   nwbnk.style.border   = '1px solid #ccc';
-
-    // Disable save until form is valid
     if (savenew) { savenew.style.backgroundColor = 'gray'; savenew.disabled = true; savenew.style.cursor = 'not-allowed'; }
-
-    // Reset and disable all input fields
     [newftamt, neworigin, newdest, nwbnk, newftcourier, newftother].forEach(el => {
       if (el) { el.disabled = true; el.value = ''; }
     });
@@ -111,7 +112,7 @@ function openOverlay(overlayId, event, tableId, rowIndex, colIndex, button) {
 
   if (fieldsetcontainer) fieldsetcontainer.style.gap = '20px';
 
-  const set = (id, val) => { const el = document.getElementById(id); if (el) el.value = val; };
+  const set = (id, val) => { const el = document.getElementById(id); if (el) el.value = val ?? ''; };
   set('headr',          hcell + ' Transaction');
   set('viewtrnxtype',   row.cells[2]?.innerText);
   set('viewamount',     row.cells[4]?.innerText);
@@ -127,7 +128,6 @@ function openOverlay(overlayId, event, tableId, rowIndex, colIndex, button) {
   set('viewcftrdate',   row.cells[13]?.innerText);
   set('viewcftclby',    row.cells[14]?.innerText);
   set('viewcftcldate',  row.cells[15]?.innerText);
-
   const type = row.cells[2]?.innerText;
   set('viewcftbank', (type === 'Withdraw' || type === 'Deposit') ? row.cells[8]?.innerText : '');
 
@@ -135,7 +135,6 @@ function openOverlay(overlayId, event, tableId, rowIndex, colIndex, button) {
   if (ns) { ns.value = cellValue; ns.textContent = cellValue; }
   sessionStorage.setItem('Newrow', newrowIndex);
 
-  // Button visibility
   const btnIds = ['flag','ack','deny','cancel-denied','cancel-new','cancel-ack','save','cancel-flag'];
   const btns = {};
   btnIds.forEach(k => {
@@ -181,13 +180,24 @@ function formatNumber(event) {
   event.target.value = number;
 }
 
-function getCurrentDateTime() {
-  const now = new Date();
-  const pad = n => String(n).padStart(2, '0');
-  return `${pad(now.getMonth()+1)}/${pad(now.getDate())}/${now.getFullYear()} ${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
+function validateInput(event) {
+  const el = event.target;
+  el.value = el.value.replace(/[^0-9.,]/g, '');
+  if (namtf) namtf.style.border = el.value.trim() ? '1px solid #ccc' : '1px solid red';
+  _updateSaveBtn();
 }
 
-// ── Amount field validation ───────────────────────────────────────────────
+function updateDropdowns() {
+  if (typeof _refreshTxnId === 'function') _refreshTxnId();
+  if (typeof _refreshMemo  === 'function') _refreshMemo();
+  _updateSaveBtn();
+}
+
+function handleEnterKey(e, id) {
+  if (e.key === 'Enter') { e.preventDefault(); document.getElementById(id)?.blur(); }
+}
+
+// ── Amount / courier validation ───────────────────────────────────────────
 if (newftamt) {
   newftamt.addEventListener('input', function(event) {
     event.target.value = event.target.value.replace(/[^0-9.,]/g, '');
@@ -212,7 +222,7 @@ function _updateSaveBtn() {
   savenew.style.cursor = invalid ? 'not-allowed' : 'pointer';
 }
 
-// ── Type dropdown filter (Send hides cmd statuses) ────────────────────────
+// ── Type dropdown filter ──────────────────────────────────────────────────
 const dropdownListTrans = document.getElementById('dropdownList-trans');
 if (dropdownListTrans) {
   dropdownListTrans.addEventListener('click', function(event) {
@@ -232,36 +242,18 @@ if (dropdownListTrans) {
   });
 }
 
-function handleEnterKey(e, id) {
-  if (e.key === 'Enter') { e.preventDefault(); document.getElementById(id)?.blur(); }
-}
-
-// ── Inline handler aliases (called from HTML oninput/onchange) ────────────
-function validateInput(event) {
-  const el = event.target;
-  el.value = el.value.replace(/[^0-9.,]/g, '');
-  if (namtf) namtf.style.border = el.value.trim() ? '1px solid #ccc' : '1px solid red';
-  _updateSaveBtn();
-}
-
-function updateDropdowns() {
-  // Called after origin/dest/type change — refresh txn ID and memo
-  if (typeof _refreshTxnId === 'function') _refreshTxnId();
-  if (typeof _refreshMemo  === 'function') _refreshMemo();
-  _updateSaveBtn();
-}
-
-function getCurrentDateTime() {
-  const now = new Date();
-  const pad = n => String(n).padStart(2, '0');
-  return `${pad(now.getMonth()+1)}/${pad(now.getDate())}/${now.getFullYear()} ${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
-}
-
-// ── FT filter button handler ──────────────────────────────────────────────
+// ── FT filter button ──────────────────────────────────────────────────────
 function applyFTFilter() {
-  if (typeof window.renderFTTable !== 'function') return;
+  if (typeof window.renderFTTable !== 'function') {
+    alert('Table not ready yet. Please wait a moment and try again.');
+    return;
+  }
 
-  const get = id => document.getElementById(id)?.value?.trim() || '';
+  const get = id => {
+    const el = document.getElementById(id);
+    const val = (el?.value || '').trim();
+    return val === (el?.placeholder || '') ? '' : val;
+  };
 
   const filters = {
     dateFrom: get('datefromFTlist'),
