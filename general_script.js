@@ -242,17 +242,23 @@ function openTab(event, tabName) {
 function toggleSubmenu(id) {
   const el = document.getElementById(id);
   if (!el) return;
-  el.style.display = el.style.display === 'block' ? 'none' : 'block';
+  const isOpen = el.style.maxHeight && el.style.maxHeight !== '0px';
+  el.style.maxHeight = isOpen ? '0' : el.scrollHeight + 'px';
+  el.style.opacity   = isOpen ? '0' : '1';
 }
 
 function togglebcasSubmenu(id) {
   const el = document.getElementById(id);
   if (!el) return;
-  el.style.display = el.style.display === 'block' ? 'none' : 'block';
+  const isOpen = el.style.maxHeight && el.style.maxHeight !== '0px';
+  el.style.maxHeight = isOpen ? '0' : el.scrollHeight + 'px';
+  el.style.opacity   = isOpen ? '0' : '1';
 }
 
 function subSubmenu(id) {
   const el = document.getElementById(id);
   if (!el) return;
-  el.style.display = el.style.display === 'block' ? 'none' : 'block';
+  const isOpen = el.style.maxHeight && el.style.maxHeight !== '0px';
+  el.style.maxHeight = isOpen ? '0' : el.scrollHeight + 'px';
+  el.style.opacity   = isOpen ? '0' : '1';
 }

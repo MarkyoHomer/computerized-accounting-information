@@ -17,7 +17,7 @@
       <a href="#"><i class="fas fa-clapperboard" style="color:rgb(11,161,11);font-size:18px"></i>
       Integrations<i style="position:absolute;right:10px;" class="fa-solid fa-angle-down"></i></a>
     </li>
-    <ul class="submenu" id="IntSub" style="display:none;">
+    <ul class="submenu" id="IntSub">
       <ul id="IntegDtS"><li><a href="${R}pages/integrations/detailed-status.html"><i class="fas fa-list" style="color:rgb(10,186,10);font-size:14px"></i> Detailed Status</a></li></ul>
       <ul id="IntegExP"><li><a href="${R}pages/integrations/extraction-progress.html"><i class="fas fa-list" style="color:rgb(10,186,10);font-size:14px"></i> Extraction Progress</a></li></ul>
       <ul id="IntegSum"><li class="icon-text"><a href="${R}pages/integrations/summarized-status.html"><i class="fas fa-list" style="color:rgb(10,186,10);font-size:14px"></i></a><span>Summarized <br>Integration Status</span></li></ul>
@@ -27,7 +27,7 @@
       <a href="#"><i class="fas fa-money-bill-transfer" style="color:rgb(11,161,11);font-size:18px"></i>
       Fund Transfer<i style="position:absolute;right:10px;" class="fas fa-angle-down"></i></a>
     </li>
-    <ul class="submenu" id="FTSub" style="display:none;">
+    <ul class="submenu" id="FTSub">
       <ul id="FT-RcR"><li><a href="${R}pages/fund-transfer/recon-report.html"><i class="fas fa-calculator" style="color:rgb(10,186,10);font-size:14px"></i> Recon Report</a></li></ul>
       <ul id="FT-TxL"><li><a href="${R}pages/fund-transfer/transaction-list.html"><i class="fas fa-table-list" style="color:rgb(10,186,10);font-size:14px"></i> Transaction List</a></li></ul>
     </ul>
@@ -36,7 +36,7 @@
       <a href="#"><i class="fas fa-cash-register" style="color:rgb(11,161,11);font-size:18px"></i>
       Transactions<i style="position:absolute;right:10px;" class="fas fa-angle-down"></i></a>
     </li>
-    <ul class="submenu" id="TrnxSub" style="display:none;">
+    <ul class="submenu" id="TrnxSub">
       <li><a href="${R}pages/transactions/head-office.html"><i class="fas fa-list-check" style="color:rgb(10,186,10);font-size:14px"></i> Head Office</a></li>
       <ul id="BCAS"><li><a href="${R}pages/transactions/branch-cas.html"><i class="fas fa-hourglass-half" style="color:rgb(11,161,11);font-size:14px"></i> Branch CAS</a></li></ul>
     </ul>
@@ -45,7 +45,7 @@
       <a href="#"><i class="fas fa-money-check-dollar" style="color:rgb(11,161,11);font-size:18px"></i>
       Expenses<i style="position:absolute;right:10px;" class="fas fa-angle-down"></i></a>
     </li>
-    <ul class="submenu" id="ExpSub" style="display:none;">
+    <ul class="submenu" id="ExpSub">
       <li><a href="${R}pages/expenses/manage-categories.html"><i class="fas fa-list-check" style="color:rgb(10,186,10);font-size:14px"></i> Manage Categories</a></li>
       <li><a href="${R}pages/expenses/manage-contract.html"><i class="fas fa-list-check" style="color:rgb(10,186,10);font-size:14px"></i> Manage Contract</a></li>
       <li class="icon-text"><a href="${R}pages/expenses/manage-contract-items.html"><i class="fas fa-list-check" style="color:rgb(10,186,10);font-size:14px"></i></a><span>Manage Contract <br>Items</span></li>
@@ -56,7 +56,7 @@
       <a href="#"><i class="fas fa-money-bill-1" style="color:rgb(11,161,11);font-size:18px"></i>
       Earnings<i style="position:absolute;right:10px;" class="fas fa-angle-down"></i></a>
     </li>
-    <ul class="submenu" id="EarnSub" style="display:none;">
+    <ul class="submenu" id="EarnSub">
       <li><a href="${R}pages/earnings/earning-reports.html"><i class="fas fa-list-check" style="color:rgb(10,186,10);font-size:14px"></i> Earning Reports</a></li>
       <li><a href="${R}pages/earnings/employee-earnings.html"><i class="fas fa-list-check" style="color:rgb(10,186,10);font-size:14px"></i> Employee Earnings</a></li>
       <li><a href="${R}pages/earnings/manage-earnings.html"><i class="fas fa-list-check" style="color:rgb(10,186,10);font-size:14px"></i> Manage Earnings</a></li>
@@ -67,7 +67,7 @@
       <a href="#"><i class="fas fa-money-bill-transfer" style="color:rgb(11,161,11);font-size:18px"></i>
       Settlements<i style="position:absolute;right:10px;" class="fas fa-angle-down"></i></a>
     </li>
-    <ul class="submenu" id="SettleSub" style="display:none;">
+    <ul class="submenu" id="SettleSub">
       <li><a href="${R}pages/settlements/settlement-window.html"><i class="fas fa-list-check" style="color:rgb(10,186,10);font-size:14px"></i> Settlement Window</a></li>
     </ul>
 
@@ -75,7 +75,7 @@
       <a href="#"><i class="fas fa-paste" style="color:rgb(11,161,11);font-size:18px"></i>
       Reporting<i style="position:absolute;right:10px;" class="fas fa-angle-down"></i></a>
     </li>
-    <ul class="submenu" id="ReprtSub" style="display:none;">
+    <ul class="submenu" id="ReprtSub">
       <ul id="RprtASum"><li><a href="${R}pages/reporting/account-summary.html"><i class="fas fa-list-check" style="color:rgb(10,186,10);font-size:14px"></i> Account Summary</a></li></ul>
       <ul id="RprtDtlr"><li class="icon-text"><a href="${R}pages/reporting/detailed-ledger.html"><i class="fas fa-list-check" style="color:rgb(10,186,10);font-size:14px"></i></a><span>Detailed <br>Ledger Reports</span></li></ul>
       <ul id="RprtFinR"><li><a href="${R}pages/reporting/financial-reports.html"><i class="fas fa-list-check" style="color:rgb(10,186,10);font-size:14px"></i> Financial Reports</a></li></ul>
@@ -87,7 +87,7 @@
       <a href="#"><i class="fas fa-earth-america" style="color:rgb(11,161,11);font-size:18px"></i>
       Monitoring<i style="position:absolute;right:10px;" class="fas fa-angle-down"></i></a>
     </li>
-    <ul class="submenu" id="MontrSub" style="display:none;">
+    <ul class="submenu" id="MontrSub">
       <ul id="Mntr-Upld"><li><a href="${R}pages/monitoring/upload-monitoring.html"><i class="fas fa-magnifying-glass" style="color:rgb(10,186,10);font-size:14px"></i> Upload Monitoring</a></li></ul>
       <ul id="Mntr-Aud"><li><a href="${R}pages/monitoring/audit-trail.html"><i class="fas fa-magnifying-glass" style="color:rgb(10,186,10);font-size:14px"></i> Audit Trail</a></li></ul>
     </ul>
@@ -96,7 +96,7 @@
       <a href="#"><i class="fas fa-gear" style="color:rgb(11,161,11);font-size:18px"></i>
       Setup<i style="position:absolute;right:10px;" class="fas fa-angle-down"></i></a>
     </li>
-    <ul class="submenu" id="SetupSub" style="display:none;">
+    <ul class="submenu" id="SetupSub">
       <li><a href="${R}pages/setup/accounts.html"><i class="fas fa-wrench" style="color:rgb(10,186,10);font-size:14px"></i> Accounts</a></li>
       <li><a href="${R}pages/setup/area-profiles.html"><i class="fas fa-wrench" style="color:rgb(10,186,10);font-size:14px"></i> Area Profiles</a></li>
       <li><a href="${R}pages/setup/bank-accounts.html"><i class="fas fa-wrench" style="color:rgb(10,186,10);font-size:14px"></i> Bank Accounts</a></li>
@@ -114,7 +114,7 @@
       <a href="#"><i class="fas fa-gears" style="color:rgb(11,161,11);font-size:18px"></i>
       Integration Setup<i style="position:absolute;right:10px;" class="fas fa-angle-down"></i></a>
     </li>
-    <ul class="submenu" id="IntSetupSub" style="display:none;">
+    <ul class="submenu" id="IntSetupSub">
       <li><a href="${R}pages/integration-setup/agents.html"><i class="fas fa-screwdriver-wrench" style="color:rgb(10,186,10);font-size:14px"></i> Agents</a></li>
       <li><a href="${R}pages/integration-setup/agent-scheme.html"><i class="fas fa-screwdriver-wrench" style="color:rgb(10,186,10);font-size:14px"></i> Agent Scheme</a></li>
       <li><a href="${R}pages/integration-setup/agent-branches.html"><i class="fas fa-screwdriver-wrench" style="color:rgb(10,186,10);font-size:14px"></i> Agent Branches</a></li>
@@ -135,22 +135,33 @@
   const root = document.getElementById('sidebar-root');
   if (root) root.innerHTML = SIDEBAR_HTML;
 
-  // Highlight active page
+  // Highlight active page and auto-expand its parent submenu
   const currentHref = window.location.href;
   document.querySelectorAll('#sidebar-root a[href]').forEach(a => {
-    if (a.href && currentHref.endsWith(a.getAttribute('href').replace(/^.*\//, ''))) {
+    const href = a.getAttribute('href') || '';
+    if (href && currentHref.includes(href.replace(/^.*\//, '').replace(/\.html$/, ''))) {
       a.style.color = '#a8d8a8';
       a.style.fontWeight = 'bold';
       // Auto-expand parent submenu
       const parentUl = a.closest('ul.submenu');
-      if (parentUl) parentUl.style.display = 'block';
+      if (parentUl) {
+        parentUl.style.maxHeight = parentUl.scrollHeight + 'px';
+        parentUl.style.opacity   = '1';
+      }
     }
   });
 
-  // Submenu toggle
+  // Submenu toggle — uses max-height/opacity to match CSS transitions in styles.css
   window.toggleSubmenu = function (id) {
     const el = document.getElementById(id);
     if (!el) return;
-    el.style.display = el.style.display === 'block' ? 'none' : 'block';
+    const isOpen = el.style.maxHeight && el.style.maxHeight !== '0px';
+    if (isOpen) {
+      el.style.maxHeight = '0';
+      el.style.opacity   = '0';
+    } else {
+      el.style.maxHeight = el.scrollHeight + 'px';
+      el.style.opacity   = '1';
+    }
   };
 })();
