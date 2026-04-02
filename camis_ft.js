@@ -19,26 +19,30 @@ import {
 export async function loadFTRecords(filters = {}) {
   let constraints = [];
 
+  // Only use date range in Firestore query (same field = no composite index needed)
   if (filters.dateFrom) constraints.push(where('date', '>=', filters.dateFrom));
   if (filters.dateTo)   constraints.push(where('date', '<=', filters.dateTo));
-  if (filters.status && filters.status !== 'All') {
-    constraints.push(where('status', '==', filters.status));
-  }
-  if (filters.area) constraints.push(where('area', '==', filters.area));
 
   const q = query(collection(db, COLLECTIONS.FT_RECORDS), ...constraints);
   const snap = await getDocs(q);
   let rows = snap.docs
     .map(d => ({ id: d.id, ...d.data() }))
-    .sort((a, b) => (b.date > a.date ? 1 : b.date < a.date ? -1 : 0)); // sort date desc client-side
+    .sort((a, b) => (b.date > a.date ? 1 : b.date < a.date ? -1 : 0));
 
-  if (filters.branch) {
+  // All other filters applied client-side
+  if (filters.area && filters.area !== 'All Area') {
+    rows = rows.filter(r => r.area?.toLowerCase() === filters.area.toLowerCase());
+  }
+  if (filters.status && filters.status !== 'All Status') {
+    rows = rows.filter(r => r.status?.toLowerCase() === filters.status.toLowerCase());
+  }
+  if (filters.branch && filters.branch !== 'All Branch') {
     const b = filters.branch.toLowerCase();
     rows = rows.filter(r =>
       r.origin?.toLowerCase().includes(b) || r.destination?.toLowerCase().includes(b)
     );
   }
-  if (filters.type && filters.type !== 'All') {
+  if (filters.type && filters.type !== 'All Transfers') {
     if (filters.type === 'All Bank Transfers') {
       rows = rows.filter(r => r.type === 'Deposit' || r.type === 'Withdraw');
     } else {
