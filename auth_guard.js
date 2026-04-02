@@ -11,8 +11,25 @@ import { doc, getDoc } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase
 
 export let currentUser = null;
 
-// ── Dev bypass — active only when opened via file:// ─────────────────────
-// Remove or set DEV_USER to null to disable.
+// ── Resolve root path (works for root pages and sub-pages on GitHub Pages) ─
+function _rootPath() {
+  // Use window.SITE_ROOT if set by the page (most reliable)
+  if (window.SITE_ROOT) return window.SITE_ROOT.replace(/\/?$/, '/');
+  // Fallback: count directory depth from pathname
+  const segs = window.location.pathname.replace(/\/[^/]*$/, '').split('/').filter(Boolean);
+  // On GitHub Pages: /repo-name/pages/subfolder → depth from repo root = segs.length - 1
+  // On plain server: /pages/subfolder → depth = segs.length
+  // We just need to go up enough levels to reach index.html
+  // Safe heuristic: if pathname contains /pages/, go up to before /pages/
+  const path = window.location.pathname;
+  const pagesIdx = path.indexOf('/pages/');
+  if (pagesIdx !== -1) {
+    return path.substring(0, pagesIdx + 1).replace(/^\//, '');
+  }
+  return './';
+}
+
+const _ROOT = _rootPath();
 const DEV_USER = window.location.protocol === 'file:' ? {
   uid   : 'dev-uid',
   email : 'dev@local',
@@ -37,7 +54,7 @@ export function initAuthGuard(onReady) {
 
   onAuthStateChanged(auth, async (user) => {
     if (!user) {
-      window.location.href = 'index.html';
+      window.location.href = _ROOT + 'index.html';
       return;
     }
 
@@ -45,7 +62,7 @@ export function initAuthGuard(onReady) {
     const snap = await getDoc(doc(db, COLLECTIONS.USERS, user.uid));
     if (!snap.exists()) {
       await signOut(auth);
-      window.location.href = 'index.html';
+      window.location.href = _ROOT + 'index.html';
       return;
     }
 
@@ -76,7 +93,7 @@ export function initAuthGuard(onReady) {
 export async function logout() {
   if (!DEV_USER) await signOut(auth);
   sessionStorage.clear();
-  window.location.href = 'index.html';
+  window.location.href = _ROOT + 'index.html';
 }
 
 // Expose logout globally so inline onclick="logout()" still works

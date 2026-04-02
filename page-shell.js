@@ -1,23 +1,29 @@
 /**
  * page-shell.js
- * Builds the shared page shell (header + sidebar wrapper) for all sub-pages.
- * Include AFTER sidebar.js.
+ * Auth guard + logout for all sub-pages.
+ * Uses window.SITE_ROOT if set, otherwise auto-detects from pathname.
  */
 (function () {
-  const ROOT_PATH = (function () {
-    const depth = (document.currentScript?.src || '').split('/').length - 3;
-    return depth > 0 ? '../'.repeat(depth) : './';
-  })();
+  function resolveRoot() {
+    if (window.SITE_ROOT) return window.SITE_ROOT.replace(/\/?$/, '/');
+    const path = window.location.pathname;
+    const pagesIdx = path.indexOf('/pages/');
+    if (pagesIdx !== -1) return path.substring(0, pagesIdx + 1).replace(/^\//, '') || './';
+    return './';
+  }
 
-  // Auth guard
+  const R = resolveRoot();
+
+  // Auth guard — skip on file:// (dev mode)
   if (!sessionStorage.getItem('userRole') && window.location.protocol !== 'file:') {
-    window.location.href = ROOT_PATH + 'index.html';
+    window.location.href = R + 'index.html';
+    return;
   }
 
   // Logout
   window.logout = function () {
     sessionStorage.clear();
-    window.location.href = ROOT_PATH + 'index.html';
+    window.location.href = R + 'index.html';
   };
 
   // Set user role in header
