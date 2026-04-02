@@ -4742,6 +4742,9 @@
     collection, query, where, getDocs,
   } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
 
+  // ── Expose Firestore functions immediately (before auth) ──────────────────
+  window.renderFTTable = renderFTTable;
+
   // ── Cash Shortage panel handlers ─────────────────────────────────────────
   // Called when account code changes in the transaction entry form
   window.onAccountCodeChange = function (accountCode) {
@@ -4931,7 +4934,6 @@
   };
 
   // ── CAMIS FT confirmed save ───────────────────────────────────────────────
-  window.renderFTTable = renderFTTable;
   window.confirmed = async function (conf, ova) {
     const area     = document.getElementById('ft-Area-drop')?.value || '';
     const memo     = document.getElementById('newftmemo')?.value    || '';
