@@ -19,8 +19,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const bcastabs = document.querySelectorAll('.bcastab');
     submenuLinks.forEach(link => {
         link.addEventListener('click', (e) => {
-            e.preventDefault();
             const targetTab = e.target.getAttribute('data-tab');
+            const href = e.target.getAttribute('href');
+
+            // If this is a real page link (not a #-anchor), let the browser navigate
+            if (href && href !== '#' && !href.startsWith('#')) {
+              return; // allow normal navigation
+            }
+
+            e.preventDefault();
+            if (!targetTab) return;
 
 
                // Update header with the clicked menu text

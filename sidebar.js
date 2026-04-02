@@ -135,21 +135,33 @@
   const root = document.getElementById('sidebar-root');
   if (root) root.innerHTML = SIDEBAR_HTML;
 
-  // Highlight active page and auto-expand its parent submenu
-  const currentHref = window.location.href;
-  document.querySelectorAll('#sidebar-root a[href]').forEach(a => {
-    const href = a.getAttribute('href') || '';
-    if (href && currentHref.includes(href.replace(/^.*\//, '').replace(/\.html$/, ''))) {
-      a.style.color = '#a8d8a8';
-      a.style.fontWeight = 'bold';
-      // Auto-expand parent submenu
-      const parentUl = a.closest('ul.submenu');
-      if (parentUl) {
-        parentUl.style.maxHeight = parentUl.scrollHeight + 'px';
-        parentUl.style.opacity   = '1';
+  // Highlight active page and auto-expand its parent submenu after DOM is ready
+  function _highlightActive() {
+    const currentHref = window.location.href;
+    document.querySelectorAll('#sidebar-root a[href]').forEach(a => {
+      const href = a.getAttribute('href') || '';
+      if (!href || href === '#') return;
+      // Match by filename
+      const linkFile = href.split('/').pop();
+      const currentFile = currentHref.split('/').pop().split('?')[0];
+      if (linkFile && currentFile && linkFile === currentFile) {
+        a.style.color = '#a8d8a8';
+        a.style.fontWeight = 'bold';
+        // Auto-expand parent submenu
+        const parentUl = a.closest('ul.submenu');
+        if (parentUl) {
+          parentUl.style.maxHeight = '500px';
+          parentUl.style.opacity   = '1';
+        }
       }
-    }
-  });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', _highlightActive);
+  } else {
+    _highlightActive();
+  }
 
   // Submenu toggle — uses max-height/opacity to match CSS transitions in styles.css
   window.toggleSubmenu = function (id) {
