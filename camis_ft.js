@@ -12,7 +12,7 @@ import {
 import { db, COLLECTIONS } from './firebase.js';
 import { currentUser } from './auth_guard.js';
 import {
-  collection, query, where, orderBy, getDocs,
+  collection, query, where, getDocs,
 } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
 
 // ── Load FT records with filters ──────────────────────────────────────────
@@ -24,18 +24,14 @@ export async function loadFTRecords(filters = {}) {
   if (filters.status && filters.status !== 'All') {
     constraints.push(where('status', '==', filters.status));
   }
-  if (filters.area)   constraints.push(where('area',   '==', filters.area));
-  if (filters.branch) {
-    // origin or destination — Firestore can't do OR, so filter client-side
-  }
-
-  constraints.push(orderBy('date', 'desc'));
+  if (filters.area) constraints.push(where('area', '==', filters.area));
 
   const q = query(collection(db, COLLECTIONS.FT_RECORDS), ...constraints);
   const snap = await getDocs(q);
-  let rows = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+  let rows = snap.docs
+    .map(d => ({ id: d.id, ...d.data() }))
+    .sort((a, b) => (b.date > a.date ? 1 : b.date < a.date ? -1 : 0)); // sort date desc client-side
 
-  // Client-side filters
   if (filters.branch) {
     const b = filters.branch.toLowerCase();
     rows = rows.filter(r =>
@@ -121,13 +117,26 @@ export async function renderFTTable(filters = {}) {
     const tr = tbody.insertRow();
     tr.dataset.id = ft.id;
 
-    // Action button
-    const actionBtn = document.createElement('button');
-    actionBtn.type = 'button';
-    actionBtn.className = 'custom-button-bcaseye';
-    actionBtn.innerHTML = '<i class="fas fa-eye"></i>';
-    actionBtn.onclick = (e) => openFTOverlay(e, ft);
-    tr.insertCell(0).appendChild(actionBtn);
+    // Action cell: View + Copy buttons
+    const actionCell = tr.insertCell(0);
+
+    const viewBtn = document.createElement('button');
+    viewBtn.type = 'button';
+    viewBtn.className = 'custom-button-bcaseye';
+    viewBtn.innerHTML = '<i class="fas fa-eye"></i>';
+    viewBtn.onclick = (e) => openFTOverlay(e, ft);
+    actionCell.appendChild(viewBtn);
+
+    const copyBtn = document.createElement('button');
+    copyBtn.type = 'button';
+    copyBtn.className = 'custom-button-copy';
+    copyBtn.innerHTML = '<i class="fas fa-copy"></i>';
+    copyBtn.onclick = (e) => {
+      if (typeof encryptRow === 'function') {
+        encryptRow('ft-data-table', idx + 1, e, 1, 2, 5, 6);
+      }
+    };
+    actionCell.appendChild(copyBtn);
 
     tr.insertCell(1).textContent  = toDisplayDate(ft.date);
     tr.insertCell(2).textContent  = ft.type;
